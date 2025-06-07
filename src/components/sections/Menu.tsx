@@ -57,34 +57,34 @@ const Menu = () => {
   ];
 
   return (
-    <section id="menu" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-trend-text mb-4 font-noto">
+    <section id="menu" className="py-20 xl:py-24 2xl:py-32 bg-white">
+      <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
+          <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
             メニュー
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 2xl:gap-20 mb-12 xl:mb-16 2xl:mb-20">
           <Card className="border-none shadow-lg">
             <CardHeader className="bg-trend-accent text-white">
-              <CardTitle className="text-2xl font-noto">
+              <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto">
                 昼の創作ランチ・スイーツ（11:00–17:00）
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              <div className="space-y-6">
+            <CardContent className="p-6 xl:p-8 2xl:p-10">
+              <div className="space-y-6 xl:space-y-8 2xl:space-y-10">
                 {lunchMenu.map((item, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-4 last:border-b-0">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-lg font-semibold text-trend-text font-noto">
+                  <div key={index} className="border-b border-gray-200 pb-4 xl:pb-6 2xl:pb-8 last:border-b-0">
+                    <div className="flex justify-between items-start mb-2 xl:mb-3 2xl:mb-4">
+                      <h3 className="text-lg xl:text-xl 2xl:text-2xl font-semibold text-trend-text font-noto">
                         {item.name}
                       </h3>
-                      <span className="text-trend-accent font-bold font-noto">
+                      <span className="text-trend-accent xl:text-lg 2xl:text-xl font-bold font-noto">
                         {item.price}
                       </span>
                     </div>
-                    <p className="text-gray-600 text-sm font-noto">
+                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto">
                       {item.description}
                     </p>
                   </div>
@@ -95,23 +95,23 @@ const Menu = () => {
 
           <Card className="border-none shadow-lg">
             <CardHeader className="bg-trend-text text-white">
-              <CardTitle className="text-2xl font-noto">
+              <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto">
                 夜のバー・おつまみ（17:00–23:30）
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              <div className="space-y-6">
+            <CardContent className="p-6 xl:p-8 2xl:p-10">
+              <div className="space-y-6 xl:space-y-8 2xl:space-y-10">
                 {dinnerMenu.map((item, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-4 last:border-b-0">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-lg font-semibold text-trend-text font-noto">
+                  <div key={index} className="border-b border-gray-200 pb-4 xl:pb-6 2xl:pb-8 last:border-b-0">
+                    <div className="flex justify-between items-start mb-2 xl:mb-3 2xl:mb-4">
+                      <h3 className="text-lg xl:text-xl 2xl:text-2xl font-semibold text-trend-text font-noto">
                         {item.name}
                       </h3>
-                      <span className="text-trend-accent font-bold font-noto">
+                      <span className="text-trend-accent xl:text-lg 2xl:text-xl font-bold font-noto">
                         {item.price}
                       </span>
                     </div>
-                    <p className="text-gray-600 text-sm font-noto">
+                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto">
                       {item.description}
                     </p>
                   </div>
@@ -123,16 +123,16 @@ const Menu = () => {
 
         <Card className="border-none shadow-lg">
           <CardHeader className="bg-gradient-to-r from-trend-accent to-trend-text text-white">
-            <CardTitle className="text-2xl font-noto">
+            <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto">
               ドリンク
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <CardContent className="p-6 xl:p-8 2xl:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 xl:gap-6 2xl:gap-8">
               {drinks.map((drink, index) => (
-                <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                  <span className="text-trend-text font-noto">{drink.name}</span>
-                  <span className="text-trend-accent font-bold font-noto">{drink.price}</span>
+                <div key={index} className="flex justify-between items-center p-3 xl:p-4 2xl:p-5 bg-gray-50 rounded-lg">
+                  <span className="text-trend-text xl:text-lg 2xl:text-xl font-noto">{drink.name}</span>
+                  <span className="text-trend-accent xl:text-lg 2xl:text-xl font-bold font-noto">{drink.price}</span>
                 </div>
               ))}
             </div>

@@ -36,19 +36,19 @@ const Header = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
     }`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="flex justify-between items-center h-16 xl:h-18 2xl:h-20">
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-trend-accent font-noto">Trend Cooks</h1>
+            <h1 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent font-noto">Trend Cooks</h1>
           </div>
 
           <nav className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 xl:ml-12 2xl:ml-16 flex items-baseline space-x-8 xl:space-x-10 2xl:space-x-12">
               {navigation.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-trend-text hover:text-trend-accent px-3 py-2 text-sm font-medium transition-colors duration-200 font-noto"
+                  className="text-trend-text hover:text-trend-accent px-3 py-2 text-sm xl:text-base 2xl:text-lg font-medium transition-colors duration-200 font-noto"
                 >
                   {item.name}
                 </button>

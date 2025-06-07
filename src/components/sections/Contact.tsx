@@ -50,26 +50,26 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-trend-text mb-4 font-noto">
+    <section id="contact" className="py-20 xl:py-24 2xl:py-32 bg-white">
+      <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
+          <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
             ご予約・お問い合わせ
           </h2>
-          <p className="text-lg text-gray-600 font-noto">
+          <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
             お気軽にお問い合わせください。お待ちしております。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 2xl:gap-20">
           <Card className="border-none shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl font-noto text-trend-text">
+              <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto text-trend-text">
                 オンライン予約フォーム
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <CardContent className="xl:p-8 2xl:p-10">
+              <form onSubmit={handleSubmit} className="space-y-6 xl:space-y-8 2xl:space-y-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name" className="font-noto">お名前 *</Label>
@@ -177,7 +177,7 @@ const Contact = () => {
                 <Button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-full bg-trend-accent hover:bg-trend-accent/90 text-white font-noto"
+                  className="w-full bg-trend-accent hover:bg-trend-accent/90 text-white xl:text-lg 2xl:text-xl xl:py-3 2xl:py-4 font-noto"
                 >
                   {isSubmitting ? '送信中...' : '予約を送信'}
                   <Send className="ml-2" size={16} />
@@ -192,57 +192,57 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          <div className="space-y-8">
+          <div className="space-y-8 xl:space-y-12 2xl:space-y-16">
             <Card className="border-none shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl font-noto text-trend-text">
+                <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto text-trend-text">
                   店舗情報
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-trend-accent mt-1" />
+              <CardContent className="space-y-6 xl:space-y-8 2xl:space-y-10 xl:p-8 2xl:p-10">
+                <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
+                  <MapPin className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text font-noto">住所</h4>
-                    <p className="text-gray-600 font-noto">
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">住所</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
                       〒520-0022<br />
                       滋賀県大津市柳が崎9-15<br />
                       ルシェル西大津102号室
                     </p>
-                    <p className="text-sm text-gray-500 font-noto mt-1">
+                    <p className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto mt-1">
                       JR大津京駅より徒歩20分<br />
                       Pなし（近隣コインパーキングをご利用ください）
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
-                  <Phone className="w-5 h-5 text-trend-accent mt-1" />
+                <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
+                  <Phone className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text font-noto">電話予約</h4>
-                    <p className="text-gray-600 font-noto">090-2115-6429</p>
-                    <p className="text-sm text-gray-500 font-noto">代表・村岡</p>
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">電話予約</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">090-2115-6429</p>
+                    <p className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto">代表・村岡</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
-                  <Clock className="w-5 h-5 text-trend-accent mt-1" />
+                <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
+                  <Clock className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text font-noto">営業時間</h4>
-                    <p className="text-gray-600 font-noto">
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">営業時間</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
                       昼：11:00 - 17:00（創作カフェ）<br />
                       夜：17:00 - 23:30（スナック・バー）
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3">
-                  <Mail className="w-5 h-5 text-trend-accent mt-1" />
+                <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
+                  <Mail className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text font-noto">無料送迎サービス</h4>
-                    <p className="text-gray-600 font-noto">
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">無料送迎サービス</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
                       大津京駅⇔店舗間<br />
-                      <span className="text-sm text-gray-500">（要事前予約）</span>
+                      <span className="text-sm xl:text-base 2xl:text-lg text-gray-500">（要事前予約）</span>
                     </p>
                   </div>
                 </div>
@@ -250,9 +250,9 @@ const Contact = () => {
             </Card>
 
             <Card className="border-none shadow-lg">
-              <CardContent className="p-6">
+              <CardContent className="p-6 xl:p-8 2xl:p-10">
                 <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500 font-noto">Google Maps（実装予定）</p>
+                  <p className="text-gray-500 xl:text-lg 2xl:text-xl font-noto">Google Maps（実装予定）</p>
                 </div>
               </CardContent>
             </Card>

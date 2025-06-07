@@ -39,25 +39,25 @@ const Gallery = () => {
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-trend-bg">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-trend-text mb-4 font-noto">
+    <section id="gallery" className="py-20 xl:py-24 2xl:py-32 bg-trend-bg">
+      <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
+        <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
+          <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
             ギャラリー
           </h2>
-          <p className="text-lg text-gray-600 font-noto">
+          <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
             店内の雰囲気、創作メニュー、プロジェクター演出の様子など、フォトギャラリーでご覧ください。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 xl:gap-8 2xl:gap-10 mb-8 xl:mb-12 2xl:mb-16">
           {galleryImages.map((image, index) => (
             <Card 
               key={index} 
               className="border-none shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer overflow-hidden group"
               onClick={() => setSelectedImage(image.src)}
             >
-              <div className="relative h-64">
+              <div className="relative h-64 xl:h-72 2xl:h-80">
                 <img 
                   src={image.src}
                   alt={image.alt}
@@ -67,14 +67,14 @@ const Gallery = () => {
                   }}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
-                <div className="absolute bottom-4 left-4">
-                  <span className="bg-trend-accent text-white px-3 py-1 rounded-full text-sm font-noto">
+                <div className="absolute bottom-4 left-4 xl:bottom-6 xl:left-6 2xl:bottom-8 2xl:left-8">
+                  <span className="bg-trend-accent text-white px-3 py-1 xl:px-4 xl:py-2 2xl:px-5 2xl:py-2 rounded-full text-sm xl:text-base 2xl:text-lg font-noto">
                     {image.category}
                   </span>
                 </div>
               </div>
-              <CardContent className="p-4">
-                <p className="text-trend-text font-noto text-sm">
+              <CardContent className="p-4 xl:p-6 2xl:p-8">
+                <p className="text-trend-text font-noto text-sm xl:text-base 2xl:text-lg">
                   {image.alt}
                 </p>
               </CardContent>
@@ -83,7 +83,7 @@ const Gallery = () => {
         </div>
 
         <div className="text-center">
-          <p className="text-gray-600 font-noto">
+          <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
             ※写真は随時追加予定
           </p>
         </div>
