@@ -19,7 +19,14 @@ export default {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+  			'trend-bg': '#FAF5EE',
+  			'trend-text': '#333333',
+  			'trend-accent': '#E63946',
+  		},
+  		fontFamily: {
+  			'inter': ['Inter', 'sans-serif'],
+  			'noto': ['Noto Sans JP', 'sans-serif'],
   		},
   		keyframes: {
   			'accordion-down': {
