@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Card, CardContent } from '@/components/ui/card';
 
 const About = () => {
@@ -17,9 +17,6 @@ const About = () => {
               src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
               alt="レストラン内装"
               className="rounded-lg shadow-lg w-full h-80 object-cover"
-              onError={(e) => {
-                e.currentTarget.src = 'https://placehold.co/600x400/png';
-              }}
             />
           </div>
           <div>
@@ -78,9 +75,6 @@ const About = () => {
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
                   alt="代表 村岡翔"
                   className="w-32 h-32 rounded-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://placehold.co/300x300/png';
-                  }}
                 />
                 <div className="text-center md:text-left">
                   <h4 className="text-xl font-semibold text-trend-accent mb-2 font-noto">
