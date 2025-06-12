@@ -89,9 +89,6 @@ const Gallery = () => {
                     onError={(e) => {
                       e.currentTarget.src = 'https://placehold.co/600x400/png';
                     }}
-                    style={{ 
-                      transform: `translateY(${parallaxOffset * (0.1 * (index % 3))}px)` 
-                    }}
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                   <div className="absolute bottom-4 left-4 xl:bottom-6 xl:left-6 2xl:bottom-8 2xl:left-8 z-20">
