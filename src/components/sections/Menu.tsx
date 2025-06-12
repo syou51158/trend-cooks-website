@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import { useParallax } from '@/hooks/useParallax';
-import { Utensils, Coffee, Wine, Star, Crown, Calendar } from 'lucide-react';
+import { Wine, Star, Crown } from 'lucide-react';
 
 const Menu = () => {
   const parallaxOffset = useParallax(0.1);
