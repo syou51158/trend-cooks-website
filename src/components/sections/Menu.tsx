@@ -2,149 +2,133 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import { useParallax } from '@/hooks/useParallax';
-import { Utensils, Coffee, Wine, Star } from 'lucide-react';
+import { Utensils, Coffee, Wine, Star, Crown, Calendar } from 'lucide-react';
 
 const Menu = () => {
   const parallaxOffset = useParallax(0.1);
 
+  // 昼間営業 - 創作ランチプレート（基本メニュー）
   const lunchMenu = [
     {
       name: '韓国ヤンニョムチキンプレート',
       price: '1,300円',
-      description: '骨なし鶏もも肉を特製ヤンニョムソースで絡め、自家製キムチ＆大根ナムルを添えた人気プレート。',
+      description: '定番のピリ辛ヤンニョムチキンを骨なしで仕上げ、自家製チキンム（チキン大根＝大根のピクルス）を添えた一皿。SNS映え抜群の赤いソースが特徴',
       popular: true,
       category: 'korean'
     },
     {
-      name: 'サーモン＆アボカドボウル',
-      price: '1,200円',
-      description: 'ノルウェー産サーモンと完熟アボカドを柚子醤油ドレッシングで和えたヘルシーボウル。',
-      popular: false,
+      name: 'サーモン＆アボカド丼風ボウル',
+      price: '1,000円',
+      description: '新鮮なサーモンとアボカドをジャスミンライスの上に盛り付けた、ハワイアン風ポケボウル。胡麻醤油ドレッシングでヘルシー志向にも対応',
+      popular: true,
       category: 'healthy'
     },
     {
-      name: '近江牛炙り寿司３貫',
-      price: '2,200円',
-      description: 'A5ランク近江牛を軽く炙り、わさび醤油＆柚子胡椒で味付けした贅沢握り寿司。',
-      popular: true,
+      name: 'バスクチーズケーキ風クロワッサンワッフル',
+      price: '650円',
+      description: '話題のバスクチーズケーキ風味のクリームをサンドしたクロワッサン生地ワッフル。外はサクサク、中はとろり食感',
+      popular: false,
+      category: 'dessert'
+    },
+    {
+      name: 'プルコギ風和牛プレート',
+      price: '1,480円',
+      description: '韓国プルコギ風に味付けした近江牛を使用。ナムル3種、キムチ、温泉卵を添えたボリューム満点プレート',
+      popular: false,
       category: 'premium'
-    },
-    {
-      name: 'トリュフカルボナーラ',
-      price: '1,680円',
-      description: '本格イタリア産トリュフと濃厚卵黄、パルミジャーノが織りなす究極のパスタ。',
-      popular: false,
-      category: 'italian'
-    },
-    {
-      name: 'エビとアボカドのタコス（3個）',
-      price: '1,450円',
-      description: 'プリプリのエビとクリーミーなアボカド、サルサソースが絶妙にマッチ。',
-      popular: false,
-      category: 'mexican'
-    },
-    {
-      name: 'ガパオライス',
-      price: '1,250円',
-      description: 'タイの定番料理を日本人好みにアレンジ。目玉焼きとジャスミンライス付き。',
-      popular: true,
-      category: 'thai'
     }
   ];
 
-  const sweets = [
+  // 近江牛プレミアムメニュー（インバウンド向け基本コース）
+  const premiumMenu = [
     {
-      name: 'バブルワッフル',
-      price: '750円',
-      description: 'クロワッサン生地ワッフルに季節フルーツとアイスをトッピングしたSNS映えスイーツ。',
+      name: '近江牛特選炙り寿司３貫セット',
+      price: '2,800円',
+      description: 'A5ランク近江牛の希少部位を使用した炙り寿司。わさび醤油と柚子胡椒で',
       popular: true
     },
     {
-      name: 'ティラミス',
-      price: '680円',
-      description: 'マスカルポーネチーズとエスプレッソの本格イタリアンデザート。'
+      name: '近江牛プレミアムステーキ（150g）',
+      price: '7,780円',
+      description: 'A5等級近江牛サーロインのステーキ。特製和風ソースと京野菜のグリルを添えて',
+      popular: true
     },
     {
-      name: '抹茶チーズケーキ',
-      price: '720円',
-      description: '京都産抹茶を使用したなめらかベイクドチーズケーキ。'
-    },
-    {
-      name: 'フルーツパフェ',
-      price: '980円',
-      description: '季節のフルーツとバニラアイス、生クリームの贅沢パフェ。'
+      name: '近江牛炙り丼〜特上〜',
+      price: '3,900円',
+      description: 'A5近江牛を炙って近江米の上に盛り付け。温泉卵・海苔・わさびを添えて',
+      popular: false
     }
   ];
 
+  // スイーツ・デザート
+  const sweets = [
+    {
+      name: 'イチゴ飴',
+      price: '800円',
+      description: '宝石のように美しく仕上げたイチゴ飴。SNS映え間違いなしの逸品'
+    },
+    {
+      name: '焼き立てクロワッサン生地ワッフル',
+      price: '300円',
+      description: 'サクサクのクロワッサン生地で焼き上げたワッフル'
+    },
+    {
+      name: '季節フルーツトッピング',
+      price: '+200円〜',
+      description: 'ワッフルに季節のフルーツをたっぷりトッピング'
+    }
+  ];
+
+  // 夜間営業メニュー
   const dinnerMenu = [
     {
-      name: '近江牛スキレットステーキ（100g）',
-      price: '2,500円',
-      description: '熱々スキレットで供する近江牛サーロイン。ガーリックバターソース＆ロースト野菜添え。',
-      popular: true,
-      category: 'premium'
+      name: 'おつまみ小皿メニュー',
+      price: '500〜800円',
+      description: '和牛ジャーキー、チーズ盛合せ、地元野菜のピクルスなど多彩なおつまみをご用意',
+      popular: true
     },
     {
-      name: '和牛タタキカルパッチョ',
-      price: '1,500円',
-      description: '特製ポン酢ジュレとガーリックチップで仕上げた、さっぱりおつまみ。',
-      popular: false,
-      category: 'premium'
-    },
-    {
-      name: 'スモークサーモンピザ',
-      price: '1,800円',
-      description: 'クリスピー生地にスモークサーモン、ケイパー、クリームチーズをトッピング。',
-      popular: false,
-      category: 'pizza'
-    },
-    {
-      name: 'アヒージョ盛り合わせ',
-      price: '1,680円',
-      description: 'エビ、マッシュルーム、砂肝をガーリックオイルで煮込んだスペイン料理。',
-      popular: true,
-      category: 'spanish'
-    },
-    {
-      name: 'チーズフォンデュ',
-      price: '2,200円',
-      description: '3種チーズブレンドのとろ〜りフォンデュ。野菜とパンでお楽しみください。',
-      popular: false,
-      category: 'cheese'
-    },
-    {
-      name: 'おつまみ盛り合わせ',
-      price: '2,200円',
-      description: 'ヤンニョムチキンミニ・チーズボール・ソーセージ・オリーブなど6種盛り。',
-      popular: true,
-      category: 'mixed'
+      name: 'プロジェクター演出',
+      price: '—',
+      description: 'スポーツ観戦、YouTube映像、琵琶湖景色などを投影してムード演出',
+      popular: false
     }
   ];
 
+  // ドリンクメニュー
   const drinks = [
-    { name: 'IPAクラフトビール', price: '850円', category: 'beer' },
-    { name: 'ピンクいちごクリームラッシー', price: '650円', category: 'specialty' },
-    { name: '抹茶エスプレッソトニック', price: '780円', category: 'specialty' },
-    { name: 'ノンアル柚子ソーダ', price: '600円', category: 'non-alcohol' },
-    { name: '地酒「浪乃音 純米吟醸」（グラス）', price: '900円', category: 'sake' },
-    { name: 'レモンサワー', price: '550円', category: 'sour' },
-    { name: 'ハイボール', price: '500円', category: 'whiskey' },
-    { name: 'カシスオレンジ', price: '650円', category: 'cocktail' },
-    { name: 'モヒート', price: '750円', category: 'cocktail' },
-    { name: 'ワイン（赤/白）グラス', price: '700円', category: 'wine' }
+    { name: 'クラフトビール各種', price: '650〜800円', category: 'beer' },
+    { name: '地酒（グラス）', price: '750〜1,200円', category: 'sake' },
+    { name: 'スムージー・ジュース各種', price: '400〜600円', category: 'juice' },
+    { name: 'コーヒー（ホット／アイス）', price: '350〜450円', category: 'coffee' },
+    { name: '手引きコーヒー', price: '650円', category: 'coffee' }
   ];
 
-  const drinkPlans = [
-    {
-      name: '飲み放題プラン（90分）',
-      price: '2,500円',
-      description: 'ビール・ハイボール・カクテル・日本酒など30種類以上が飲み放題！'
-    },
-    {
-      name: 'プレミアム飲み放題（90分）',
-      price: '3,500円',
-      description: 'クラフトビール・プレミアム焼酎・ワインも含む豪華プラン！'
-    }
+  // 将来検討中の創作ランチメニュー
+  const futureMenu = [
+    { name: 'タピオカミルクティー風パンケーキ', price: '880円' },
+    { name: 'チーズタッカルビ風グリルチキンプレート', price: '1,280円' },
+    { name: '雲ドラ（雲みたいなドラ焼き）', price: '480円' },
+    { name: 'マリトッツォ風フレンチトースト', price: '750円' },
+    { name: '台湾カステラ風スフレパンケーキ', price: '680円' },
+    { name: 'TikTokバイラル・レインボーサンド', price: '980円' },
+    { name: 'ダルゴナコーヒーパンケーキ', price: '720円' },
+    { name: 'インスタ映え♪ユニコーンパスタ', price: '1,180円' }
+  ];
+
+  // 将来検討中の高級近江牛メニュー
+  const futurePremiumMenu = [
+    { name: '近江牛特選炙り寿司５貫セット', price: '3,800円' },
+    { name: '近江牛プレミアムステーキ200g', price: '9,800円' },
+    { name: '近江牛ユッケ風カルパッチョ', price: '3,200円' },
+    { name: '近江牛すき焼き風ミニ鍋', price: '3,600円' },
+    { name: '近江牛しゃぶしゃぶ御膳', price: '4,200円' },
+    { name: '近江牛ミニバーガー〜WAGYU PREMIUM〜', price: '2,400円' },
+    { name: '近江牛石板焼き〜目の前調理〜', price: '4,800円' },
+    { name: '近江牛懐石風コース〜雅〜', price: '12,500円' },
+    { name: '近江牛サーロイン特厚切り300g', price: '17,200円' },
+    { name: '近江牛オマカセ盛り合わせ（２〜３人前 300g）', price: '18,800円' }
   ];
 
   return (
@@ -166,23 +150,26 @@ const Menu = () => {
               メニュー
             </h2>
             <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
-              トレンドを取り入れた創作料理とこだわりのドリンクをお楽しみください
+              トレンドを取り入れた創作料理と近江牛プレミアムメニューをご提供
             </p>
           </div>
         </AnimatedElement>
 
-        {/* Lunch Section */}
+        {/* 昼間営業 - 創作ランチプレート */}
         <div className="mb-20 xl:mb-24 2xl:mb-28">
           <AnimatedElement animation="fadeInLeft" delay={300}>
             <div className="flex items-center justify-center mb-12 xl:mb-16 2xl:mb-20">
               <Utensils className="mr-3 text-trend-accent" size={32} />
-              <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
-                昼の創作ランチ（11:00–17:00）
-              </h3>
+              <div className="text-center">
+                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
+                  昼間営業（11:00〜17:00）
+                </h3>
+                <p className="text-lg text-gray-600 font-noto mt-2">創作ランチプレート（基本メニュー）</p>
+              </div>
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10 2xl:gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10 2xl:gap-12 mb-12">
             {lunchMenu.map((item, index) => (
               <AnimatedElement key={index} animation="scaleIn" delay={400 + index * 100}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group h-full">
@@ -200,7 +187,7 @@ const Menu = () => {
                         )}
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto mb-4 flex-grow">
+                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto mb-4 flex-grow leading-relaxed">
                       {item.description}
                     </p>
                     <div className="flex justify-between items-center mt-auto">
@@ -216,9 +203,61 @@ const Menu = () => {
               </AnimatedElement>
             ))}
           </div>
+        </div>
 
-          {/* Sweets Section */}
-          <AnimatedElement animation="fadeInUp" delay={800}>
+        {/* 近江牛プレミアムメニュー */}
+        <div className="mb-20 xl:mb-24 2xl:mb-28">
+          <AnimatedElement animation="fadeInRight" delay={800}>
+            <div className="flex items-center justify-center mb-12 xl:mb-16 2xl:mb-20">
+              <Crown className="mr-3 text-trend-accent" size={32} />
+              <div className="text-center">
+                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
+                  近江牛プレミアムメニュー
+                </h3>
+                <p className="text-lg text-gray-600 font-noto mt-2">インバウンド向け基本コース</p>
+              </div>
+            </div>
+          </AnimatedElement>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-10 2xl:gap-12">
+            {premiumMenu.map((item, index) => (
+              <AnimatedElement key={index} animation="scaleIn" delay={900 + index * 100}>
+                <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group h-full bg-gradient-to-br from-amber-50 to-orange-50">
+                  <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col">
+                    <div className="flex justify-between items-start mb-3">
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-lg xl:text-xl 2xl:text-2xl font-semibold text-trend-text font-noto group-hover:text-trend-accent transition-colors duration-300">
+                          {item.name}
+                        </h4>
+                        {item.popular && (
+                          <Badge className="bg-amber-500 text-white">
+                            <Crown size={12} className="mr-1" />
+                            特選
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto mb-4 flex-grow leading-relaxed">
+                      {item.description}
+                    </p>
+                    <div className="flex justify-between items-center mt-auto">
+                      <span className="text-amber-600 xl:text-lg 2xl:text-xl font-bold font-noto">
+                        {item.price}
+                      </span>
+                      <div className="w-8 h-8 bg-amber-500/10 rounded-full flex items-center justify-center group-hover:bg-amber-500/20 transition-colors duration-300">
+                        <Crown className="text-amber-600 text-sm" size={16} />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </AnimatedElement>
+            ))}
+          </div>
+        </div>
+
+        {/* スイーツ・デザート */}
+        <div className="mb-20 xl:mb-24 2xl:mb-28">
+          <AnimatedElement animation="fadeInUp" delay={1200}>
             <div className="flex items-center justify-center mb-8 xl:mb-10 2xl:mb-12">
               <Coffee className="mr-3 text-trend-accent" size={28} />
               <h4 className="text-xl xl:text-2xl 2xl:text-3xl font-bold text-trend-text font-noto">
@@ -227,22 +266,17 @@ const Menu = () => {
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 2xl:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8 2xl:gap-10">
             {sweets.map((item, index) => (
-              <AnimatedElement key={index} animation="fadeInUp" delay={900 + index * 100}>
+              <AnimatedElement key={index} animation="fadeInUp" delay={1300 + index * 100}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
                   <CardContent className="p-4 xl:p-6 2xl:p-8">
                     <div className="flex justify-between items-start mb-2">
                       <h5 className="text-base xl:text-lg 2xl:text-xl font-semibold text-trend-text font-noto group-hover:text-trend-accent transition-colors duration-300">
                         {item.name}
                       </h5>
-                      {item.popular && (
-                        <Badge className="bg-trend-accent text-white text-xs">
-                          人気
-                        </Badge>
-                      )}
                     </div>
-                    <p className="text-gray-600 text-xs xl:text-sm 2xl:text-base font-noto mb-3">
+                    <p className="text-gray-600 text-xs xl:text-sm 2xl:text-base font-noto mb-3 leading-relaxed">
                       {item.description}
                     </p>
                     <span className="text-trend-accent font-bold font-noto">
@@ -255,20 +289,23 @@ const Menu = () => {
           </div>
         </div>
 
-        {/* Dinner Section */}
+        {/* 夜間営業 */}
         <div className="mb-20 xl:mb-24 2xl:mb-28">
-          <AnimatedElement animation="fadeInRight" delay={1200}>
+          <AnimatedElement animation="fadeInLeft" delay={1600}>
             <div className="flex items-center justify-center mb-12 xl:mb-16 2xl:mb-20">
               <Wine className="mr-3 text-trend-accent" size={32} />
-              <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
-                夜のバー・おつまみ（17:00–23:30）
-              </h3>
+              <div className="text-center">
+                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
+                  夜間営業（17:00〜23:30）
+                </h3>
+                <p className="text-lg text-gray-600 font-noto mt-2">スナック・バー営業</p>
+              </div>
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10 2xl:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10 2xl:gap-12">
             {dinnerMenu.map((item, index) => (
-              <AnimatedElement key={index} animation="scaleIn" delay={1300 + index * 100}>
+              <AnimatedElement key={index} animation="scaleIn" delay={1700 + index * 100}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group h-full">
                   <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col">
                     <div className="flex justify-between items-start mb-3">
@@ -284,7 +321,7 @@ const Menu = () => {
                         )}
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto mb-4 flex-grow">
+                    <p className="text-gray-600 text-sm xl:text-base 2xl:text-lg font-noto mb-4 flex-grow leading-relaxed">
                       {item.description}
                     </p>
                     <div className="flex justify-between items-center mt-auto">
@@ -302,8 +339,8 @@ const Menu = () => {
           </div>
         </div>
 
-        {/* Drinks Section */}
-        <AnimatedElement animation="fadeInUp" delay={1800}>
+        {/* ドリンクメニュー */}
+        <AnimatedElement animation="fadeInUp" delay={1900}>
           <Card className="border-none shadow-lg mb-12 xl:mb-16 2xl:mb-20">
             <CardHeader className="bg-gradient-to-r from-trend-accent to-trend-text text-white">
               <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto flex items-center">
@@ -312,7 +349,7 @@ const Menu = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6 xl:p-8 2xl:p-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 xl:gap-6 2xl:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6 2xl:gap-8">
                 {drinks.map((drink, index) => (
                   <div key={index} className="flex justify-between items-center p-3 xl:p-4 2xl:p-5 bg-gray-50 rounded-lg hover:bg-trend-accent/5 transition-colors duration-300 group">
                     <span className="text-trend-text xl:text-lg 2xl:text-xl font-noto group-hover:text-trend-accent transition-colors duration-300">{drink.name}</span>
@@ -324,27 +361,64 @@ const Menu = () => {
           </Card>
         </AnimatedElement>
 
-        {/* Drink Plans */}
-        <AnimatedElement animation="scaleIn" delay={2000}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-12 2xl:gap-16">
-            {drinkPlans.map((plan, index) => (
-              <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
-                <CardHeader className={`${index === 0 ? 'bg-trend-accent' : 'bg-gradient-to-r from-trend-accent to-trend-text'} text-white`}>
-                  <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto flex items-center justify-between">
-                    {plan.name}
-                    {index === 1 && <Badge className="bg-white text-trend-accent">おすすめ</Badge>}
+        {/* 将来展開案 */}
+        <AnimatedElement animation="scaleIn" delay={2100}>
+          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 xl:p-12 2xl:p-16">
+            <div className="flex items-center justify-center mb-8 xl:mb-12 2xl:mb-16">
+              <Calendar className="mr-3 text-gray-600" size={32} />
+              <div className="text-center">
+                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-gray-700 font-noto">
+                  将来的な展開案
+                </h3>
+                <p className="text-lg text-gray-500 font-noto mt-2">開店後3-6ヶ月の経営状況を見て段階的に追加検討予定</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 2xl:gap-16">
+              {/* 追加検討中の創作ランチメニュー */}
+              <Card className="border-none shadow-md">
+                <CardHeader className="bg-blue-500 text-white">
+                  <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto">
+                    追加検討中の創作ランチメニュー
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6 xl:p-8 2xl:p-10 text-center">
-                  <div className="text-3xl xl:text-4xl 2xl:text-5xl font-bold text-trend-accent mb-4 font-noto">
-                    {plan.price}
+                <CardContent className="p-4 xl:p-6 2xl:p-8">
+                  <div className="space-y-3">
+                    {futureMenu.map((item, index) => (
+                      <div key={index} className="flex justify-between items-center p-2 hover:bg-blue-50 rounded transition-colors duration-200">
+                        <span className="text-gray-700 font-noto text-sm xl:text-base">{item.name}</span>
+                        <span className="text-blue-600 font-bold font-noto text-sm xl:text-base">{item.price}</span>
+                      </div>
+                    ))}
                   </div>
-                  <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
-                    {plan.description}
-                  </p>
                 </CardContent>
               </Card>
-            ))}
+
+              {/* 将来検討中の高級近江牛メニュー */}
+              <Card className="border-none shadow-md">
+                <CardHeader className="bg-amber-500 text-white">
+                  <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto">
+                    将来検討中の高級近江牛メニュー
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-4 xl:p-6 2xl:p-8">
+                  <div className="space-y-3">
+                    {futurePremiumMenu.map((item, index) => (
+                      <div key={index} className="flex justify-between items-center p-2 hover:bg-amber-50 rounded transition-colors duration-200">
+                        <span className="text-gray-700 font-noto text-sm xl:text-base">{item.name}</span>
+                        <span className="text-amber-600 font-bold font-noto text-sm xl:text-base">{item.price}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center mt-8 xl:mt-12 2xl:mt-16">
+              <p className="text-gray-500 font-noto text-sm xl:text-base">
+                ※上記メニューは将来的に段階的に導入を検討するメニュー案です。開店時点では実施しない可能性があります。
+              </p>
+            </div>
           </div>
         </AnimatedElement>
       </div>
