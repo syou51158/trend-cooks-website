@@ -18,7 +18,7 @@ const About = () => {
       />
       
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
-        <AnimatedElement animation="fadeInUp" delay={200}>
+        <AnimatedElement animation="fadeInUp" delay={100}>
           <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
             <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
               私たちのミッション
@@ -27,7 +27,7 @@ const About = () => {
         </AnimatedElement>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 2xl:gap-20 items-center mb-16 xl:mb-20 2xl:mb-24">
-          <AnimatedElement animation="fadeInLeft" delay={300}>
+          <AnimatedElement animation="fadeInLeft" delay={200}>
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-r from-trend-accent/20 to-transparent rounded-lg transform group-hover:scale-105 transition-transform duration-300 blur-xl"></div>
               <img 
@@ -39,7 +39,7 @@ const About = () => {
             </div>
           </AnimatedElement>
           
-          <AnimatedElement animation="fadeInRight" delay={500}>
+          <AnimatedElement animation="fadeInRight" delay={300}>
             <div>
               <p className="text-lg xl:text-xl 2xl:text-2xl text-trend-text mb-6 xl:mb-8 2xl:mb-10 font-noto leading-relaxed">
                 Trend Company株式会社は、「常にトレンドの先端」を追求する飲食ベンチャーです。屋台出店で培ったノウハウを活かし、本格店舗『Trend Cooks』をオープン。日々変化するトレンドを体験できる場を創り、地域と観光をつなぐ架け橋を目指します。
@@ -48,13 +48,13 @@ const About = () => {
           </AnimatedElement>
         </div>
 
-        <AnimatedElement animation="fadeInUp" delay={600}>
+        <AnimatedElement animation="fadeInUp" delay={400}>
           <div className="mb-16 xl:mb-20 2xl:mb-24">
             <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text mb-8 xl:mb-12 2xl:mb-16 text-center font-noto">
               こだわりの空間
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xl:gap-12 2xl:gap-16">
-              <AnimatedElement animation="fadeInUp" delay={700}>
+              <AnimatedElement animation="fadeInUp" delay={450}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <CardContent className="p-6 xl:p-8 2xl:p-10">
                     <div className="w-12 h-12 bg-trend-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-trend-accent/20 transition-colors duration-300">
@@ -70,7 +70,7 @@ const About = () => {
                 </Card>
               </AnimatedElement>
               
-              <AnimatedElement animation="fadeInUp" delay={800}>
+              <AnimatedElement animation="fadeInUp" delay={500}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <CardContent className="p-6 xl:p-8 2xl:p-10">
                     <div className="w-12 h-12 bg-trend-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-trend-accent/20 transition-colors duration-300">
@@ -86,7 +86,7 @@ const About = () => {
                 </Card>
               </AnimatedElement>
               
-              <AnimatedElement animation="fadeInUp" delay={900}>
+              <AnimatedElement animation="fadeInUp" delay={550}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <CardContent className="p-6 xl:p-8 2xl:p-10">
                     <div className="w-12 h-12 bg-trend-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-trend-accent/20 transition-colors duration-300">
@@ -105,7 +105,7 @@ const About = () => {
           </div>
         </AnimatedElement>
 
-        <AnimatedElement animation="scaleIn" delay={1000}>
+        <AnimatedElement animation="scaleIn" delay={600}>
           <div className="text-center">
             <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text mb-8 xl:mb-12 2xl:mb-16 font-noto">
               スタッフ紹介

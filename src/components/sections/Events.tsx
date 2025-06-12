@@ -55,20 +55,20 @@ const Events = () => {
       />
 
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
-        <AnimatedElement animation="fadeInUp" delay={200}>
+        <AnimatedElement animation="fadeInUp" delay={100}>
           <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
             <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
               イベント
             </h2>
             <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
-              Trend Cooksでは、店内外で多彩なイベントを定期開催。
+              様々な交流イベントとエンターテイメント
             </p>
           </div>
         </AnimatedElement>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xl:gap-12 2xl:gap-16 mb-12 xl:mb-16 2xl:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-8 xl:gap-12 2xl:gap-16 mb-12 xl:mb-16 2xl:mb-20">
           {events.map((event, index) => (
-            <AnimatedElement key={index} animation="scaleIn" delay={400 + index * 200}>
+            <AnimatedElement key={index} animation="scaleIn" delay={200 + index * 50}>
               <Card className="border-none shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group transform hover:-translate-y-3">
                 <div className="relative h-48 xl:h-56 2xl:h-64 overflow-hidden">
                   <img 
@@ -117,7 +117,7 @@ const Events = () => {
           ))}
         </div>
 
-        <AnimatedElement animation="fadeInUp" delay={1000}>
+        <AnimatedElement animation="fadeInUp" delay={450}>
           <div className="text-center relative">
             {/* Decorative elements */}
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-trend-accent to-transparent"></div>

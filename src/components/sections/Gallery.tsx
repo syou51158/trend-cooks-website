@@ -88,7 +88,7 @@ const Gallery = () => {
       />
 
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
-        <AnimatedElement animation="fadeInUp" delay={200}>
+        <AnimatedElement animation="fadeInUp" delay={100}>
           <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
             <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
               ギャラリー
@@ -104,7 +104,7 @@ const Gallery = () => {
             <AnimatedElement 
               key={index} 
               animation="scaleIn" 
-              delay={300 + index * 100}
+              delay={200 + index * 30}
             >
               <Card 
                 className="border-none shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer overflow-hidden group transform hover:-translate-y-3"
@@ -143,7 +143,7 @@ const Gallery = () => {
           ))}
         </div>
 
-        <AnimatedElement animation="fadeIn" delay={1000}>
+        <AnimatedElement animation="fadeIn" delay={600}>
           <div className="text-center">
             <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
               ※写真は随時追加予定

@@ -144,34 +144,33 @@ const Menu = () => {
       />
       
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
-        <AnimatedElement animation="fadeInUp" delay={200}>
+        <AnimatedElement animation="fadeInUp" delay={100}>
           <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
             <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
               メニュー
             </h2>
             <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
-              トレンドを取り入れた創作料理と近江牛プレミアムメニューをご提供
+              こだわりの創作料理と近江牛をお楽しみください
             </p>
           </div>
         </AnimatedElement>
 
-        {/* 昼間営業 - 創作ランチプレート */}
-        <div className="mb-20 xl:mb-24 2xl:mb-28">
-          <AnimatedElement animation="fadeInLeft" delay={300}>
-            <div className="flex items-center justify-center mb-12 xl:mb-16 2xl:mb-20">
-              <Utensils className="mr-3 text-trend-accent" size={32} />
-              <div className="text-center">
-                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
-                  昼間営業（11:00〜17:00）
-                </h3>
-                <p className="text-lg text-gray-600 font-noto mt-2">創作ランチプレート（基本メニュー）</p>
-              </div>
+        {/* 昼間営業 */}
+        <div className="mb-16 xl:mb-20 2xl:mb-24">
+          <AnimatedElement animation="fadeInLeft" delay={200}>
+            <div className="text-center mb-12 xl:mb-16 2xl:mb-20">
+              <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-4 xl:mb-6 2xl:mb-8 font-noto">
+                🍽️ 昼間営業（11:00〜17:00）
+              </h3>
+              <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
+                SNS映えする創作ランチとスイーツ
+              </p>
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10 2xl:gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-6 xl:gap-8 2xl:gap-10">
             {lunchMenu.map((item, index) => (
-              <AnimatedElement key={index} animation="scaleIn" delay={400 + index * 100}>
+              <AnimatedElement key={index} animation="scaleIn" delay={250 + index * 30}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group h-full">
                   <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col">
                     <div className="flex justify-between items-start mb-3">
@@ -205,23 +204,22 @@ const Menu = () => {
           </div>
         </div>
 
-        {/* 近江牛プレミアムメニュー */}
-        <div className="mb-20 xl:mb-24 2xl:mb-28">
-          <AnimatedElement animation="fadeInRight" delay={800}>
-            <div className="flex items-center justify-center mb-12 xl:mb-16 2xl:mb-20">
-              <Crown className="mr-3 text-trend-accent" size={32} />
-              <div className="text-center">
-                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
-                  近江牛プレミアムメニュー
-                </h3>
-                <p className="text-lg text-gray-600 font-noto mt-2">インバウンド向け基本コース</p>
-              </div>
+        {/* プレミアム近江牛メニュー */}
+        <div className="mb-16 xl:mb-20 2xl:mb-24">
+          <AnimatedElement animation="fadeInRight" delay={350}>
+            <div className="text-center mb-12 xl:mb-16 2xl:mb-20">
+              <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-4 xl:mb-6 2xl:mb-8 font-noto">
+                🥩 プレミアム近江牛メニュー
+              </h3>
+              <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
+                国際的なお客様向け特別コース
+              </p>
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-10 2xl:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-8 xl:gap-12 2xl:gap-16">
             {premiumMenu.map((item, index) => (
-              <AnimatedElement key={index} animation="scaleIn" delay={900 + index * 100}>
+              <AnimatedElement key={index} animation="scaleIn" delay={400 + index * 30}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group h-full bg-gradient-to-br from-amber-50 to-orange-50">
                   <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col">
                     <div className="flex justify-between items-start mb-3">
@@ -256,19 +254,18 @@ const Menu = () => {
         </div>
 
         {/* スイーツ・デザート */}
-        <div className="mb-20 xl:mb-24 2xl:mb-28">
-          <AnimatedElement animation="fadeInUp" delay={1200}>
-            <div className="flex items-center justify-center mb-8 xl:mb-10 2xl:mb-12">
-              <Coffee className="mr-3 text-trend-accent" size={28} />
-              <h4 className="text-xl xl:text-2xl 2xl:text-3xl font-bold text-trend-text font-noto">
-                スイーツ＆デザート
-              </h4>
+        <div className="mb-16 xl:mb-20 2xl:mb-24">
+          <AnimatedElement animation="fadeInUp" delay={500}>
+            <div className="text-center mb-12 xl:mb-16 2xl:mb-20">
+              <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-4 xl:mb-6 2xl:mb-8 font-noto">
+                🍰 スイーツ・デザート
+              </h3>
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8 2xl:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-6 xl:gap-8 2xl:gap-10">
             {sweets.map((item, index) => (
-              <AnimatedElement key={index} animation="fadeInUp" delay={1300 + index * 100}>
+              <AnimatedElement key={index} animation="fadeInUp" delay={550 + index * 30}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
                   <CardContent className="p-4 xl:p-6 2xl:p-8">
                     <div className="flex justify-between items-start mb-2">
@@ -290,22 +287,21 @@ const Menu = () => {
         </div>
 
         {/* 夜間営業 */}
-        <div className="mb-20 xl:mb-24 2xl:mb-28">
-          <AnimatedElement animation="fadeInLeft" delay={1600}>
-            <div className="flex items-center justify-center mb-12 xl:mb-16 2xl:mb-20">
-              <Wine className="mr-3 text-trend-accent" size={32} />
-              <div className="text-center">
-                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-text font-noto">
-                  夜間営業（17:00〜23:30）
-                </h3>
-                <p className="text-lg text-gray-600 font-noto mt-2">スナック・バー営業</p>
-              </div>
+        <div className="mb-16 xl:mb-20 2xl:mb-24">
+          <AnimatedElement animation="fadeInLeft" delay={650}>
+            <div className="text-center mb-12 xl:mb-16 2xl:mb-20">
+              <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-4 xl:mb-6 2xl:mb-8 font-noto">
+                🌙 夜間営業（17:00〜23:30）
+              </h3>
+              <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
+                小皿料理とプロジェクター演出でリラックスタイム
+              </p>
             </div>
           </AnimatedElement>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10 2xl:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 gap-6 xl:gap-8 2xl:gap-10">
             {dinnerMenu.map((item, index) => (
-              <AnimatedElement key={index} animation="scaleIn" delay={1700 + index * 100}>
+              <AnimatedElement key={index} animation="scaleIn" delay={700 + index * 30}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group h-full">
                   <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col">
                     <div className="flex justify-between items-start mb-3">
@@ -340,7 +336,7 @@ const Menu = () => {
         </div>
 
         {/* ドリンクメニュー */}
-        <AnimatedElement animation="fadeInUp" delay={1900}>
+        <AnimatedElement animation="fadeInUp" delay={850}>
           <Card className="border-none shadow-lg mb-12 xl:mb-16 2xl:mb-20">
             <CardHeader className="bg-gradient-to-r from-trend-accent to-trend-text text-white">
               <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto flex items-center">
@@ -361,66 +357,65 @@ const Menu = () => {
           </Card>
         </AnimatedElement>
 
-        {/* 将来展開案 */}
-        <AnimatedElement animation="scaleIn" delay={2100}>
-          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 xl:p-12 2xl:p-16">
-            <div className="flex items-center justify-center mb-8 xl:mb-12 2xl:mb-16">
-              <Calendar className="mr-3 text-gray-600" size={32} />
-              <div className="text-center">
-                <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-gray-700 font-noto">
-                  将来的な展開案
-                </h3>
-                <p className="text-lg text-gray-500 font-noto mt-2">開店後3-6ヶ月の経営状況を見て段階的に追加検討予定</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 2xl:gap-16">
-              {/* 追加検討中の創作ランチメニュー */}
-              <Card className="border-none shadow-md">
-                <CardHeader className="bg-blue-500 text-white">
-                  <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto">
-                    追加検討中の創作ランチメニュー
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-4 xl:p-6 2xl:p-8">
-                  <div className="space-y-3">
-                    {futureMenu.map((item, index) => (
-                      <div key={index} className="flex justify-between items-center p-2 hover:bg-blue-50 rounded transition-colors duration-200">
-                        <span className="text-gray-700 font-noto text-sm xl:text-base">{item.name}</span>
-                        <span className="text-blue-600 font-bold font-noto text-sm xl:text-base">{item.price}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* 将来検討中の高級近江牛メニュー */}
-              <Card className="border-none shadow-md">
-                <CardHeader className="bg-amber-500 text-white">
-                  <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto">
-                    将来検討中の高級近江牛メニュー
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-4 xl:p-6 2xl:p-8">
-                  <div className="space-y-3">
-                    {futurePremiumMenu.map((item, index) => (
-                      <div key={index} className="flex justify-between items-center p-2 hover:bg-amber-50 rounded transition-colors duration-200">
-                        <span className="text-gray-700 font-noto text-sm xl:text-base">{item.name}</span>
-                        <span className="text-amber-600 font-bold font-noto text-sm xl:text-base">{item.price}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="text-center mt-8 xl:mt-12 2xl:mt-16">
-              <p className="text-gray-500 font-noto text-sm xl:text-base">
-                ※上記メニューは将来的に段階的に導入を検討するメニュー案です。開店時点では実施しない可能性があります。
-              </p>
-            </div>
+        {/* 将来展開 */}
+        <AnimatedElement animation="fadeInUp" delay={900}>
+          <div className="bg-gradient-to-r from-trend-accent/5 to-trend-accent/10 rounded-lg p-8 xl:p-12 2xl:p-16 text-center">
+            <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-6 xl:mb-8 2xl:mb-10 font-noto">
+              🚀 今後の展開予定（開店3〜6ヶ月後）
+            </h3>
+            <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-700 font-noto mb-8 xl:mb-12 2xl:mb-16">
+              さらに充実したメニューラインナップを準備中
+            </p>
           </div>
         </AnimatedElement>
+
+        <AnimatedElement animation="scaleIn" delay={950}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12 2xl:gap-16">
+            {/* 追加検討中の創作ランチメニュー */}
+            <Card className="border-none shadow-md">
+              <CardHeader className="bg-blue-500 text-white">
+                <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto">
+                  追加検討中の創作ランチメニュー
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 xl:p-6 2xl:p-8">
+                <div className="space-y-3">
+                  {futureMenu.map((item, index) => (
+                    <div key={index} className="flex justify-between items-center p-2 hover:bg-blue-50 rounded transition-colors duration-200">
+                      <span className="text-gray-700 font-noto text-sm xl:text-base">{item.name}</span>
+                      <span className="text-blue-600 font-bold font-noto text-sm xl:text-base">{item.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 将来検討中の高級近江牛メニュー */}
+            <Card className="border-none shadow-md">
+              <CardHeader className="bg-amber-500 text-white">
+                <CardTitle className="text-xl xl:text-2xl 2xl:text-3xl font-noto">
+                  将来検討中の高級近江牛メニュー
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 xl:p-6 2xl:p-8">
+                <div className="space-y-3">
+                  {futurePremiumMenu.map((item, index) => (
+                    <div key={index} className="flex justify-between items-center p-2 hover:bg-amber-50 rounded transition-colors duration-200">
+                      <span className="text-gray-700 font-noto text-sm xl:text-base">{item.name}</span>
+                      <span className="text-amber-600 font-bold font-noto text-sm xl:text-base">{item.price}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </AnimatedElement>
+
+        <div className="text-center mt-8 xl:mt-12 2xl:mt-16">
+          <p className="text-gray-500 font-noto text-sm xl:text-base">
+            ※上記メニューは将来的に段階的に導入を検討するメニュー案です。開店時点では実施しない可能性があります。
+          </p>
+        </div>
       </div>
     </section>
   );
