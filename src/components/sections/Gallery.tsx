@@ -38,6 +38,36 @@ const Gallery = () => {
       src: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
       alt: 'モダンな店内インテリア',
       category: '店内'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: '地域交流イベント',
+      category: 'イベント'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'ビジネス交流会',
+      category: 'イベント'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: '料理教室イベント',
+      category: 'イベント'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1543269664-647b4d4c4c2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'カルチャー交流会',
+      category: 'イベント'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'ワークショップイベント',
+      category: 'イベント'
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'コミュニティ交流会',
+      category: 'イベント'
     }
   ];
 
@@ -64,7 +94,7 @@ const Gallery = () => {
               ギャラリー
             </h2>
             <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
-              店内の雰囲気、創作メニュー、プロジェクター演出の様子など、フォトギャラリーでご覧ください。
+              店内の雰囲気、創作メニュー、各種交流イベント、プロジェクター演出の様子など、フォトギャラリーでご覧ください。
             </p>
           </div>
         </AnimatedElement>
