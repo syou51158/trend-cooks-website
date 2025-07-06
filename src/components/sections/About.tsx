@@ -116,7 +116,7 @@ const About = () => {
                   <div className="relative">
                     <div className="absolute inset-0 bg-trend-accent/20 rounded-full blur-lg group-hover:bg-trend-accent/30 transition-colors duration-300"></div>
                     <img 
-                      src="/trend-cooks-website/images/staff/ceo-muraoka-sho.jpg"
+                      src="/images/staff/代表_村岡翔.jpg"
                       alt="代表 村岡翔"
                       className="w-32 h-32 xl:w-40 xl:h-40 2xl:w-48 2xl:h-48 rounded-full object-cover relative z-10 group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
