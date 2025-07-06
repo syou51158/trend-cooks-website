@@ -32,11 +32,10 @@ jobs:
         echo "=== END BUILD VERIFICATION ==="
     
     - name: Deploy to Lolipop Server
-      uses: sebastianpopp/ftp-action@releases/v2
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        host: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USERNAME }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        localDir: "dist"
-        remoteDir: "web/trendcooks"
-        options: "--delete --verbose" 
+        local-dir: ./dist/
+        server-dir: /web/trendcooks/ 
