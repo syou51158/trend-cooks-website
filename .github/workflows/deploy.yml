@@ -31,11 +31,27 @@ jobs:
         echo "Build size: $(du -sh ./dist/)"
         echo "=== END BUILD VERIFICATION ==="
     
-    - name: Deploy to Lolipop Server
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - name: Deploy to Lolipop Server via SSH
+      uses: appleboy/ssh-action@v1.0.3
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./dist/
-        server-dir: ./web/trendcooks/ 
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT }}
+        script: |
+          # Create directory if it doesn't exist
+          mkdir -p /home/users/2/deci.jp-trendcompany/web/trendcooks
+          
+          # Remove old files
+          rm -rf /home/users/2/deci.jp-trendcompany/web/trendcooks/*
+    
+    - name: Copy files via SCP
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: ${{ secrets.SSH_PORT }}
+        source: "dist/*"
+        target: "/home/users/2/deci.jp-trendcompany/web/trendcooks/"
+        strip_components: 1 
