@@ -1,38 +1,44 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const News = () => {
-  const newsItems = [
-    {
-      date: '2025/08/01',
-      title: '【グランドオープン決定】9/1（月）正式営業スタート！',
-      excerpt: 'いよいよTrend Cooksが正式オープンいたします。皆様のお越しをお待ちしております。',
-      category: 'お知らせ'
-    },
-    {
-      date: '2025/07/20',
-      title: '予約フォーム公開／SNS特典キャンペーン実施中',
-      excerpt: 'オンライン予約システムを公開しました。SNSフォローで特典もご用意しています。',
-      category: 'キャンペーン'
-    },
-    {
-      date: '2025/07/01',
-      title: 'プレオープンレポート（インフルエンサー試食会）',
-      excerpt: '地元インフルエンサーの皆様にお越しいただき、貴重なご意見をいただきました。',
-      category: 'イベント'
+  const { t, i18n } = useTranslation();
+  const newsItems = t('news.items', { returnObjects: true }) as Array<{
+    date: string;
+    title: string;
+    excerpt: string;
+    category: string;
+  }>;
+
+  // Format a date like 'YYYY/MM/DD' according to the current locale
+  const formatNewsDate = (dateStr: string) => {
+    // Expecting format 'YYYY/MM/DD'. Fallback to raw string if parsing fails.
+    const m = dateStr.match(/^(\d{4})[\/.-](\d{1,2})[\/.-](\d{1,2})$/);
+    if (!m) return dateStr;
+    const [_, y, mo, d] = m;
+    const date = new Date(Number(y), Number(mo) - 1, Number(d));
+    try {
+      return new Intl.DateTimeFormat(i18n.language || 'ja', {
+        year: 'numeric',
+        month: i18n.language.startsWith('en') ? 'short' : '2-digit',
+        day: 'numeric'
+      }).format(date);
+    } catch {
+      return dateStr;
     }
-  ];
+  };
 
   return (
     <section id="news" className="py-20 xl:py-24 2xl:py-32 bg-white">
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
           <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
-            ニュース
+            {t('news.title')}
           </h2>
           <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
-            Trend Cooksからのお知らせ、季節メニュー、プレオープン情報など最新情報をお届けします。
+            {t('news.subtitle')}
           </p>
         </div>
 
@@ -43,7 +49,7 @@ const News = () => {
                 <div className="flex items-center justify-between mb-2 xl:mb-3 2xl:mb-4">
                   <div className="flex items-center space-x-2">
                     <Calendar size={16} className="text-trend-accent" />
-                    <span className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto">{item.date}</span>
+                    <span className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto">{formatNewsDate(item.date)}</span>
                   </div>
                   <span className="text-xs xl:text-sm 2xl:text-base bg-trend-accent text-white px-2 py-1 xl:px-3 xl:py-2 2xl:px-4 2xl:py-2 rounded-full font-noto">
                     {item.category}
@@ -58,7 +64,7 @@ const News = () => {
                   {item.excerpt}
                 </p>
                 <div className="flex items-center text-trend-accent text-sm xl:text-base 2xl:text-lg font-noto group-hover:translate-x-1 transition-transform">
-                  詳細を見る
+                  {t('news.readMore')}
                   <ArrowRight size={14} className="ml-1" />
                 </div>
               </CardContent>
@@ -68,7 +74,7 @@ const News = () => {
 
         <div className="text-center">
           <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
-            （管理画面からオーナー様が直接更新可能）
+            {t('news.adminNote')}
           </p>
         </div>
       </div>

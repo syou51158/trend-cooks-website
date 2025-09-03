@@ -21,13 +21,13 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
   const offset = useParallax(parallaxFactor);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden w-full ${className}`} aria-hidden>
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{
           backgroundImage: `url(${imageUrl})`,
           transform: `translateY(${offset}px)`,
-          backgroundAttachment: 'fixed'
+          backgroundAttachment: typeof window !== 'undefined' && window.innerWidth >= 1024 ? 'fixed' : 'scroll'
         }}
       />
       {overlay && (
@@ -43,4 +43,4 @@ const ParallaxBackground: React.FC<ParallaxBackgroundProps> = ({
   );
 };
 
-export default ParallaxBackground; 
+export default ParallaxBackground;

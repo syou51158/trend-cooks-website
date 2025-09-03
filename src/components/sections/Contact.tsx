@@ -5,8 +5,16 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { MapPin, Phone, Clock, Mail, Send } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+// NEW: locale-aware date picker imports
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/style.css';
+import { format } from 'date-fns';
+import { ja as jaLocale, enUS } from 'date-fns/locale';
 
 const Contact = () => {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,6 +29,17 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
+  // Derived values for locale-aware date display (must be inside component)
+  const localeObj = i18n.language?.startsWith('en') ? enUS : jaLocale;
+  const selectedDate = formData.date ? new Date(formData.date + 'T00:00:00') : undefined;
+  const dateDisplay = selectedDate
+    ? format(
+        selectedDate,
+        i18n.language?.startsWith('en') ? 'MMM d, yyyy' : 'yyyy/MM/dd',
+        { locale: localeObj }
+      )
+    : '';
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -32,9 +51,17 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitMessage('');
+
+    // 簡易バリデーション
+    if (!formData.name || !formData.email) {
+      setSubmitMessage(t('contact.validationRequired'));
+      setIsSubmitting(false);
+      return;
+    }
     
     setTimeout(() => {
-      setSubmitMessage('お問い合わせありがとうございます。24時間以内にご連絡いたします。');
+      setSubmitMessage(t('contact.thanks'));
       setIsSubmitting(false);
       setFormData({
         name: '',
@@ -54,10 +81,10 @@ const Contact = () => {
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16">
         <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
           <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
-            ご予約・お問い合わせ
+            {t('contact.title')}
           </h2>
           <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
-            お気軽にお問い合わせください。お待ちしております。
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -65,14 +92,14 @@ const Contact = () => {
           <Card className="border-none shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto text-trend-text">
-                オンライン予約フォーム
+                {t('contact.formTitle')}
               </CardTitle>
             </CardHeader>
             <CardContent className="xl:p-8 2xl:p-10">
-              <form onSubmit={handleSubmit} className="space-y-6 xl:space-y-8 2xl:space-y-10">
+              <form onSubmit={handleSubmit} className="space-y-6" aria-label={t('contact.formAria')}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="name" className="font-noto">お名前 *</Label>
+                    <Label htmlFor="name" className="font-noto">{t('contact.labels.name')}</Label>
                     <Input
                       id="name"
                       name="name"
@@ -83,7 +110,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email" className="font-noto">メールアドレス *</Label>
+                    <Label htmlFor="email" className="font-noto">{t('contact.labels.email')}</Label>
                     <Input
                       id="email"
                       name="email"
@@ -97,7 +124,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="phone" className="font-noto">電話番号</Label>
+                  <Label htmlFor="phone" className="font-noto">{t('contact.labels.phone')}</Label>
                   <Input
                     id="phone"
                     name="phone"
@@ -110,19 +137,35 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <Label htmlFor="date" className="font-noto">ご希望日 *</Label>
-                    <Input
-                      id="date"
-                      name="date"
-                      type="date"
-                      value={formData.date}
-                      onChange={handleInputChange}
-                      required
-                      className="mt-1"
-                    />
+                    <Label htmlFor="date" className="font-noto">{t('contact.labels.date')}</Label>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Input
+                          id="date"
+                          name="date"
+                          type="text"
+                          value={dateDisplay}
+                          readOnly
+                          required
+                          placeholder={i18n.language?.startsWith('en') ? 'Select date' : '日付を選択'}
+                          className="mt-1 cursor-pointer"
+                        />
+                      </PopoverTrigger>
+                      <PopoverContent align="start" className="p-0">
+                        <DayPicker
+                          mode="single"
+                          selected={selectedDate}
+                          onSelect={(d) => {
+                            const iso = d ? format(d, 'yyyy-MM-dd') : '';
+                            setFormData((prev) => ({ ...prev, date: iso }));
+                          }}
+                          locale={localeObj}
+                        />
+                      </PopoverContent>
+                    </Popover>
                   </div>
                   <div>
-                    <Label htmlFor="time" className="font-noto">ご希望時間 *</Label>
+                    <Label htmlFor="time" className="font-noto">{t('contact.labels.time')}</Label>
                     <Input
                       id="time"
                       name="time"
@@ -131,10 +174,11 @@ const Contact = () => {
                       onChange={handleInputChange}
                       required
                       className="mt-1"
+                      lang={i18n.language}
                     />
                   </div>
                   <div>
-                    <Label htmlFor="guests" className="font-noto">人数 *</Label>
+                    <Label htmlFor="guests" className="font-noto">{t('contact.labels.guests')}</Label>
                     <Input
                       id="guests"
                       name="guests"
@@ -150,26 +194,26 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="menu" className="font-noto">ご希望メニュー</Label>
+                  <Label htmlFor="menu" className="font-noto">{t('contact.labels.menu')}</Label>
                   <Input
                     id="menu"
                     name="menu"
                     value={formData.menu}
                     onChange={handleInputChange}
-                    placeholder="例：近江牛コース、飲み放題プラン"
+                    placeholder={t('contact.placeholders.menu')}
                     className="mt-1"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="font-noto">その他ご要望</Label>
+                  <Label htmlFor="message" className="font-noto">{t('contact.labels.message')}</Label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    placeholder="アレルギー、記念日、送迎サービスご希望など"
+                    placeholder={t('contact.placeholders.message')}
                     className="mt-1"
                   />
                 </div>
@@ -179,7 +223,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   className="w-full bg-trend-accent hover:bg-trend-accent/90 text-white xl:text-lg 2xl:text-xl xl:py-3 2xl:py-4 font-noto"
                 >
-                  {isSubmitting ? '送信中...' : '予約を送信'}
+                  {isSubmitting ? t('contact.submitting') : t('contact.submit')}
                   <Send className="ml-2" size={16} />
                 </Button>
 
@@ -196,22 +240,22 @@ const Contact = () => {
             <Card className="border-none shadow-lg">
               <CardHeader>
                 <CardTitle className="text-2xl xl:text-3xl 2xl:text-4xl font-noto text-trend-text">
-                  店舗情報
+                  {t('contact.storeInfoTitle')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 xl:space-y-8 2xl:space-y-10 xl:p-8 2xl:p-10">
                 <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
                   <MapPin className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">住所</h4>
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">{t('contact.addressTitle')}</h4>
                     <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
-                      〒520-0022<br />
-                      滋賀県大津市柳が崎9-15<br />
-                      ルシェル西大津102号室
+                      {t('common.address.zip')}<br />
+                      {t('common.address.line1')}<br />
+                      {t('common.address.line2')}
                     </p>
                     <p className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto mt-1">
-                      JR大津京駅より徒歩20分<br />
-                      Pなし（近隣コインパーキングをご利用ください）
+                      {t('common.address.accessNote')}<br />
+                      {t('common.address.parkingNote')}
                     </p>
                   </div>
                 </div>
@@ -219,19 +263,19 @@ const Contact = () => {
                 <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
                   <Phone className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">電話予約</h4>
-                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">090-2115-6429</p>
-                    <p className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto">代表・村岡</p>
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">{t('contact.phoneReservationTitle')}</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">{t('common.phone')}</p>
+                    <p className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto">{t('common.owner')}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
                   <Clock className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">営業時間</h4>
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">{t('common.hours.title')}</h4>
                     <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
-                      昼：11:00 - 17:00（創作カフェ）<br />
-                      夜：17:00 - 23:30（スナック・バー）
+                      {t('common.hours.day')}<br />
+                      {t('common.hours.night')}
                     </p>
                   </div>
                 </div>
@@ -239,20 +283,15 @@ const Contact = () => {
                 <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
                   <Mail className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
                   <div>
-                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">無料送迎サービス</h4>
-                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
-                      大津京駅⇔店舗間<br />
-                      <span className="text-sm xl:text-base 2xl:text-lg text-gray-500">（要事前予約）</span>
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">{t('contact.shuttleTitle')}</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">{t('contact.shuttleText')}<br />
+                      <span className="text-sm xl:text-base 2xl:text-lg text-gray-500">{t('contact.shuttleNote')}</span>
                     </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
 
-            <Card className="border-none shadow-lg">
-              <CardContent className="p-6 xl:p-8 2xl:p-10">
-                <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
-                  <p className="text-gray-500 xl:text-lg 2xl:text-xl font-noto">Google Maps（実装予定）</p>
+                <div className="bg-gray-100 rounded-lg p-6 2xl:p-8">
+                  <p className="text-gray-500 xl:text-lg 2xl:text-xl font-noto">{t('contact.mapPlaceholder')}</p>
                 </div>
               </CardContent>
             </Card>
