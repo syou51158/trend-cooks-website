@@ -204,7 +204,7 @@ const resources = {
         },
         placeholders: {
           menu: '例：近江牛コース、飲み放題プラン',
-        message: 'アレルギー、記念日、送迎サービスご希望など'
+          message: 'アレルギー、記念日、送迎サービスご希望など'
         },
         submit: '予約を送信',
         submitting: '送信中...',
@@ -240,7 +240,63 @@ const resources = {
           },
           premium: {
             title: '🥩 プレミアム近江牛メニュー',
-            desc: '国際的なお客様向け特別コース'
+            desc: '国際的なお客様向け特別コース',
+            items: {
+              omiWagyuBowl: {
+                name: '近江牛の特選炙り牛丼',
+                description: '自家製タレで香ばしく炙った近江牛を、特Aランクの炊きたてご飯に乗せた至福の一杯。'
+              },
+              hogwartsShepherdsPie: {
+                name: 'ホグワーツ大広間のシェパーズパイ',
+                description: 'ハリー・ポッターの世界から飛び出した伝統的イギリス料理。近江牛のひき肉と野菜をじっくり煮込み、黄金色のマッシュポテトで熱々に焼き上げました'
+              }
+            }
+          },
+          viral: {
+            title: '🔥 SNSトレンド＆話題のメニュー',
+            description: '最新のバズりグルメをTrend Cooks流にアレンジ',
+            items: {
+              nashvilleHotMozzarellaSticks: {
+                name: 'ナッシュビル・ホット・モッツァレラスティック',
+                description: '特製スパイスで赤く染まったサクサクの衣から、とろ〜り伸びる濃厚チーズ。特製ランチソースにたっぷりディップして'
+              },
+              yangnyeomChicken: {
+                name: '韓国ヤンニョムチキンプレート',
+                description: '定番のピリ辛ヤンニョムチキンを骨なしで仕上げ、自家製チキンム（チキン大根＝大根のピクルス）を添えた一皿。SNS映え抜群の赤いソースが特徴'
+              },
+              batataMahshi: {
+                name: 'レバノン風 丸ごと肉詰めポテト（バタタ・マフシー）',
+                description: '世界中の美食家が注目！くり抜いて素揚げしたポテトに、スパイスと松の実が香るお肉を詰め込みトマトソースで煮込んだ中東の絶品郷土料理'
+              },
+              bulgogiPlate: {
+                name: 'プルコギ風和牛プレート',
+                description: '韓国プルコギ風に味付けした近江牛を使用。ナムル3種、キムチ、温泉卵を添えたボリューム満点プレート'
+              },
+              newOrleansStyleBeignets: {
+                name: 'ニューオーリンズ風 ふわふわベニエ',
+                description: '粉砂糖を雪のようにたっぷりかけた四角いドーナツ。外はサクッと、中はふんわりもっちり'
+              },
+              crispySpicyChickenTenders: {
+                name: 'サクサク旨辛！クリスピーチキンテンダー',
+                description: 'ASMR動画でおなじみ！ザクザク食感の骨なしスパイシーチキンを、さっぱりとした特製ランチソースと共に'
+              },
+              devilsDeepFriedButter: {
+                name: '悪魔のサクとろ揚げバター',
+                description: 'サクッとした甘い衣の中から、熱々でとろけるバターが溢れ出す！粉砂糖とメープルシロップをかけた究極の背徳スイーツ'
+              },
+              crispyJumboGrilledDaechang: {
+                name: 'ASMR級！極太丸焼きカリカリホルモン',
+                description: '外はカリカリ、噛むと脂が爆発する韓国風の大人気「丸焼きテッチャン」。自家製ピリ辛ダレで召し上がれ'
+              },
+              premiumChickenCheeseBuldak: {
+                name: 'サクサクチキン限界乗せ！極みチーズブルダック麺',
+                description: 'SNSを席巻中の最強コンビ！大流行の激辛チーズブルダック麺の上に、揚げたての大きなサクサクチキンを豪快にトッピング。とろけるチーズとチキンの相性は悪魔的です'
+              },
+              mochiPotato: {
+                name: '禁断のチーズディップ！サクもちポテトフライ',
+                description: '軽くトリュフ塩を振った、外サクサク・中モッチモチのやみつきポテト。自家製の「特製濃厚ガーリックチーズソース」にたっぷりディップして食べる、ワンランク上の背徳おつまみです！'
+              }
+            }
           },
           sweets: {
             title: '🍰 スイーツ・デザート'
@@ -248,6 +304,27 @@ const resources = {
           dinner: {
             title: '🌙 夜間営業（17:00〜23:30）',
             desc: '小皿料理とプロジェクター演出でリラックスタイム'
+          },
+          coffee: {
+            title: '☕ スペシャルティコーヒー',
+            desc: 'お好みの「温度・濃さ・甘さ」が選べる、こだわりの一杯',
+            acidity: '酸味',
+            bitterness: '苦味・コク',
+            strength: 'コーヒーの濃さ',
+            light: '軽め',
+            regular: '普通',
+            strong: '濃いめ',
+            temperature: 'ホット / アイス',
+            hot: 'ホット',
+            iced: 'アイス',
+            iceAmount: '氷の量（アイスのみ）',
+            iceNormal: '普通',
+            iceLess: '少なめ',
+            iceMore: '多め',
+            iceNone: '氷なし',
+            syrup: 'シロップ（甘さ）',
+            syrupYes: 'あり',
+            syrupNo: 'なし'
           },
           drinks: {
             title: 'ドリンクメニュー'
@@ -456,12 +533,37 @@ const resources = {
             title: '🥩 Premium Omi Beef Menu',
             desc: 'Special course for international guests'
           },
+          viral: {
+            title: '🔥 SNS Trending & Viral Menu',
+            desc: 'The latest viral hits with a Trend Cooks twist'
+          },
           sweets: {
             title: '🍰 Sweets & Desserts'
           },
           dinner: {
             title: '🌙 Evening (17:00–23:30)',
             desc: 'Relax with small plates and projector ambience'
+          },
+          coffee: {
+            title: '☕ Specialty Coffee',
+            desc: 'Carefully crafted cups tailored to your preferred temperature, strength and sweetness',
+            acidity: 'Acidity',
+            bitterness: 'Bitterness/Richness',
+            strength: 'Coffee Strength',
+            light: 'Light',
+            regular: 'Regular',
+            strong: 'Strong',
+            temperature: 'Temperature',
+            hot: 'Hot',
+            iced: 'Iced',
+            iceAmount: 'Ice Amount (Iced only)',
+            iceNormal: 'Normal',
+            iceLess: 'Less Ice',
+            iceMore: 'Extra Ice',
+            iceNone: 'No Ice',
+            syrup: 'Syrup (Sweetness)',
+            syrupYes: 'Yes',
+            syrupNo: 'None'
           },
           drinks: {
             title: 'Drinks Menu'
