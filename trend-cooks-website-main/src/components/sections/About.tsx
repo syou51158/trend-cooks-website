@@ -34,7 +34,7 @@ const About = () => {
             {/* Daytime photo */}
             <div className="relative group overflow-hidden rounded-2xl shadow-xl h-72 xl:h-96 2xl:h-[28rem]">
               <img
-                src="/images/restaurant_day_final_1772974803590.png"
+                src="/images/restaurant_accurate_day_1772975933609.png"
                 alt={t('about.alt.interior')}
                 loading="lazy"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
@@ -51,7 +51,7 @@ const About = () => {
             {/* Nighttime photo */}
             <div className="relative group overflow-hidden rounded-2xl shadow-xl h-72 xl:h-96 2xl:h-[28rem]">
               <img
-                src="/images/restaurant_night_final_1772974819631.png"
+                src="/images/restaurant_accurate_night_1772976044672.png"
                 alt={t('about.alt.interior')}
                 loading="lazy"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
