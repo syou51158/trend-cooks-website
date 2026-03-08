@@ -10,48 +10,71 @@ const About = () => {
   return (
     <section id="about" className="py-20 xl:py-24 2xl:py-32 bg-trend-bg relative overflow-hidden">
       {/* Floating background elements */}
-      <div 
+      <div
         className="absolute top-20 right-10 w-64 h-64 bg-trend-accent/5 rounded-full blur-3xl"
         style={{ transform: `translateY(${parallaxOffset * 0.5}px)` }}
       />
-      <div 
+      <div
         className="absolute bottom-40 left-20 w-96 h-96 bg-trend-accent/3 rounded-full blur-3xl"
         style={{ transform: `translateY(${parallaxOffset * -0.3}px)` }}
       />
-      
+
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <AnimatedElement animation="fadeInUp" delay={100}>
-          <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
+          <div className="text-center mb-12 xl:mb-16 2xl:mb-20">
             <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
               {t('about.missionTitle')}
             </h2>
           </div>
         </AnimatedElement>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 2xl:gap-20 items-center mb-16 xl:mb-20 2xl:mb-24">
-          <AnimatedElement animation="fadeInLeft" delay={200}>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-trend-accent/20 to-transparent rounded-lg transform group-hover:scale-105 transition-transform duration-300 blur-xl"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+        {/* ── Two-photo Mission Section ── */}
+        <AnimatedElement animation="fadeInUp" delay={150}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:gap-6 mb-8 xl:mb-10">
+            {/* Daytime photo */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-xl h-72 xl:h-96 2xl:h-[28rem]">
+              <img
+                src="/images/restaurant_interior_day_1772973501465.png"
                 alt={t('about.alt.interior')}
                 loading="lazy"
-                width={1000}
-                height={640}
-                className="rounded-lg shadow-lg w-full h-80 xl:h-96 2xl:h-[28rem] object-cover transform group-hover:scale-105 transition-transform duration-500 relative z-10"
-                style={{ transform: `translateY(${parallaxOffset * 0.1}px)` }}
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
+              {/* Overlay label */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-5">
+                <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-sm xl:text-base font-noto font-medium px-4 py-2 rounded-full border border-white/30">
+                  ☀️ 昼の表情
+                </span>
+              </div>
             </div>
-          </AnimatedElement>
-          
-          <AnimatedElement animation="fadeInRight" delay={300}>
-            <div>
-              <p className="text-lg xl:text-xl 2xl:text-2xl text-trend-text mb-6 xl:mb-8 2xl:mb-10 font-noto leading-relaxed">
-                {t('about.description')}
-              </p>
+
+            {/* Nighttime photo */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-xl h-72 xl:h-96 2xl:h-[28rem]">
+              <img
+                src="/images/restaurant_interior_night_1772973514967.png"
+                alt={t('about.alt.interior')}
+                loading="lazy"
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+              />
+              {/* Overlay label */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-5">
+                <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-sm xl:text-base font-noto font-medium px-4 py-2 rounded-full border border-white/30">
+                  🌙 夜の表情
+                </span>
+              </div>
             </div>
-          </AnimatedElement>
-        </div>
+          </div>
+        </AnimatedElement>
+
+        {/* Mission text below photos */}
+        <AnimatedElement animation="fadeInUp" delay={250}>
+          <div className="max-w-3xl mx-auto text-center mb-16 xl:mb-20 2xl:mb-24">
+            <p className="text-lg xl:text-xl 2xl:text-2xl text-trend-text font-noto leading-relaxed">
+              {t('about.description')}
+            </p>
+          </div>
+        </AnimatedElement>
 
         <AnimatedElement animation="fadeInUp" delay={400}>
           <div className="mb-16 xl:mb-20 2xl:mb-24">
@@ -74,7 +97,7 @@ const About = () => {
                   </CardContent>
                 </Card>
               </AnimatedElement>
-              
+
               <AnimatedElement animation="fadeInUp" delay={500}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <CardContent className="p-6 xl:p-8 2xl:p-10">
@@ -90,7 +113,7 @@ const About = () => {
                   </CardContent>
                 </Card>
               </AnimatedElement>
-              
+
               <AnimatedElement animation="fadeInUp" delay={550}>
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
                   <CardContent className="p-6 xl:p-8 2xl:p-10">
@@ -120,7 +143,7 @@ const About = () => {
                 <div className="flex flex-col md:flex-row items-center gap-6 xl:gap-8 2xl:gap-12">
                   <div className="relative">
                     <div className="absolute inset-0 bg-trend-accent/20 rounded-full blur-lg group-hover:bg-trend-accent/30 transition-colors duration-300"></div>
-                    <img 
+                    <img
                       src="/images/staff/代表_村岡翔.jpg"
                       alt={t('about.alt.ceo')}
                       loading="lazy"
