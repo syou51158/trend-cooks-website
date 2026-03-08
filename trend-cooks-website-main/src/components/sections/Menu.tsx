@@ -224,10 +224,11 @@ const Menu = () => {
       price: '580円',
       description: '酸味を極限まで抑え、ビターチョコレートのような甘い苦味を引き出した当店のシグネチャー。',
       descriptionEn: 'Signature blend. Extremely low acidity with deep richness and chocolate-like sweet bitterness.',
-      balance: 85, // 0 = Acid, 100 = Bitter
+      balance: 85,
       strengthCustomizable: true,
-      temp: 'both', // 'both' | 'hot' | 'iced'
+      temp: 'both',
       syrup: true,
+      image: '/images/menu/coffee_premium_blend_1772970912876.png',
     },
     {
       name: '極・深煎り水出しアイスコーヒー',
@@ -239,6 +240,7 @@ const Menu = () => {
       strengthCustomizable: false,
       temp: 'iced',
       syrup: true,
+      image: '/images/menu/coffee_cold_brew_1772970931129.png',
     },
     {
       name: 'コク深アメリカーノ',
@@ -250,6 +252,7 @@ const Menu = () => {
       strengthCustomizable: true,
       temp: 'both',
       syrup: true,
+      image: '/images/menu/coffee_americano_1772970945777.png',
     },
     {
       name: '濃厚ミルクのカフェラテ',
@@ -261,6 +264,7 @@ const Menu = () => {
       strengthCustomizable: true,
       temp: 'both',
       syrup: true,
+      image: '/images/menu/coffee_cafe_latte_1772970964440.png',
     },
     {
       name: 'キリマンジャロ（深煎り仕立て）',
@@ -272,6 +276,7 @@ const Menu = () => {
       strengthCustomizable: true,
       temp: 'both',
       syrup: true,
+      image: '/images/menu/coffee_kilimanjaro_1772970980950.png',
     },
     {
       name: 'クラシック・ウィンナーコーヒー',
@@ -283,6 +288,7 @@ const Menu = () => {
       strengthCustomizable: true,
       temp: 'both',
       syrup: true,
+      image: '/images/menu/coffee_wiener_1772970998831.png',
     },
     {
       name: 'エスプレッソ・フラペチーノ',
@@ -295,6 +301,7 @@ const Menu = () => {
       temp: 'iced',
       syrup: true,
       isFrappuccino: true,
+      image: '/images/menu/coffee_frappuccino_1772971021967.png',
     }
   ];
 
@@ -759,7 +766,17 @@ const Menu = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8 2xl:gap-10">
             {coffeeMenu.map((item, index) => (
               <AnimatedElement key={index} animation="scaleIn" delay={850 + index * 50}>
-                <Card className="border-2 border-amber-900/10 shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-[#faf8f5]">
+                <Card className="border-2 border-amber-900/10 shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-[#faf8f5] overflow-hidden">
+                  {item.image && (
+                    <div className="relative h-48 xl:h-52 w-full overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={isJa ? item.name : item.nameEn}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                   <CardContent className="p-6 h-full flex flex-col">
                     <h4 className="text-lg xl:text-xl font-bold text-amber-900 font-noto mb-1">
                       {isJa ? item.name : item.nameEn}
