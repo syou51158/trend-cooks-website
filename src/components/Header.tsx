@@ -19,6 +19,7 @@ const Header = () => {
   const navigation = [
     { name: t('nav.home'), href: '#home' },
     { name: t('nav.about'), href: '#about' },
+    { name: t('nav.safety'), href: '#safety' },
     { name: t('nav.menu'), href: '#menu' },
     { name: t('nav.events'), href: '#events' },
     { name: t('nav.news'), href: '#news' },

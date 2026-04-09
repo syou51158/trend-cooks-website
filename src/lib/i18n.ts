@@ -19,6 +19,7 @@ const resources = {
         events: 'イベント',
         news: 'ニュース',
         gallery: 'ギャラリー',
+        safety: '安心・安全',
         contact: 'お問い合わせ',
         language: '言語切り替え',
         aria: {
@@ -58,6 +59,92 @@ const resources = {
         alt: {
           interior: 'レストラン内装',
           ceo: '代表 村岡翔'
+        }
+      },
+      safety: {
+        title: '安心・安全への取り組み',
+        subtitle: '当店舗では、HACCPの考え方を取り入れた衛生管理計画を厳守し、お客様に安全な食事を提供しています。',
+        tabs: {
+          general: '一般的衛生管理',
+          critical: '重要管理のポイント'
+        },
+        general: {
+          title: '一般的衛生管理のポイント',
+          items: [
+            {
+              title: '① 原材料の受入の徹底確認',
+              timing: '原材料の納入時および開封時',
+              method: '外観、におい、包装の破損有無、消費期限・賞味期限、および指定された保存温度帯での納品がなされているかを厳密に確認する。',
+              problem: '基準に満たない場合は直ちに受入を拒否し、納入業者へ返品・交換を要求する。'
+            },
+            {
+              title: '② 庫内温度の確認（冷蔵・冷凍庫）',
+              timing: '営業開始前、アイドルタイム、および営業終了後の1日3回',
+              method: 'デジタル温度計により定期的に庫内温度を確認する（冷蔵庫：10℃以下、冷凍庫：-15℃以下）。',
+              problem: '異常が認められた場合は直ちに原因を特定・再調整を行う。食材の劣化が疑われる場合は一切使用せず廃棄する。'
+            },
+            {
+              title: '③-1 交差汚染・二次汚染の確実な防止',
+              timing: '営業中の全ての調理・保管プロセスにおいて',
+              method: '食材ごとに専用のまな板・包丁を色分けして使用。冷蔵庫内は加熱・非加熱食材を明確に分離し、必ず密閉容器で保管する。',
+              problem: '万が一、生肉等が他の食材と接触した可能性がある場合は直ちに廃棄、または十分な中心加熱を実施し、使用器具は再洗浄・殺菌する。'
+            },
+            {
+              title: '③-2 器具等の洗浄・消毒・殺菌',
+              timing: '各調理作業の終了後および営業終了時',
+              method: '使用済みの器具類（まな板、包丁、ボウル等）は中性洗剤で洗浄後、熱湯または認可された殺菌剤で速やかに消毒し、完全に乾燥させて保管する。',
+              problem: '洗剤の残留や洗い残しが確認された場合は、初めから洗浄・消毒工程をやり直す。'
+            },
+            {
+              title: '③-3 トイレの洗浄・消毒',
+              timing: '営業開始前、営業中の定期時間、および営業終了時',
+              method: 'トイレ専用の洗浄用具を使用し、便器・手すり・水洗レバー・ドアノブなどの接触頻度が高い箇所をアルコールまたは塩素系殺菌剤で入念に消毒する。',
+              problem: '著しい汚れや吐瀉物等が発生した場合は、速やかに専用の感染症対策キット（ノロウイルス対応等）を用いて清掃・徹底消毒を実施する。'
+            },
+            {
+              title: '④-1 従業員の健康管理および衛生的着衣',
+              timing: '出勤時および業務開始前',
+              method: '全従業員の検温、健康状態（下痢・嘔吐等の有無）、手指の傷の有無、および指定された清潔なユニフォーム・帽子の正しい着用をチェックする。',
+              problem: '消化器症状や発熱がある従業員は直ちに帰宅させ療養させる。手指に傷がある場合は、専用の耐水性絆創膏と使い捨て手袋の着用を義務付ける。'
+            },
+            {
+              title: '④-2 手洗いの厳格な実施',
+              timing: 'トイレ使用後、厨房入室時、盛り付け前、生肉・生魚・アレルゲン食材・金銭を扱った後',
+              method: '手洗いマニュアルに従い、手洗い用洗剤を用いて指の間・手首まで十分に洗浄・すすぎを行い、ペーパータオルで乾燥させた後にアルコール消毒を行う。',
+              problem: '指定されたタイミングの手洗いを怠った、あるいは不十分な手洗いを発見した場合は、直ちに作業を中断させ正しい手順での再手洗いを指導・実施させる。'
+            }
+          ]
+        },
+        critical: {
+          title: '重要管理のポイント（調理グループ別）',
+          group1: {
+            title: '第1グループ（非加熱メニュー）',
+            targets: 'サラダ、ナムル、刺身、寿司ネタ等の生鮮・非加熱メニュー',
+            checks: [
+              '盛り付けは注文直前に行い、冷蔵庫から取り出したら提供まで常温放置を厳禁とする。',
+              '品質表示や独自規定に基づく専用温度帯での保管を徹底する。',
+              '生鮮品を扱う際は必ず使い捨ての衛生手袋を着用し、素手での食品への直接接触を一切禁止する。',
+              '清潔な器具での扱いを徹底し、盛りつけ前に必ず手洗い・消毒を行う。'
+            ]
+          },
+          group2: {
+            title: '第2グループ（加熱後直ち／高温保管して提供）',
+            targets: '近江牛のステーキ、ハンバーグ、クリスピーチキン、特製スープ等の加熱メニュー',
+            checks: [
+              '厚みのある肉類（ハンバーグ等）は、中心部が十分（例：75℃で1分間以上相当）に加熱されているかを中心温度計等を用いて都度確認する。',
+              '肉汁の透明度や衣のキツネ色など、火の通り具合を目視・触感で多角的に判断する。',
+              'スープやソース等を提供するまでの間、高温保管庫やウォーマーが適切な温度帯を維持しているか定期的に目視確認する。'
+            ]
+          },
+          group3: {
+            title: '第3グループ（加熱後急速冷却／さらに再加熱して提供）',
+            targets: 'カレー、シチュー、ポテトサラダ用食材等の仕込み・作り置きメニュー',
+            checks: [
+              '加熱調理後は、菌が繁殖しやすい危険温度帯（10℃〜60℃）を速やかに通過させるため、小分けにして氷水等で急冷し直ちに冷蔵・冷凍保存する。',
+              '保存後の再加熱時には、中心部まで完全に火が通っていること（沸騰、気泡の発生など）を徹底して確認する。',
+              '再加熱から盛り付けへの移行時にも二次汚染を防ぐため、専用の清潔なトングやレードルを必ず使用する。'
+            ]
+          }
         }
       },
       features: {
@@ -357,6 +444,7 @@ const resources = {
         events: 'Events',
         news: 'News',
         gallery: 'Gallery',
+        safety: 'Safety',
         contact: 'Contact',
         language: 'Language switch',
         aria: {
@@ -395,6 +483,92 @@ const resources = {
         alt: {
           interior: 'Restaurant interior',
           ceo: 'CEO Sho Muraoka'
+        }
+      },
+      safety: {
+        title: 'Safety & Hygiene Initiatives',
+        subtitle: 'We strictly adhere to a hygiene management plan based on HACCP principles to provide you with safe and secure meals.',
+        tabs: {
+          general: 'General Hygiene',
+          critical: 'Critical Control Points'
+        },
+        general: {
+          title: 'General Hygiene Management Points',
+          items: [
+            {
+              title: '① Strict Inspection of Raw Materials',
+              timing: 'Upon delivery and when opening packaging',
+              method: 'Strictly verify appearance, odor, packaging integrity, expiration dates, and adherence to specified storage temperatures upon delivery.',
+              problem: 'If standards are not met, immediately refuse reception and demand return or exchange from the supplier.'
+            },
+            {
+              title: '② Monitoring Refrigerator/Freezer Temperatures',
+              timing: 'Before opening, during idle times, and after closing (3 times/day)',
+              method: 'Verify internal temperatures using digital thermometers at regular intervals (Fridge: under 10°C, Freezer: under -15°C).',
+              problem: 'If an abnormality is detected, immediately identify the cause and adjust. Any ingredients suspected of degradation will be strictly discarded.'
+            },
+            {
+              title: '③-1 Absolute Prevention of Cross/Secondary Contamination',
+              timing: 'During all cooking and storage processes',
+              method: 'Use color-coded designated cutting boards and knives for different ingredients. Strictly separate heated/non-heated ingredients in refrigerators and use sealed containers.',
+              problem: 'If raw meat possibly contacts other ingredients, discard contaminated materials or perform thorough core heating. Re-wash and sanitize the used utensils thoroughly.'
+            },
+            {
+              title: '③-2 Equipment Washing, Disinfecting, Sanitizing',
+              timing: 'After each cooking task and at the end of business hours',
+              method: 'Wash used utensils (cutting boards, knives, bowls) with neutral detergent, disinfect completely with approved sanitizers or boiling water, and store dry.',
+              problem: 'If detergent residue or incomplete washing is found, restart the washing and disinfection process entirely.'
+            },
+            {
+              title: '③-3 Cleaning & Disinfecting Restrooms',
+              timing: 'Before opening, at regular operational intervals, and after closing',
+              method: 'Use designated cleaning tools for restrooms. Meticulously disinfect high-touch areas like toilet bowls, handrails, flush levers, and doorknobs with alcohol or chlorine sanitizers.',
+              problem: 'In case of significant soiling or vomit, promptly clean and thoroughly disinfect using a dedicated infectious disease control kit.'
+            },
+            {
+              title: '④-1 Comprehensive Employee Health Management',
+              timing: 'Upon reporting to work and before starting duties',
+              method: 'Check temperatures, confirm health status (no digestive issues), inspect for hand wounds, and ensure correct wearing of designated clean uniforms/hats for all employees.',
+              problem: 'Employees with digestive symptoms or fever will be sent home locally. Hand wounds mandate the use of waterproof bandages and disposable gloves.'
+            },
+            {
+              title: '④-2 Strict Handwashing Protocols',
+              timing: 'After restroom use, upon kitchen entry, before plating, and after handling raw meat/fish/allergens/money',
+              method: 'Follow the official handwashing manual strictly: repeatedly wash with designated detergent, rinse, dry with paper towels, and finish with an alcohol spray.',
+              problem: 'If an employee neglects handwashing at designated times or performs it inadequately, halt their work immediately and instruct them to re-wash correctly.'
+            }
+          ]
+        },
+        critical: {
+          title: 'Critical Control Points by Culinary Group',
+          group1: {
+            title: 'Group 1 (Non-Heated & Fresh Menus)',
+            targets: 'Salads, namuls, prep for raw meat, sashimi, and other fresh non-heated preparations',
+            checks: [
+              'Plate immediately before serving; never leave at room temperature after removing from the refrigerator.',
+              'Strictly adhere to designated temperature storage based on quality labels and our internal regulations.',
+              'Always wear disposable sanitary gloves when handling fresh goods; direct bare-hand contact with food is absolutely prohibited.',
+              'Ensure all prep is done with sterilized tools and that hands are thoroughly washed before plating.'
+            ]
+          },
+          group2: {
+            title: 'Group 2 (Properly Heated & Served / Hot-Holding)',
+            targets: 'Omi beef steaks, hamburg steaks, crispy fried chicken, specialty soups, etc.',
+            checks: [
+              'For thick meats (e.g., hamburg), verify that the core is sufficiently heated (e.g., reaching 75°C for at least 1 min) using a core thermometer.',
+              'Judge cooking completeness holistically by visually verifying clear meat juices or golden crusts and appropriate texture.',
+              'Ensure hot-holding equipment or warmers maintain safe, elevated temperatures (above 65°C) before serving soups or sauces.'
+            ]
+          },
+          group3: {
+            title: 'Group 3 (Rapidly Cooled after Heating / Reheated)',
+            targets: 'Curries, stews, boiled ingredients for potato salads, pre-prepared roast beef, etc.',
+            checks: [
+              'After cooking, cool batches rapidly using ice baths to quickly pass the dangerous temperature zone (10°C–60°C), storing immediately in fridges/freezers.',
+              'When reheating stored items, thoroughly confirm complete, core-deep heating (e.g., active boiling/bubbling throughout).',
+              'Always use specifically designated clean tongs or ladles when transferring from the reheating pot to plating to completely avoid secondary contamination.'
+            ]
+          }
         }
       },
       features: {

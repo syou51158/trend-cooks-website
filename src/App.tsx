@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const Features = lazy(() => import('./components/sections/Features'));
 const About = lazy(() => import('./components/sections/About'));
+const Safety = lazy(() => import('./components/sections/Safety'));
 const Menu = lazy(() => import('./components/sections/Menu'));
 const Events = lazy(() => import('./components/sections/Events'));
 const News = lazy(() => import('./components/sections/News'));
@@ -33,6 +34,7 @@ function App() {
         <Suspense fallback={<div className="max-w-7xl mx-auto px-4 py-16 text-center text-trend-text">{t('common.loading')}</div>}>
           <Features />
           <About />
+          <Safety />
           <Menu />
           <Events />
           <News />
