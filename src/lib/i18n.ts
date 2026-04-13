@@ -205,12 +205,12 @@ const resources = {
           live: {
             title: '週末アコースティックライブ',
             description: '地元アーティストによる生演奏をステージでお届け（予約優先）。',
-            status: '毎週開催'
+            status: '近日開催予定'
           },
           cinema: {
             title: '映画上映会・スポーツ観戦会',
             description: 'プロジェクターで大画面視聴。貸切予約も可。',
-            status: '随時開催'
+            status: '近日開催予定'
           },
           outdoor: {
             title: '柳崎公園アウトドアイベント（構想中）',
@@ -226,25 +226,25 @@ const resources = {
         title: 'ニュース',
         subtitle: 'Trend Cooksからのお知らせ、季節メニュー、プレオープン情報など最新情報をお届けします。',
         readMore: '詳細を見る',
-        adminNote: '（管理画面からオーナー様が直接更新可能）',
+        adminNote: '',
         items: [
           {
-            date: '2025/08/01',
-            title: '【グランドオープン決定】9/1（月）正式営業スタート！',
-            excerpt: 'いよいよTrend Cooksが正式オープンいたします。皆様のお越しをお待ちしております。',
+            date: '2026/04/30',
+            title: '【グランドオープン決定】正式営業スタート！',
+            excerpt: '皆様お待たせいたしました！準備が整い、いよいよTrend Cooksがグランドオープンいたします。最新トレンド空間でお待ちしております。',
             category: 'お知らせ'
           },
           {
-            date: '2025/07/20',
-            title: '予約フォーム公開／SNS特典キャンペーン実施中',
-            excerpt: 'オンライン予約システムを公開しました。SNSフォローで特典もご用意しています。',
-            category: 'キャンペーン'
+            date: '2026/04/16',
+            title: 'プレオープンのお知らせ',
+            excerpt: '飲食営業許可を取得に伴いプレオープンを実施いたします！一部内装の最終仕上げを残しつつ、皆様に一足先にお料理をお届けいたします。',
+            category: 'お知らせ'
           },
           {
-            date: '2025/07/01',
-            title: 'プレオープンレポート（インフルエンサー試食会）',
-            excerpt: '地元インフルエンサーの皆様にお越しいただき、貴重なご意見をいただきました。',
-            category: 'イベント'
+            date: '2026/04/13',
+            title: '公式サイト公開および予約受付開始',
+            excerpt: 'Trend Cooksの公式ウェブサイトを公開いたしました。オンラインでのご予約は現在こちらから承っております。',
+            category: 'お知らせ'
           }
         ]
       },
@@ -625,12 +625,12 @@ const resources = {
           live: {
             title: 'Weekend Acoustic Live',
             description: 'Live performances by local artists on our stage (priority for reservations).',
-            status: 'Weekly'
+            status: 'Coming Soon'
           },
           cinema: {
             title: 'Movie Nights & Sports Viewing',
             description: 'Enjoy big‑screen viewing with our projector. Private bookings available.',
-            status: 'Occasional'
+            status: 'Coming Soon'
           },
           outdoor: {
             title: 'Yanagasaki Park Outdoor Event (Planned)',
@@ -645,25 +645,25 @@ const resources = {
         title: 'News',
         subtitle: 'Stay up to date with announcements, seasonal menus, and pre‑opening updates from Trend Cooks.',
         readMore: 'Read more',
-        adminNote: '(Owners can update directly from the admin panel)',
+        adminNote: '',
         items: [
           {
-            date: '2025/08/01',
-            title: 'Grand Opening Confirmed — Officially opening on 9/1 (Mon)!',
-            excerpt: 'Trend Cooks is finally opening! We look forward to welcoming you.',
+            date: '2026/04/30',
+            title: 'Grand Opening - Officially starting Operations!',
+            excerpt: 'We are finally ready! Trend Cooks will officially open its doors. We look forward to welcoming you in our trendy space.',
             category: 'Announcement'
           },
           {
-            date: '2025/07/20',
-            title: 'Reservation form released / Social media campaign now live',
-            excerpt: 'Our online reservation system is now available. Follow us on social media for perks!',
-            category: 'Campaign'
+            date: '2026/04/16',
+            title: 'Pre-Opening Announcement',
+            excerpt: 'Having received our food service permit, we are starting with a Pre-Opening! Experience our menu ahead of time while we finish the final touches.',
+            category: 'Announcement'
           },
           {
-            date: '2025/07/01',
-            title: 'Pre‑opening Report (Influencer Tasting)',
-            excerpt: 'We hosted local influencers and received valuable feedback.',
-            category: 'Event'
+            date: '2026/04/13',
+            title: 'Official Website Launch & Reservations Open',
+            excerpt: 'The Trend Cooks official website is now live. We are currently accepting online reservations.',
+            category: 'Announcement'
           }
         ]
       },

@@ -72,11 +72,7 @@ const News = () => {
           ))}
         </div>
 
-        <div className="text-center">
-          <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">
-            {t('news.adminNote')}
-          </p>
-        </div>
+        {/* Removed adminNote text block */}
       </div>
     </section>
   );
