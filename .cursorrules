@@ -1,0 +1,13 @@
+# AI Agent Rules for Trend Cooks Website
+
+## 1. Strict Linting & GitHub Actions Deployment
+- **CRITICAL**: This project uses strict ESLint rules that will fail the GitHub Actions CI/CD deployment (`Deploy to Lolipop Server` workflow) if there are **any unused imports**, unused variables, or unused React dependencies.
+- **ACTION**: Before making a commit or finalizing a file edit, you MUST statically check and remove any unused imports. For example, do not leave `import React from 'react';` if `React` is not directly used in the file, as it is unnecessary in modern Vite/React 18+. Do not leave `useTranslation` if it is not called.
+- **VERIFICATION**: Always ensure that no unused code is left behind to prevent exit code 1 / 2 on Git CI.
+
+## 2. Vite (Static SPA) over Next.js
+- **CONTEXT**: This site deploys as a static SPA using Vite to a standard Lolipop server. It does not use Next.js SSR.
+
+## 3. General Frontend Rules
+- Use `tailwind-merge` and `clsx` for dynamic tailwind classes.
+- Match aesthetics with the current polished design (cream/white glassmorphism, #d4af37 gold accents).
