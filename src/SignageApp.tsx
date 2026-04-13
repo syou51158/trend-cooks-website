@@ -164,10 +164,32 @@ const SignageApp = () => {
         </div>
       ))}
       
+      {/* Test Mode Banner */}
+      <div className="absolute top-12 left-1/2 transform -translate-x-1/2 z-50 w-[85%] bg-black/80 backdrop-blur-md text-white p-6 rounded-3xl border-4 border-[#d4af37] shadow-[0_0_50px_rgba(212,175,55,0.4)] text-center flex flex-col items-center font-noto">
+        <div className="text-4xl md:text-5xl font-bold tracking-widest mb-4 flex items-center space-x-6 text-[#d4af37]">
+          <span className="text-5xl animate-pulse">⚙️</span>
+          <span>現在、サイネージ表示テスト中</span>
+          <span className="text-5xl animate-pulse">⚙️</span>
+        </div>
+        <div className="text-2xl md:text-3xl font-medium text-gray-200 mb-6 bg-red-600/20 px-8 py-2 rounded-full border border-red-500/50">
+          ※現在表示されている料理や内装の写真は【開発中の仮画像】です。実物とは異なりますのでご注意ください。
+        </div>
+        <div className="flex space-x-6">
+          <div className="bg-white text-black px-8 py-3 rounded-2xl font-bold text-3xl shadow-lg border-b-4 border-gray-300">
+            <span className="text-gray-500 text-xl block mb-1">飲食店許可完了後</span>
+            🍔 4/16(木) プレオープン
+          </div>
+          <div className="bg-[#d4af37] text-white px-8 py-3 rounded-2xl font-bold text-3xl shadow-lg border-b-4 border-yellow-700">
+            <span className="text-yellow-100 text-xl block mb-1">Trend Cooks 正式稼働</span>
+            🎊 4/30(木) グランドオープン
+          </div>
+        </div>
+      </div>
+
       {/* Global Overlay (Optional) */}
-      <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-3 bg-black/50 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl">
-        <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse"></div>
-        <span className="text-white text-xl font-bold tracking-widest font-noto">OPEN</span>
+      <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-3 bg-red-600/80 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl">
+        <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
+        <span className="text-white text-xl font-bold tracking-widest font-noto">PREPARING</span>
       </div>
     </div>
   );
