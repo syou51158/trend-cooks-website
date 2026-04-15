@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { MapPin, Phone, Clock, Mail, Send } from 'lucide-react';
+import { MapPin, Phone, Clock, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 // NEW: locale-aware date picker imports
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
