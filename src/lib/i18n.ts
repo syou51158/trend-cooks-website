@@ -34,7 +34,7 @@ const resources = {
       about: {
         missionTitle: '私たちのミッション',
         description:
-          'Trend Company株式会社は、「常にトレンドの先端」を追求する飲食ベンチャーです。屋台出店で培ったノウハウを活かし、本格店舗『Trend Cooks』をオープン。日々変化するトレンドを体験できる場を創り、地域と観光をつなぐ架け橋を目指します。',
+          '「流行のものを地域の方々にも手軽に味わっていただけるように」――それが私たちの原点です。創業から3期目を迎えるトレンドカンパニー株式会社は、コロナ禍の2022年に商業施設でのチャレンジ出店としてスタートしました。地域の皆様から大変ご好評いただいたその屋台事業の延長線として、今回本格店舗である『Trend Cooks』をついにオープンいたしました。',
         spaceHeading: 'こだわりの空間',
         space: {
           location: {
@@ -53,7 +53,7 @@ const resources = {
         staffHeading: 'スタッフ紹介',
         staff: {
           name: '代表 村岡翔',
-          bio: '創業から３年、全国での長期屋台出店を経て、ついに大津京に拠点を立ち上げました。「自分たちが本当に行きたくなるような空間を」という情熱から、店舗内装のほとんどをご自身のDIYで作り上げています。'
+          bio: 'トレンドカンパニー株式会社 代表。「トレンドのことなら何でも挑戦する」というモットーを持ち、2022年の商業施設でのチャレンジ出店から現在の事業を拡大させました。「自分たちが心から行きたいと思える空間を」という情熱から、今回の店舗内装はほとんどを自身のDIYで作り上げています。'
         },
         // alt keys used by About.tsx
         alt: {
@@ -456,7 +456,7 @@ const resources = {
       about: {
         missionTitle: 'Our Mission',
         description:
-          "Trend Company Inc. is a food startup that constantly pursues what's next. Leveraging know-how from nationwide food-stall pop-ups, we opened our flagship restaurant 'Trend Cooks.' We create a place to experience ever‑evolving trends, connecting our local community with visitors.",
+          '"To let our local community easily taste the latest trends"—that is our origin. Approaching our 3rd year, Trend Company Inc. started in 2022 during the pandemic as a challenge pop-up at a commercial facility. Thanks to the huge support from our locals, we have launched our permanent restaurant "Trend Cooks" as a full-scale extension of that successful endeavor.',
         spaceHeading: 'Our Space',
         space: {
           location: {
@@ -475,7 +475,7 @@ const resources = {
         staffHeading: 'Meet the Team',
         staff: {
           name: 'CEO Sho Muraoka',
-          bio: 'After 3 years of operating pop-up stalls nationwide, we have opened our permanent restaurant in Otsukyo. Driven by the desire to create a space we truly want to visit, we built the interior almost entirely by ourselves (DIY).'
+          bio: 'CEO, Trend Company Inc. With a motto of "I will challenge any trend," he started the business in 2022 with a challenge pop-up stall. Driven by the desire to create a space we truly want to visit, the interior of this new location was built almost entirely by his own hands (DIY).'
         },
         alt: {
           interior: 'Restaurant interior',
