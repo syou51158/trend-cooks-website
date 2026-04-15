@@ -189,7 +189,7 @@ const resources = {
           accessNote: 'JR大津京駅より徒歩20分',
           parkingNote: 'Pなし（近隣コインパーキングをご利用ください）'
         },
-        phone: '090-2115-6429',
+        phone: '077-511-9000',
         owner: '代表・村岡',
         hours: {
           title: '営業時間',
@@ -607,7 +607,7 @@ const resources = {
           accessNote: '20-minute walk from JR Otsukyo Station',
           parkingNote: 'No on-site parking (please use nearby coin-operated lots)'
         },
-        phone: '+81-90-2115-6429',
+        phone: '077-511-9000',
         owner: 'CEO Sho Muraoka',
         hours: {
           title: 'Business hours',

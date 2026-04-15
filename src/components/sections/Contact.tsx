@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { MapPin, Phone, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Clock, Send, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 // NEW: locale-aware date picker imports
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
@@ -266,6 +266,14 @@ const Contact = () => {
                     <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">{t('contact.phoneReservationTitle')}</h4>
                     <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">{t('common.phone')}</p>
                     <p className="text-sm xl:text-base 2xl:text-lg text-gray-500 font-noto">{t('common.owner')}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
+                  <Mail className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">Email</h4>
+                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">info@trendcooks.com</p>
                   </div>
                 </div>
 
