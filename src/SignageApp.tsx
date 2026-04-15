@@ -95,13 +95,13 @@ const SlideCTA = () => (
           スマートフォンから簡単に<br/>ご予約やテイクアウトの注文が可能です。
         </p>
         <div className="flex items-center space-x-4">
-          <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold px-6 py-3 rounded-xl text-2xl shadow-md">Instagarm</div>
+          <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold px-6 py-3 rounded-xl text-2xl shadow-md">Instagram</div>
           <span className="text-2xl font-noto text-zinc-600 font-bold">フォローでお得な特典！</span>
         </div>
       </div>
       <div className="flex-shrink-0 flex flex-col items-center justify-center pl-16">
         <div className="bg-white p-4 rounded-3xl shadow-xl mb-6">
-          <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent('https://google.com')}`} alt="QR Code" className="w-[300px] h-[300px]" />
+          <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent('https://www.instagram.com/trend.cooks?igsh=MXg2bG01eGl6M2t4cg%3D%3D&utm_source=qr')}`} alt="Instagram QR Code" className="w-[300px] h-[300px]" />
         </div>
         <p className="text-2xl font-bold text-gray-400">スマホで読み取る ▶</p>
       </div>

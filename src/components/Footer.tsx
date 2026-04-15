@@ -1,5 +1,5 @@
 
-import { MapPin, Phone, Clock } from 'lucide-react';
+import { MapPin, Phone, Clock, Instagram } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
@@ -35,7 +35,7 @@ const Footer = () => {
 
           <div>
             <h4 className="text-lg xl:text-xl 2xl:text-2xl font-semibold mb-4 xl:mb-6 2xl:mb-8 font-noto">{t('footer.hoursTitle')}</h4>
-            <div className="space-y-2 xl:space-y-3 2xl:space-y-4">
+            <div className="space-y-2 xl:space-y-3 2xl:space-y-4 mb-6 xl:mb-8">
               <div className="flex items-start space-x-2 xl:space-x-3 2xl:space-x-4">
                 <Clock size={16} className="mt-1 text-trend-accent xl:w-5 xl:h-5 2xl:w-6 2xl:h-6" />
                 <div className="text-sm xl:text-base 2xl:text-lg text-gray-300 font-noto">
@@ -43,6 +43,14 @@ const Footer = () => {
                   <div>{t('common.hours.night')}</div>
                 </div>
               </div>
+            </div>
+
+            <h4 className="text-lg xl:text-xl 2xl:text-2xl font-semibold mb-4 xl:mb-6 2xl:mb-8 font-noto">SNS</h4>
+            <div className="flex items-center space-x-4">
+              <a href="https://www.instagram.com/trend.cooks?igsh=MXg2bG01eGl6M2t4cg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center space-x-2 text-gray-300 hover:text-trend-accent transition-colors">
+                <Instagram size={24} />
+                <span className="text-sm xl:text-base 2xl:text-lg font-noto">trend.cooks</span>
+              </a>
             </div>
           </div>
         </div>
