@@ -42,8 +42,8 @@ const resources = {
             desc: '大津京駅から徒歩2分、ブランチ大津京の向かい側に位置する好立地。'
           },
           interior: {
-            title: 'インテリア',
-            desc: 'ホワイト×木目を基調とし、間接LED×ピンスポットでモダンに演出。'
+            title: 'こだわりの内装設計',
+            desc: '図面から壁の塗装・設備の組み上げまで、ほぼ全てを自らの手でDIY。木の温もりと手作りの情熱が詰まった特別な空間です。'
           },
           stage: {
             title: 'ステージ演出',
@@ -53,7 +53,7 @@ const resources = {
         staffHeading: 'スタッフ紹介',
         staff: {
           name: '代表 村岡翔',
-          bio: '創業から３年、全国屋台出店を経て本格店舗を立ち上げ。外国人ガイド経験を活かした送迎サービスも実施中。'
+          bio: '創業から３年、全国での長期屋台出店を経て、ついに大津京に拠点を立ち上げました。「自分たちが本当に行きたくなるような空間を」という情熱から、店舗内装のほとんどをご自身のDIYで作り上げています。'
         },
         // alt keys used by About.tsx
         alt: {
@@ -290,8 +290,8 @@ const resources = {
           message: 'その他ご要望'
         },
         placeholders: {
-          menu: '例：近江牛コース、飲み放題プラン',
-          message: 'アレルギー、記念日、送迎サービスご希望など'
+          menu: '例：近江牛コース希望、飲み放題プラン等',
+          message: 'アレルギーの有無、お祝いのご要望、その他ご相談などご自由にお書きください'
         },
         submit: '予約を送信',
         submitting: '送信中...',
@@ -300,9 +300,6 @@ const resources = {
         storeInfoTitle: '店舗情報',
         addressTitle: '住所',
         phoneReservationTitle: '電話予約',
-        shuttleTitle: '無料送迎サービス',
-        shuttleText: '大津京駅⇔店舗間',
-        shuttleNote: '（要事前予約）',
         mapPlaceholder: 'Google Maps（実装予定）'
       },
       // 追加: Footer
@@ -467,8 +464,8 @@ const resources = {
             desc: '2 minutes from Otsukyo Station, right across from BRANCH Otsukyo — easy to find and access.'
           },
           interior: {
-            title: 'Interior',
-            desc: 'White tones and natural wood, accented with indirect LEDs and pin spots for a modern ambience.'
+            title: 'Detailed Interior Design',
+            desc: 'From the blueprints to painting the walls and assembling the fixtures, almost everything was built by our own hands (DIY). It is a warm, handcrafted space filled with passion.'
           },
           stage: {
             title: 'Stage Experience',
@@ -478,7 +475,7 @@ const resources = {
         staffHeading: 'Meet the Team',
         staff: {
           name: 'CEO Sho Muraoka',
-          bio: 'In our third year since founding, we have grown from nationwide pop-ups to a full-scale restaurant. We also offer shuttle services leveraging experience as a guide for international visitors.'
+          bio: 'After 3 years of operating pop-up stalls nationwide, we have opened our permanent restaurant in Otsukyo. Driven by the desire to create a space we truly want to visit, we built the interior almost entirely by ourselves (DIY).'
         },
         alt: {
           interior: 'Restaurant interior',
@@ -768,7 +765,7 @@ const resources = {
         },
         placeholders: {
           menu: 'e.g., Omi Beef Course, All-you-can-drink plan',
-          message: 'Allergies, celebrations, shuttle service request, etc.'
+          message: 'Allergies, celebrations, or any other requests.'
         },
         submit: 'Send Reservation',
         submitting: 'Sending... ',
@@ -777,9 +774,6 @@ const resources = {
         storeInfoTitle: 'Store Information',
         addressTitle: 'Address',
         phoneReservationTitle: 'Reservation by Phone',
-        shuttleTitle: 'Free Shuttle Service',
-        shuttleText: 'Between Otsukyo Station and the restaurant',
-        shuttleNote: '(Advance reservation required)',
         mapPlaceholder: 'Google Maps (to be implemented)'
       },
       footer: {

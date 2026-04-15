@@ -280,15 +280,7 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 xl:space-x-4 2xl:space-x-6">
-                  <Mail className="w-5 h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 text-trend-accent mt-1" />
-                  <div>
-                    <h4 className="font-semibold text-trend-text xl:text-lg 2xl:text-xl font-noto">{t('contact.shuttleTitle')}</h4>
-                    <p className="text-gray-600 xl:text-lg 2xl:text-xl font-noto">{t('contact.shuttleText')}<br />
-                      <span className="text-sm xl:text-base 2xl:text-lg text-gray-500">{t('contact.shuttleNote')}</span>
-                    </p>
-                  </div>
-                </div>
+
 
                 <div className="bg-gray-100 rounded-lg p-6 2xl:p-8">
                   <p className="text-gray-500 xl:text-lg 2xl:text-xl font-noto">{t('contact.mapPlaceholder')}</p>
