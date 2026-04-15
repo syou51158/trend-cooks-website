@@ -235,9 +235,9 @@ const resources = {
             category: 'お知らせ'
           },
           {
-            date: '2026/04/16',
-            title: 'プレオープンのお知らせ',
-            excerpt: '飲食営業許可を取得に伴いプレオープンを実施いたします！一部内装の最終仕上げを残しつつ、皆様に一足先にお料理をお届けいたします。',
+            date: '2026/04/18',
+            title: '【延期・変更】プレオープンのお知らせ',
+            excerpt: '誠に勝手ながら準備期間を延長し、プレオープンを4月18日(土)へ変更させていただきます。より良い状態で皆様をお迎えするべく尽力しております！',
             category: 'お知らせ'
           },
           {
@@ -654,9 +654,9 @@ const resources = {
             category: 'Announcement'
           },
           {
-            date: '2026/04/16',
-            title: 'Pre-Opening Announcement',
-            excerpt: 'Having received our food service permit, we are starting with a Pre-Opening! Experience our menu ahead of time while we finish the final touches.',
+            date: '2026/04/18',
+            title: 'Pre-Opening Rescheduled',
+            excerpt: 'To ensure the best possible experience, we have extended our preparation period. Our Pre-Opening is now rescheduled for Saturday, April 18th!',
             category: 'Announcement'
           },
           {
