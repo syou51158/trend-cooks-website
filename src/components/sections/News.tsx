@@ -15,8 +15,10 @@ const News = () => {
   // Format a date like 'YYYY/MM/DD' according to the current locale
   const formatNewsDate = (dateStr: string) => {
     // Expecting format 'YYYY/MM/DD'. Fallback to raw string if parsing fails.
+    // eslint-disable-next-line no-useless-escape
     const m = dateStr.match(/^(\d{4})[\/.-](\d{1,2})[\/.-](\d{1,2})$/);
     if (!m) return dateStr;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, y, mo, d] = m;
     const date = new Date(Number(y), Number(mo) - 1, Number(d));
     try {
