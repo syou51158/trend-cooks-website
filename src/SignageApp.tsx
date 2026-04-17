@@ -163,34 +163,38 @@ const SignageApp = () => {
         </div>
       ))}
       
-      {/* Refined Modular Test Mode Banner */}
-      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/60 backdrop-blur-2xl text-white py-4 px-8 rounded-full border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-row items-center justify-between font-noto">
-        
-        {/* Notice Section */}
-        <div className="flex items-center space-x-6 w-1/3">
-          <span className="bg-red-600 px-6 py-2 rounded-full text-lg font-bold tracking-widest animate-pulse shadow-md">TEST MODE</span>
-          <p className="text-lg font-medium text-gray-200 leading-tight">
-            ※現在表示中の写真は<span className="text-red-400 font-bold">開発用の仮画像</span>です。<br/>実物とは異なりますのでご注意ください。
-          </p>
-        </div>
-        
-        {/* Center Title */}
-        <div className="text-4xl text-[#d4af37] font-extrabold tracking-[0.2em] w-1/3 text-center" style={{ textShadow: '0 0 20px rgba(212,175,55,0.5)' }}>
-          サイネージ表示テスト中
+      {/* Dynamic Status Banner */}
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/80 backdrop-blur-2xl text-white p-6 rounded-[2rem] border-2 border-[#d4af37]/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col font-noto">
+        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+          <div className="flex items-center space-x-4">
+            <span className="bg-red-600 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest animate-pulse">TEST MODE</span>
+            <p className="text-sm text-gray-300">表示中の写真は空間の完成イメージ（開発用の仮画像）です。</p>
+          </div>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center bg-gray-800/50 px-5 py-2 rounded-full border border-gray-600 tracking-wider">
+              <span className="text-gray-300 text-sm mr-3">グランドオープン予定</span>
+              <span className="text-[#d4af37] text-2xl font-bold">4.30<span className="text-lg"> (木)</span></span>
+            </div>
+          </div>
         </div>
 
-        {/* Schedule Display */}
-        <div className="flex space-x-4 w-1/3 justify-end">
-          <div className="flex flex-col justify-center bg-white/10 px-6 py-1 rounded-2xl border border-white/20 shadow-inner">
-            <span className="text-sm text-gray-300 font-medium tracking-wider">プレオープン</span>
-            <span className="text-2xl font-bold text-white tracking-widest">4.18<span className="text-lg ml-1">(土)</span></span>
+        <div className="flex flex-row items-center justify-between">
+          <div className="w-[55%] pr-8 border-r border-white/10">
+            <h2 className="text-3xl md:text-4xl text-[#d4af37] font-extrabold tracking-widest mb-3" style={{ textShadow: '0 0 20px rgba(212,175,55,0.3)' }}>絶賛、開店準備の最終仕上げ中！</h2>
+            <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-medium">
+              現在、空間をDIYで細部まで作り込んでいます。<br/>
+              オープンに先駆け、完成した厨房からこだわりの味を一足早くお届け！
+            </p>
           </div>
-          <div className="flex flex-col justify-center bg-gradient-to-br from-[#d4af37]/30 to-[#b38b22]/30 px-6 py-1 rounded-2xl border border-[#d4af37]/60 shadow-inner">
-            <span className="text-sm text-[#e8d28a] font-medium tracking-wider">グランドオープン</span>
-            <span className="text-2xl font-bold text-[#d4af37] tracking-widest">4.30<span className="text-lg ml-1">(木)</span></span>
+          
+          <div className="w-[45%] pl-8 flex flex-col items-center justify-center">
+            <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-2xl p-4 w-full text-center shadow-lg border border-red-400/50 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full bg-white/10 transform -skew-x-12 animate-pulse"></div>
+              <p className="text-xl font-bold tracking-widest mb-1 text-red-100">＼ 本日 17:00頃〜 ／</p>
+              <h3 className="text-2xl md:text-3xl font-extrabold tracking-wider">特製メニューの<span className="text-yellow-300">【 無料試食 】</span>配布予定！</h3>
+            </div>
           </div>
         </div>
-        
       </div>
 
       {/* Global Overlay (Optional) */}
