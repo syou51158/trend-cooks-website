@@ -190,8 +190,8 @@ const SignageApp = () => {
           <div className="w-[45%] pl-8 flex flex-col items-center justify-center">
             <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-2xl p-4 w-full text-center shadow-lg border border-red-400/50 relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-full bg-white/10 transform -skew-x-12 animate-pulse"></div>
-              <p className="text-xl font-bold tracking-widest mb-1 text-red-100">＼ 本日 17:00頃〜 ／</p>
-              <h3 className="text-2xl md:text-3xl font-extrabold tracking-wider">特製メニューの<span className="text-yellow-300">【 無料試食 】</span>配布予定！</h3>
+              <p className="text-xl font-bold tracking-widest mb-1 text-red-100">＼ ただいま大好評 ／</p>
+              <h3 className="text-2xl md:text-3xl font-extrabold tracking-wider">特製メニューの<span className="text-yellow-300">【 無料試食 】</span>配布中！</h3>
             </div>
           </div>
         </div>
