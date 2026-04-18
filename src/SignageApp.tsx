@@ -87,7 +87,7 @@ const SlideDayNight = () => (
 
 // Slide 5: CTA & QR
 const SlideCTA = () => (
-  <div className="absolute inset-0 bg-[#121212] flex flex-col items-center justify-center text-white p-12">
+  <div className="absolute inset-0 bg-[#121212] flex flex-col items-center justify-center text-white p-12 pt-48">
     <div className="max-w-[70%] w-full bg-white text-black rounded-[3rem] p-16 shadow-2xl flex items-center justify-between">
       <div className="flex-1 pr-16 border-r-2 border-gray-100">
         <h2 className="text-5xl md:text-6xl font-bold font-noto mb-8 text-trend-text leading-tight">オンライン予約・<br/>メニューはこちら</h2>
