@@ -178,22 +178,13 @@ const SignageApp = () => {
           </div>
         </div>
 
-        <div className="flex flex-row items-center justify-between">
-          <div className="w-[55%] pr-8 border-r border-white/10">
-            <h2 className="text-3xl md:text-4xl text-[#d4af37] font-extrabold tracking-widest mb-3" style={{ textShadow: '0 0 20px rgba(212,175,55,0.3)' }}>絶賛、開店準備の最終仕上げ中！</h2>
-            <p className="text-lg md:text-xl text-gray-200 leading-relaxed font-medium">
-              現在、空間をDIYで細部まで作り込んでいます。<br/>
-              オープンに先駆け、完成した厨房からこだわりの味を一足早くお届け！
-            </p>
-          </div>
-          
-          <div className="w-[45%] pl-8 flex flex-col items-center justify-center">
-            <div className="bg-gradient-to-r from-red-600 to-orange-500 text-white rounded-2xl p-4 w-full text-center shadow-lg border border-red-400/50 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-full bg-white/10 transform -skew-x-12 animate-pulse"></div>
-              <p className="text-xl font-bold tracking-widest mb-1 text-red-100">＼ ただいま大好評 ／</p>
-              <h3 className="text-2xl md:text-3xl font-extrabold tracking-wider">特製メニューの<span className="text-yellow-300">【 無料試食 】</span>配布中！</h3>
-            </div>
-          </div>
+        <div className="flex flex-col items-center justify-center text-center py-6 px-4">
+          <h2 className="text-4xl md:text-5xl text-[#d4af37] font-extrabold tracking-widest mb-6" style={{ textShadow: '0 0 30px rgba(212,175,55,0.4)' }}>絶賛、開店準備の最終仕上げ中！</h2>
+          <p className="text-xl md:text-2xl text-gray-200 leading-loose font-medium">
+            現在、皆様にくつろいでいただける洗練された空間を、<br/>
+            一つずつDIYで細部まで情熱を込めて作り込んでいます。<br/>
+            4月30日にお会いできるのを楽しみにしています。
+          </p>
         </div>
       </div>
 
