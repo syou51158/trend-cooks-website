@@ -12,7 +12,7 @@ const SlideConcept = () => (
        }}>
     <h1 className="text-8xl md:text-9xl font-bold font-noto mb-8 uppercase tracking-widest text-[#d4af37]" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.5)' }}>Trend Cooks</h1>
     <h2 className="text-5xl md:text-6xl font-noto font-light mb-6 text-white" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>最新のトレンド × 伝統の味</h2>
-    <p className="text-3xl md:text-4xl font-noto leading-relaxed mt-6">大津京駅徒歩2分。洗練された癒やしの空間で<br/>最高の食体験をお楽しみください。</p>
+    <p className="text-3xl md:text-4xl font-noto leading-relaxed mt-6">日常の喧騒から離れた、洗練された癒やしの空間で<br/>最高の食体験をお楽しみください。</p>
   </div>
 );
 

@@ -8,7 +8,7 @@ const resources = {
       hero: {
         title: 'Trend Cooks',
         subtitle: '最新のトレンドと伝統の味が融合した、極上の食体験',
-        description: '大津京駅徒歩2分。厳選された近江牛と革新的な創作料理で、忘れられない美食の時間をお約束します。',
+        description: '厳選された近江牛と革新的な創作料理で、日常を忘れるような特別な美食の時間をお約束します。',
         cta: '今すぐオンライン予約',
         ctaAria: 'お問い合わせセクションへ移動'
       },
@@ -39,7 +39,7 @@ const resources = {
         space: {
           location: {
             title: 'ロケーション',
-            desc: '大津京駅から徒歩2分、ブランチ大津京の向かい側に位置する好立地。'
+            desc: '日常の喧騒から離れた、隠れ家のように落ち着ける特別なロケーション。'
           },
           interior: {
             title: 'こだわりの内装設計',
@@ -430,7 +430,7 @@ const resources = {
         title: 'Trend Cooks',
         subtitle: 'A supreme culinary experience blending modern trends and timeless tradition',
         description:
-          '2 minutes from Otsukyo Station. Savor carefully selected Omi beef and innovative dishes for an unforgettable dining experience.',
+          'Savor carefully selected Omi beef and innovative creative dishes in our secluded space, promising an unforgettable dining experience.',
         cta: 'Book Online Now',
         ctaAria: 'Jump to contact section'
       },
@@ -461,7 +461,7 @@ const resources = {
         space: {
           location: {
             title: 'Location',
-            desc: '2 minutes from Otsukyo Station, right across from BRANCH Otsukyo — easy to find and access.'
+            desc: 'A hidden, tranquil location where you can escape the hustle and bustle of daily life.'
           },
           interior: {
             title: 'Detailed Interior Design',
