@@ -44,7 +44,7 @@ const SlideViral = () => (
     </div>
     <div className="grid grid-cols-3 gap-10 w-full max-w-[90%] flex-1 mb-8">
       <div className="flex flex-col relative rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white transform transition duration-500 scale-95 border-b-8 border-gray-200">
-        <img src="/images/menu/viral_shokupan_cream_sandwich_1772805621246.png" className="h-2/3 w-full object-cover" alt="Cream Sandwich" />
+        <img src="/images/menu/realistic_cream_sandwich.png" className="h-2/3 w-full object-cover" alt="Cream Sandwich" />
         <div className="h-1/3 flex items-center justify-center p-6 bg-white"><h3 className="text-3xl font-bold font-noto text-center text-zinc-800 tracking-wide leading-snug">極厚純生クリーム<br/>食パンサンド</h3></div>
       </div>
       <div className="flex flex-col relative rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(212,175,55,0.3)] bg-white transform transition duration-500 scale-105 z-10 border-4 border-[#d4af37]">
