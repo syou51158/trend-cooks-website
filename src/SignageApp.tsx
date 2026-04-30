@@ -8,114 +8,109 @@ const SlideConcept = () => (
          backgroundImage: 'url(/images/restaurant_accurate_night_1772976044672.png)',
          backgroundSize: 'cover',
          backgroundPosition: 'center',
-         boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.6)'
+         boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.7)'
        }}>
-    <h1 className="text-8xl md:text-9xl font-bold font-noto mb-8 uppercase tracking-widest text-[#d4af37]" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.5)' }}>Trend Cooks</h1>
-    <h2 className="text-5xl md:text-6xl font-noto font-light mb-6 text-white" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>最新のトレンド × 伝統の味</h2>
-    <p className="text-3xl md:text-4xl font-noto leading-relaxed mt-6">日常の喧騒から離れた、洗練された癒やしの空間で<br/>最高の食体験をお楽しみください。</p>
+    <h1 className="text-7xl md:text-8xl font-bold font-noto mb-8 tracking-widest text-white leading-tight">
+      未完成という、<br/><span className="text-[#d4af37]">最高のスパイス。</span>
+    </h1>
+    <p className="text-3xl md:text-4xl font-noto leading-relaxed mb-10 text-gray-200">
+      ここは完成されたレストランではありません。<br/>
+      最新トレンドと伝統を掛け合わせ、お客様の声と共に<br/>
+      毎日「進化」を続ける実験的ダイニングです。
+    </p>
+    <div className="border border-white/30 bg-white/10 backdrop-blur-md px-10 py-5 rounded-full text-2xl font-bold text-[#d4af37] mb-8">
+      ※あなたの「これ美味しい！」が、明日の看板メニューになるかもしれません。
+    </div>
+    <p className="text-3xl font-bold text-white animate-bounce mt-4">
+      「今日」だけの空間を、ぜひ体験していきませんか？ ▼
+    </p>
   </div>
 );
 
-// Slide 2: Premium Menu
-const SlidePremium = () => (
-  <div className="absolute inset-0 bg-black flex text-white font-noto">
-    <div className="absolute inset-0 z-0">
-      <img src="/images/menu/omi_wagyu_premium_steak_1772802896944.png" alt="Omi Wagyu Steak" className="w-full h-full object-cover opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
-    </div>
-    <div className="w-1/2 flex flex-col justify-center p-16 md:p-24 relative z-10 backdrop-blur-sm">
-      <div className="inline-block bg-gradient-to-r from-[#d4af37] to-yellow-600 text-black text-2xl font-bold px-8 py-3 rounded-full mb-8 self-start shadow-[0_0_20px_rgba(212,175,55,0.4)]">プレミアムメニュー</div>
-      <h2 className="text-6xl md:text-7xl font-bold mb-8 leading-tight tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400">最高級 A5ランク<br/>近江牛の饗宴</h2>
-      <p className="text-3xl md:text-4xl text-gray-200 leading-relaxed font-light">
-        厳選された黒毛和牛の最高峰「近江牛」。<br/>
-        口の中でとろける旨味と極上の香りを<br/>
-        当店自慢のスキレットステーキ等で存分に。
-      </p>
-    </div>
-  </div>
-);
-
-// Slide 3: Viral Trending Menus
-const SlideViral = () => (
-  <div className="absolute inset-0 bg-gradient-to-br from-[#f8f5f2] to-[#e8e0d5] flex flex-col items-center justify-center text-trend-text p-12">
-    <div className="text-center mb-12">
-      <div className="inline-block bg-trend-text text-white text-2xl font-bold px-8 py-3 rounded-full mb-6 font-noto shadow-[0_10px_30px_rgba(0,0,0,0.15)] tracking-widest">話題沸騰・SNSトレンド</div>
-      <h2 className="text-6xl md:text-7xl font-extrabold font-noto text-zinc-800 tracking-tight" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.05)' }}>最新トレンドを大津京で味わう！</h2>
-    </div>
-    <div className="grid grid-cols-3 gap-10 w-full max-w-[90%] flex-1 mb-8">
-      <div className="flex flex-col relative rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white transform transition duration-500 scale-95 border-b-8 border-gray-200">
-        <img src="/images/menu/realistic_cream_sandwich.png" className="h-2/3 w-full object-cover" alt="Cream Sandwich" />
-        <div className="h-1/3 flex items-center justify-center p-6 bg-white"><h3 className="text-3xl font-bold font-noto text-center text-zinc-800 tracking-wide leading-snug">極厚純生クリーム<br/>食パンサンド</h3></div>
+// Slide 2: Premium vs Viral (Menu evolution)
+const SlideMenu = () => (
+  <div className="absolute inset-0 flex bg-black">
+    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center p-16">
+      <img src="/images/menu/omi_wagyu_premium_steak_1772802896944.png" alt="Omi Wagyu Steak" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+      <div className="relative z-10 text-center mt-auto pb-24">
+        <h3 className="text-[#d4af37] text-3xl font-bold tracking-widest mb-4">TRADITION</h3>
+        <h2 className="text-6xl font-bold text-white mb-6" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>最高級・近江牛</h2>
+        <p className="text-2xl text-gray-200 font-medium">変わらない、本物の価値。</p>
       </div>
-      <div className="flex flex-col relative rounded-[2rem] overflow-hidden shadow-[0_30px_60px_rgba(212,175,55,0.3)] bg-white transform transition duration-500 scale-105 z-10 border-4 border-[#d4af37]">
-        <img src="/images/menu/premium_carbo_buldak_1772887774573.png" className="h-2/3 w-full object-cover" alt="Cheese Buldak" />
-        <div className="h-1/3 flex flex-col items-center justify-center p-6 bg-gradient-to-b from-white to-gray-50">
-          <span className="text-[#d4af37] font-extrabold text-2xl mb-2 tracking-widest">🏆 人気No.1</span>
-          <h3 className="text-4xl font-bold font-noto text-center text-zinc-800 tracking-wide leading-snug">極みチーズ<br/>ブルダックチキン</h3>
-        </div>
+    </div>
+    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center p-16">
+      <img src="/images/menu/premium_carbo_buldak_1772887774573.png" alt="Trend Menu" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+      <div className="relative z-10 text-center mt-auto pb-24">
+        <h3 className="text-cyan-400 text-3xl font-bold tracking-widest mb-4">TREND</h3>
+        <h2 className="text-6xl font-bold text-white mb-6" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>最新SNSグルメ</h2>
+        <p className="text-2xl text-gray-200 font-medium">常に変化する、新しい刺激。</p>
       </div>
-      <div className="flex flex-col relative rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] bg-white transform transition duration-500 scale-95 border-b-8 border-gray-200">
-        <img src="/images/menu/mochi_mochi_potato_fries_1772892139730.png" className="h-2/3 w-full object-cover" alt="Mochi Potato" />
-        <div className="h-1/3 flex items-center justify-center p-6 bg-white"><h3 className="text-3xl font-bold font-noto text-center text-zinc-800 tracking-wide leading-snug">サクもち極みポテト<br/>濃厚チーズディップ</h3></div>
-      </div>
+    </div>
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-black text-white rounded-full w-32 h-32 flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.5)] border-2 border-[#d4af37]">
+      <h2 className="text-4xl font-bold uppercase tracking-widest">X</h2>
     </div>
   </div>
 );
 
-// Slide 4: Day & Night Atmosphere
+// Slide 3: Day & Night Atmosphere
 const SlideDayNight = () => (
   <div className="absolute inset-0 flex">
-    <div className="w-1/2 relative bg-black flex flex-col justify-center p-16"
-         style={{ backgroundImage: 'url(/images/restaurant_day_final_1772974803590.png)', backgroundSize: 'cover', backgroundPosition: 'center', boxShadow: 'inset 0 0 0 2000px rgba(255,255,255,0.7)' }}>
-      <h2 className="text-6xl font-bold font-noto text-trend-accent mb-4">11:00 - 17:00</h2>
-      <h3 className="text-4xl font-noto font-bold text-zinc-800 mb-6">創作カフェタイム</h3>
-      <p className="text-2xl font-noto text-zinc-700 leading-relaxed font-medium">SNS映えする最新スイーツや<br/>本格的なスペシャルティコーヒーを満喫する<br/>あたたかな日差しのリラックス空間。</p>
+    <div className="w-1/2 relative bg-black flex flex-col justify-center p-16 text-left"
+         style={{ backgroundImage: 'url(/images/restaurant_day_final_1772974803590.png)', backgroundSize: 'cover', backgroundPosition: 'center', boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.6)' }}>
+      <div className="relative z-10">
+        <h2 className="text-7xl font-bold font-noto text-white mb-4">DAY</h2>
+        <p className="text-3xl text-[#d4af37] font-bold tracking-widest mb-8">11:00 - 17:00</p>
+        <h3 className="text-4xl font-noto font-bold text-white mb-6">カフェ＆リラックス</h3>
+        <p className="text-2xl font-noto text-gray-200 leading-relaxed font-medium">明るい日差しと最新スイーツ。<br/>誰もが気軽に立ち寄れる、オープンな時間。</p>
+      </div>
     </div>
-    <div className="w-1/2 relative bg-black flex flex-col justify-center p-16 text-white text-right"
+    <div className="w-1/2 relative bg-black flex flex-col justify-center p-16 text-right"
          style={{ backgroundImage: 'url(/images/restaurant_interior_night_1772973514967.png)', backgroundSize: 'cover', backgroundPosition: 'center', boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.8)' }}>
-      <h2 className="text-6xl font-bold font-noto text-[#d4af37] mb-4">17:00 - 23:30</h2>
-      <h3 className="text-4xl font-noto font-bold text-white mb-6">ダイニング＆バータイム</h3>
-      <p className="text-2xl font-noto text-gray-300 leading-relaxed font-medium">間接照明が織りなす大人の隠れ家へ。<br/>厳選された肉料理とお酒、<br/>そしてプロジェクターが彩る非日常の夜を。</p>
+      <div className="relative z-10">
+        <h2 className="text-7xl font-bold font-noto text-white mb-4">NIGHT</h2>
+        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 23:30</p>
+        <h3 className="text-4xl font-noto font-bold text-white mb-6">ダイニング＆バー</h3>
+        <p className="text-2xl font-noto text-gray-300 leading-relaxed font-medium">ネオンとプロジェクターが彩る非日常。<br/>極上のお肉とお酒で、大人の遊び場へ。</p>
+      </div>
     </div>
-    {/* Center Divider/Logo Overlay */}
-    <div className="absolute inset-y-0 left-1/2 w-1 bg-white/20 transform -translate-x-1/2 z-10"></div>
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-black rounded-full p-8 shadow-2xl border-4 border-[#d4af37]">
-      <h2 className="text-4xl font-bold text-white uppercase tracking-widest font-noto">Day &<br/><span className="text-[#d4af37]">Night</span></h2>
-    </div>
+    <div className="absolute inset-y-0 left-1/2 w-px bg-white/20 transform -translate-x-1/2 z-10"></div>
   </div>
 );
 
-// Slide 5: CTA & QR
+// Slide 4: CTA & QR
 const SlideCTA = () => (
-  <div className="absolute inset-0 bg-[#121212] flex flex-col items-center justify-center text-white p-12 pt-48">
-    <div className="max-w-[70%] w-full bg-white text-black rounded-[3rem] p-16 shadow-2xl flex items-center justify-between">
-      <div className="flex-1 pr-16 border-r-2 border-gray-100">
-        <h2 className="text-5xl md:text-6xl font-bold font-noto mb-8 text-trend-text leading-tight">オンライン予約・<br/>メニューはこちら</h2>
-        <p className="text-2xl md:text-3xl font-noto text-gray-600 mb-8 leading-snug">
-          スマートフォンから簡単に<br/>ご予約やテイクアウトの注文が可能です。
-        </p>
-        <div className="flex items-center space-x-4">
-          <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white font-bold px-6 py-3 rounded-xl text-2xl shadow-md">Instagram</div>
-          <span className="text-2xl font-noto text-zinc-600 font-bold">フォローでお得な特典！</span>
-        </div>
-      </div>
-      <div className="flex-shrink-0 flex flex-col items-center justify-center pl-16">
-        <div className="bg-white p-4 rounded-3xl shadow-xl mb-6">
-          <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent('https://www.instagram.com/trend.cooks?igsh=MXg2bG01eGl6M2t4cg%3D%3D&utm_source=qr')}`} alt="Instagram QR Code" className="w-[300px] h-[300px]" />
-        </div>
-        <p className="text-2xl font-bold text-gray-400">スマホで読み取る ▶</p>
-      </div>
+  <div className="absolute inset-0 bg-black flex flex-col items-center justify-center text-white p-12">
+    <div className="absolute inset-0 z-0">
+      <img src="/images/restaurant_accurate_day_1772975933609.png" alt="Restaurant Day" className="w-full h-full object-cover opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
     </div>
-    <div className="mt-12 text-center">
-      <p className="text-3xl text-gray-400 tracking-widest font-noto">TREND COOKS OTSUKYO</p>
+    <div className="relative z-10 text-center max-w-4xl bg-black/50 backdrop-blur-lg p-16 rounded-[3rem] border border-[#d4af37]/30 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+      <h2 className="text-6xl font-bold font-noto mb-8 text-white leading-tight">
+        さあ、一緒に<br/><span className="text-[#d4af37]">お店をアップデート</span>しよう。
+      </h2>
+      <p className="text-3xl font-noto text-gray-200 mb-12 leading-snug">
+        ご予約なしでも大歓迎です。<br/>
+        ふらっと立ち寄って、今日の進化を味わってください。
+      </p>
+      
+      <div className="flex justify-center items-center space-x-12">
+        <div className="bg-white p-4 rounded-3xl">
+          <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent('https://www.instagram.com/trend.cooks?igsh=MXg2bG01eGl6M2t4cg%3D%3D&utm_source=qr')}`} alt="Instagram QR Code" className="w-40 h-40" />
+        </div>
+        <div className="text-left">
+          <p className="text-2xl font-bold text-white mb-2">Instagramで最新情報を発信中！</p>
+          <p className="text-xl text-gray-400">フォローして「進化」の過程をチェック。</p>
+        </div>
+      </div>
     </div>
   </div>
 );
 
 const slides = [
   SlideConcept,
-  SlidePremium,
-  SlideViral,
+  SlideMenu,
   SlideDayNight,
   SlideCTA
 ];
@@ -156,42 +151,29 @@ const SignageApp = () => {
           }`}
           style={{ transitionDuration: '1.5s' }}
         >
-          {/* Only render current and previous slides occasionally for performance, but keeping it simple for now */}
+          {/* Only render current and previous slides occasionally for performance */}
           {(index === currentSlide || index === (currentSlide - 1 + slides.length) % slides.length || index === (currentSlide + 1) % slides.length) && (
              <SlideComponent />
           )}
         </div>
       ))}
       
-      {/* Dynamic Status Banner */}
-      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/80 backdrop-blur-2xl text-white p-6 rounded-[2rem] border-2 border-[#d4af37]/50 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col font-noto">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-          <div className="flex items-center space-x-4">
-            <span className="bg-red-600 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest animate-pulse">TEST MODE</span>
-            <p className="text-sm text-gray-300">表示中の写真は空間の完成イメージ（開発用の仮画像）です。</p>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center bg-gray-800/50 px-5 py-2 rounded-full border border-gray-600 tracking-wider">
-              <span className="text-gray-300 text-sm mr-3">グランドオープン予定</span>
-              <span className="text-[#d4af37] text-2xl font-bold">4.30<span className="text-lg"> (木)</span></span>
-            </div>
-          </div>
+      {/* Sleek Header Banner */}
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/60 backdrop-blur-md text-white px-8 py-4 rounded-full border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center justify-between font-noto">
+        <div className="flex items-center space-x-6">
+          <span className="bg-[#d4af37] text-black px-6 py-2 rounded-full text-lg font-bold tracking-widest animate-pulse">NOW OPEN</span>
+          <p className="text-xl text-white font-medium tracking-wide">本日は営業中です。お気軽にお入りください。</p>
         </div>
-
-        <div className="flex flex-col items-center justify-center text-center py-6 px-4">
-          <h2 className="text-4xl md:text-5xl text-[#d4af37] font-extrabold tracking-widest mb-6" style={{ textShadow: '0 0 30px rgba(212,175,55,0.4)' }}>絶賛、開店準備の最終仕上げ中！</h2>
-          <p className="text-xl md:text-2xl text-gray-200 leading-loose font-medium">
-            現在、皆様にくつろいでいただける洗練された空間を、<br/>
-            一つずつDIYで細部まで情熱を込めて作り込んでいます。<br/>
-            4月30日にお会いできるのを楽しみにしています。
-          </p>
+        <div className="flex items-center">
+          <span className="text-gray-300 text-lg mr-3">Status:</span>
+          <span className="text-white text-xl font-bold tracking-widest">EVOLVING <span className="text-[#d4af37]">●</span></span>
         </div>
       </div>
 
-      {/* Global Overlay (Optional) */}
-      <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-3 bg-red-600/80 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl">
-        <div className="w-4 h-4 bg-white rounded-full animate-pulse"></div>
-        <span className="text-white text-xl font-bold tracking-widest font-noto">PREPARING</span>
+      {/* Global Overlay */}
+      <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-3 bg-[#d4af37]/90 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl">
+        <div className="w-4 h-4 bg-black rounded-full animate-pulse"></div>
+        <span className="text-black text-xl font-bold tracking-widest font-noto">OPEN</span>
       </div>
     </div>
   );
