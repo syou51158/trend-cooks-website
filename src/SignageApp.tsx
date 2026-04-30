@@ -1,6 +1,90 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+// 現在の営業状態を取得する関数
+const getBusinessStatus = () => {
+  const now = new Date();
+  const jstFormatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Tokyo',
+    year: 'numeric', month: 'numeric', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    hour12: false
+  });
+  
+  const parts = jstFormatter.formatToParts(now);
+  const getPart = (type: string) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
+  
+  const year = getPart('year');
+  const month = getPart('month');
+  const day = getPart('day');
+  const hours = getPart('hour');
+  const minutes = getPart('minute');
+
+  // グランドオープン（2026年4月30日）前かどうかを判定
+  if (year < 2026 || (year === 2026 && month < 4) || (year === 2026 && month === 4 && day < 30)) {
+    return {
+      badge: "COMING SOON",
+      badgeColor: "bg-blue-600 text-white",
+      message: "4月30日 グランドオープン！現在オープンに向けて進化中です。",
+      overlay: "PREPARING",
+      overlayColor: "bg-blue-600/90 text-white",
+      overlayDot: "bg-white",
+      isPulse: true
+    };
+  }
+
+  const time = hours + minutes / 60;
+
+  // 11:00 - 17:00 (DAY)
+  if (time >= 11 && time < 17) {
+    return {
+      badge: "NOW OPEN",
+      badgeColor: "bg-[#d4af37] text-black",
+      message: "本日は営業中です［DAY］カフェタイムをお楽しみください。",
+      overlay: "OPEN",
+      overlayColor: "bg-[#d4af37]/90 text-black",
+      overlayDot: "bg-black",
+      isPulse: true
+    };
+  } 
+  // 17:00 - 23:30 (NIGHT)
+  else if (time >= 17 && time < 23.5) {
+    return {
+      badge: "NOW OPEN",
+      badgeColor: "bg-[#00e5ff] text-black",
+      message: "本日は営業中です［NIGHT］バータイムをお楽しみください。",
+      overlay: "OPEN",
+      overlayColor: "bg-[#00e5ff]/90 text-black",
+      overlayDot: "bg-black",
+      isPulse: true
+    };
+  } 
+  // 06:00 - 11:00 (開店準備中)
+  else if (time >= 6 && time < 11) {
+    return {
+      badge: "PREPARING",
+      badgeColor: "bg-zinc-200 text-black",
+      message: "ただいま開店準備中です。11:00より営業を開始いたします。",
+      overlay: "CLOSED",
+      overlayColor: "bg-zinc-800/90 text-white",
+      overlayDot: "bg-red-500",
+      isPulse: false
+    };
+  } 
+  // 23:30 - 06:00 (営業時間外)
+  else {
+    return {
+      badge: "CLOSED",
+      badgeColor: "bg-zinc-600 text-white",
+      message: "本日の営業は終了いたしました。またのお越しをお待ちしております。",
+      overlay: "CLOSED",
+      overlayColor: "bg-zinc-800/90 text-white",
+      overlayDot: "bg-red-500",
+      isPulse: false
+    };
+  }
+};
+
 // Slide 1: Concept & Atmosphere
 const SlideConcept = () => (
   <div className="absolute inset-0 bg-black flex flex-col justify-center items-center text-white p-12 text-center">
@@ -120,12 +204,22 @@ const slides = [
 
 const SignageApp = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [bizStatus, setBizStatus] = useState(getBusinessStatus());
 
   useEffect(() => {
     // スライドを8秒ごとに自動切り替え
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 8000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    // 営業ステータスを1分ごとに更新
+    const timer = setInterval(() => {
+      setBizStatus(getBusinessStatus());
+    }, 60000);
 
     return () => clearInterval(timer);
   }, []);
@@ -164,8 +258,8 @@ const SignageApp = () => {
       {/* Sleek Header Banner */}
       <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/70 backdrop-blur-xl text-white px-8 py-4 rounded-full border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.6)] flex items-center justify-between font-noto">
         <div className="flex items-center space-x-6">
-          <span className="bg-[#d4af37] text-black px-6 py-2 rounded-full text-lg font-bold tracking-widest animate-pulse">NOW OPEN</span>
-          <p className="text-xl text-white font-medium tracking-wide" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>本日は営業中です。お気軽にお入りください。</p>
+          <span className={`${bizStatus.badgeColor} px-6 py-2 rounded-full text-lg font-bold tracking-widest ${bizStatus.isPulse ? 'animate-pulse' : ''}`}>{bizStatus.badge}</span>
+          <p className="text-xl text-white font-medium tracking-wide" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{bizStatus.message}</p>
         </div>
         <div className="flex items-center">
           <span className="text-gray-300 text-lg mr-3">Status:</span>
@@ -174,9 +268,9 @@ const SignageApp = () => {
       </div>
 
       {/* Global Overlay */}
-      <div className="absolute bottom-8 right-8 z-50 flex items-center space-x-3 bg-[#d4af37]/90 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl">
-        <div className="w-4 h-4 bg-black rounded-full animate-pulse"></div>
-        <span className="text-black text-xl font-bold tracking-widest font-noto">OPEN</span>
+      <div className={`absolute bottom-8 right-8 z-50 flex items-center space-x-3 ${bizStatus.overlayColor} backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl transition-colors duration-1000`}>
+        <div className={`w-4 h-4 rounded-full ${bizStatus.overlayDot} ${bizStatus.isPulse ? 'animate-pulse' : ''}`}></div>
+        <span className="text-xl font-bold tracking-widest font-noto">{bizStatus.overlay}</span>
       </div>
     </div>
   );
