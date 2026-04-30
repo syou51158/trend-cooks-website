@@ -3,27 +3,27 @@ import './App.css';
 
 // Slide 1: Concept & Atmosphere
 const SlideConcept = () => (
-  <div className="absolute inset-0 bg-black flex flex-col justify-center items-center text-white p-12 text-center"
-       style={{
-         backgroundImage: 'url(/images/restaurant_accurate_night_1772976044672.png)',
-         backgroundSize: 'cover',
-         backgroundPosition: 'center',
-         boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.7)'
-       }}>
-    <h1 className="text-7xl md:text-8xl font-bold font-noto mb-8 tracking-widest text-white leading-tight">
-      未完成という、<br/><span className="text-[#d4af37]">最高のスパイス。</span>
-    </h1>
-    <p className="text-3xl md:text-4xl font-noto leading-relaxed mb-10 text-gray-200">
-      ここは完成されたレストランではありません。<br/>
-      最新トレンドと伝統を掛け合わせ、お客様の声と共に<br/>
-      毎日「進化」を続ける実験的ダイニングです。
-    </p>
-    <div className="border border-white/30 bg-white/10 backdrop-blur-md px-10 py-5 rounded-full text-2xl font-bold text-[#d4af37] mb-8">
-      ※あなたの「これ美味しい！」が、明日の看板メニューになるかもしれません。
+  <div className="absolute inset-0 bg-black flex flex-col justify-center items-center text-white p-12 text-center">
+    <div className="absolute inset-0 z-0">
+      {/* エレガントな抽象SVG背景 */}
+      <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Dark Background" className="w-full h-full object-cover" />
     </div>
-    <p className="text-3xl font-bold text-white animate-bounce mt-4">
-      「今日」だけの空間を、ぜひ体験していきませんか？ ▼
-    </p>
+    <div className="relative z-10">
+      <h1 className="text-7xl md:text-8xl font-bold font-noto mb-8 tracking-widest text-white leading-tight" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
+        未完成という、<br/><span className="text-[#d4af37]">最高のスパイス。</span>
+      </h1>
+      <p className="text-3xl md:text-4xl font-noto leading-relaxed mb-10 text-gray-200" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+        ここは完成されたレストランではありません。<br/>
+        最新トレンドと伝統を掛け合わせ、お客様の声と共に<br/>
+        毎日「進化」を続ける実験的ダイニングです。
+      </p>
+      <div className="border border-[#d4af37]/50 bg-black/60 backdrop-blur-md px-10 py-5 rounded-full text-2xl font-bold text-[#d4af37] mb-8 shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+        ※あなたの「これ美味しい！」が、明日の看板メニューになるかもしれません。
+      </div>
+      <p className="text-3xl font-bold text-white animate-bounce mt-4" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+        「今日」だけの空間を、ぜひ体験していきませんか？ ▼
+      </p>
+    </div>
   </div>
 );
 
@@ -57,17 +57,21 @@ const SlideMenu = () => (
 // Slide 3: Day & Night Atmosphere
 const SlideDayNight = () => (
   <div className="absolute inset-0 flex">
-    <div className="w-1/2 relative bg-black flex flex-col justify-center p-16 text-left"
-         style={{ backgroundImage: 'url(/images/restaurant_day_final_1772974803590.png)', backgroundSize: 'cover', backgroundPosition: 'center', boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.6)' }}>
+    <div className="w-1/2 relative bg-[#fdfbf7] flex flex-col justify-center p-16 text-left">
+      <div className="absolute inset-0 z-0">
+        <img src="/images/signage/bg_luxury_day.svg" alt="Luxury Day Background" className="w-full h-full object-cover" />
+      </div>
       <div className="relative z-10">
-        <h2 className="text-7xl font-bold font-noto text-white mb-4">DAY</h2>
+        <h2 className="text-7xl font-bold font-noto text-zinc-800 mb-4">DAY</h2>
         <p className="text-3xl text-[#d4af37] font-bold tracking-widest mb-8">11:00 - 17:00</p>
-        <h3 className="text-4xl font-noto font-bold text-white mb-6">カフェ＆リラックス</h3>
-        <p className="text-2xl font-noto text-gray-200 leading-relaxed font-medium">明るい日差しと最新スイーツ。<br/>誰もが気軽に立ち寄れる、オープンな時間。</p>
+        <h3 className="text-4xl font-noto font-bold text-zinc-800 mb-6">カフェ＆リラックス</h3>
+        <p className="text-2xl font-noto text-zinc-700 leading-relaxed font-medium">明るい日差しと最新スイーツ。<br/>誰もが気軽に立ち寄れる、オープンな時間。</p>
       </div>
     </div>
-    <div className="w-1/2 relative bg-black flex flex-col justify-center p-16 text-right"
-         style={{ backgroundImage: 'url(/images/restaurant_interior_night_1772973514967.png)', backgroundSize: 'cover', backgroundPosition: 'center', boxShadow: 'inset 0 0 0 2000px rgba(0,0,0,0.8)' }}>
+    <div className="w-1/2 relative bg-[#020305] flex flex-col justify-center p-16 text-right">
+      <div className="absolute inset-0 z-0">
+        <img src="/images/signage/bg_luxury_night.svg" alt="Luxury Night Background" className="w-full h-full object-cover" />
+      </div>
       <div className="relative z-10">
         <h2 className="text-7xl font-bold font-noto text-white mb-4">NIGHT</h2>
         <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 23:30</p>
@@ -83,10 +87,9 @@ const SlideDayNight = () => (
 const SlideCTA = () => (
   <div className="absolute inset-0 bg-black flex flex-col items-center justify-center text-white p-12">
     <div className="absolute inset-0 z-0">
-      <img src="/images/restaurant_accurate_day_1772975933609.png" alt="Restaurant Day" className="w-full h-full object-cover opacity-30" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+      <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Background" className="w-full h-full object-cover opacity-80" />
     </div>
-    <div className="relative z-10 text-center max-w-4xl bg-black/50 backdrop-blur-lg p-16 rounded-[3rem] border border-[#d4af37]/30 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+    <div className="relative z-10 text-center max-w-4xl bg-black/40 backdrop-blur-xl p-16 rounded-[3rem] border border-[#d4af37]/40 shadow-[0_0_60px_rgba(212,175,55,0.15)]">
       <h2 className="text-6xl font-bold font-noto mb-8 text-white leading-tight">
         さあ、一緒に<br/><span className="text-[#d4af37]">お店をアップデート</span>しよう。
       </h2>
@@ -96,12 +99,12 @@ const SlideCTA = () => (
       </p>
       
       <div className="flex justify-center items-center space-x-12">
-        <div className="bg-white p-4 rounded-3xl">
+        <div className="bg-white p-4 rounded-3xl shadow-xl">
           <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent('https://www.instagram.com/trend.cooks?igsh=MXg2bG01eGl6M2t4cg%3D%3D&utm_source=qr')}`} alt="Instagram QR Code" className="w-40 h-40" />
         </div>
         <div className="text-left">
           <p className="text-2xl font-bold text-white mb-2">Instagramで最新情報を発信中！</p>
-          <p className="text-xl text-gray-400">フォローして「進化」の過程をチェック。</p>
+          <p className="text-xl text-gray-300">フォローして「進化」の過程をチェック。</p>
         </div>
       </div>
     </div>
@@ -159,10 +162,10 @@ const SignageApp = () => {
       ))}
       
       {/* Sleek Header Banner */}
-      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/60 backdrop-blur-md text-white px-8 py-4 rounded-full border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center justify-between font-noto">
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-50 w-[96%] bg-black/70 backdrop-blur-xl text-white px-8 py-4 rounded-full border border-white/20 shadow-[0_10px_30px_rgba(0,0,0,0.6)] flex items-center justify-between font-noto">
         <div className="flex items-center space-x-6">
           <span className="bg-[#d4af37] text-black px-6 py-2 rounded-full text-lg font-bold tracking-widest animate-pulse">NOW OPEN</span>
-          <p className="text-xl text-white font-medium tracking-wide">本日は営業中です。お気軽にお入りください。</p>
+          <p className="text-xl text-white font-medium tracking-wide" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>本日は営業中です。お気軽にお入りください。</p>
         </div>
         <div className="flex items-center">
           <span className="text-gray-300 text-lg mr-3">Status:</span>
