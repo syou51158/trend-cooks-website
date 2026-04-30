@@ -8,7 +8,10 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('[Supabase] 環境変数 VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY が未設定です。')
 }
 
-export const supabase = createClient(supabaseUrl ?? '', supabaseAnonKey ?? '')
+export const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co', 
+  supabaseAnonKey || 'placeholder-key'
+)
 
 // Edge Function の Authorization に利用（クライアントバンドルに既に含まれるため公開可）
 export const supabaseAnonKeyPublic = supabaseAnonKey ?? ''

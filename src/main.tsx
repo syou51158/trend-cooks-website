@@ -6,7 +6,7 @@ import SignageApp from './SignageApp'
 // i18n 初期化
 import './lib/i18n'
 
-const isSignageMode = window.location.pathname.startsWith('/signage') || window.location.search.includes('mode=signage');
+const isSignageMode = window.location.pathname.includes('/signage') || window.location.search.includes('mode=signage');
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
