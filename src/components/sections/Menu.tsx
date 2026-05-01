@@ -51,7 +51,7 @@ const Menu = () => {
       descriptionEn: 'A plump hamburger steak made with a blend of domestic beef and pork, simmered in our special rich demi-glace style sauce.',
       popular: true,
       category: 'premium',
-      image: '/images/menu/stewed_hamburger.png'
+      image: '/images/menu/stewed_hamburger.jpg'
     }
   ];
 
@@ -411,7 +411,7 @@ const Menu = () => {
       price: '580円 / 680円 / 880円',
       description: 'お客様ご要望が多かった、きんっきんにひえたアサヒビールもご用意しております。',
       descriptionEn: 'Ice-cold Asahi Super Dry draft beer.',
-      image: '/images/menu/beer_menu.png',
+      image: '/images/menu/beer_menu.jpg',
       temp: 'iced'
     },
     { name: 'クラフトビール各種', nameEn: 'Craft Beers', price: '650〜800円' },

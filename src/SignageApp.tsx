@@ -99,11 +99,11 @@ const SlideConcept = () => (
 const SlideMenu = () => (
   <div className="absolute inset-0 flex bg-black">
     <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
-      <img src="/images/menu/stewed_hamburger.png" alt="国産合挽き煮込みハンバーグ定食" className="absolute inset-0 w-full h-full object-cover" />
+      <img src="/images/menu/stewed_hamburger.jpg" alt="国産合挽き煮込みハンバーグ定食" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
     </div>
     <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
-      <img src="/images/menu/beer_menu.png" alt="アサヒスーパードライ" className="absolute inset-0 w-full h-full object-cover" />
+      <img src="/images/menu/beer_menu.jpg" alt="アサヒスーパードライ" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
     </div>
     <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
