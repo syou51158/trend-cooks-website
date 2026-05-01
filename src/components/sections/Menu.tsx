@@ -42,6 +42,16 @@ const Menu = () => {
       popular: false,
       category: 'premium',
       image: '/images/menu/bulgogi_wagyu_plate_1772802866558.png'
+    },
+    {
+      name: '国産合挽き煮込みハンバーグ定食',
+      nameEn: 'Stewed Hamburger Set',
+      price: '1,480円',
+      description: '国産牛肉・国産豚肉の旨みをじっくり閉じ込めたふっくらハンバーグを、当店特製のコク旨デミ風ソースで丁寧に煮込みました。ごはんとの相性抜群の一品です。',
+      descriptionEn: 'A plump hamburger steak made with a blend of domestic beef and pork, simmered in our special rich demi-glace style sauce.',
+      popular: true,
+      category: 'premium',
+      image: '/images/menu/stewed_hamburger.png'
     }
   ];
 
@@ -393,6 +403,15 @@ const Menu = () => {
       description: '旬のフルーツを贅沢にミックスした、彩り豊かでビタミンたっぷりの濃厚スムージー風ドリンク。',
       descriptionEn: 'A colorful, luxury smoothie-style mixed drink made with abundant seasonal fruits.',
       image: '/images/menu/mixed_fruit_juice_v2_1772939540904.png',
+      temp: 'iced'
+    },
+    {
+      name: 'アサヒスーパードライ (グラス/中ジョッキ/大ジョッキ)',
+      nameEn: 'Asahi Super Dry (Glass / Medium / Large)',
+      price: '580円 / 680円 / 880円',
+      description: 'お客様ご要望が多かった、きんっきんにひえたアサヒビールもご用意しております。',
+      descriptionEn: 'Ice-cold Asahi Super Dry draft beer.',
+      image: '/images/menu/beer_menu.png',
       temp: 'iced'
     },
     { name: 'クラフトビール各種', nameEn: 'Craft Beers', price: '650〜800円' },
