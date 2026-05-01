@@ -4,6 +4,19 @@ import './App.css';
 
 // 現在の営業状態を取得する関数（自動判定ロジック）
 const getAutoBusinessStatus = () => {
+  // --- 【一時対応】本日は午後オープン＆準備中も見学可能 ---
+  return {
+    badge: "PREPARING",
+    badgeColor: "bg-[#d4af37] text-black",
+    message: "本日は午後からオープンいたします。準備中ですが内装など見学可能ですので、お気軽にお入りください！",
+    overlay: "WELCOME",
+    overlayColor: "bg-[#d4af37]/90 text-black",
+    overlayDot: "bg-black",
+    isPulse: true
+  };
+  // --------------------------------------------------------
+
+  /*
   const now = new Date();
   const jstFormatter = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Asia/Tokyo',
@@ -84,6 +97,7 @@ const getAutoBusinessStatus = () => {
       isPulse: false
     };
   }
+  */
 };
 
 // Slide 1: Concept & Atmosphere
@@ -112,29 +126,30 @@ const SlideConcept = () => (
   </div>
 );
 
-// Slide 2: Premium vs Viral (Menu evolution)
+// Slide 2: Premium vs Viral (Menu evolution) -> Temporary Text Menu
 const SlideMenu = () => (
-  <div className="absolute inset-0 flex bg-black">
-    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center p-16">
-      <img src="/images/menu/omi_wagyu_premium_steak_1772802896944.png" alt="Omi Wagyu Steak" className="absolute inset-0 w-full h-full object-cover opacity-50" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-      <div className="relative z-10 text-center mt-auto pb-24">
-        <h3 className="text-[#d4af37] text-3xl font-bold tracking-widest mb-4">TRADITION</h3>
-        <h2 className="text-6xl font-bold text-white mb-6" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>最高級・近江牛</h2>
-        <p className="text-2xl text-gray-200 font-medium">変わらない、本物の価値。</p>
-      </div>
+  <div className="absolute inset-0 bg-black flex flex-col items-center justify-center p-16 text-center">
+    <div className="absolute inset-0 z-0">
+      <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Dark Background" className="w-full h-full object-cover opacity-60" />
     </div>
-    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center p-16">
-      <img src="/images/menu/premium_carbo_buldak_1772887774573.png" alt="Trend Menu" className="absolute inset-0 w-full h-full object-cover opacity-50" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-      <div className="relative z-10 text-center mt-auto pb-24">
-        <h3 className="text-cyan-400 text-3xl font-bold tracking-widest mb-4">TREND</h3>
-        <h2 className="text-6xl font-bold text-white mb-6" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>最新SNSグルメ</h2>
-        <p className="text-2xl text-gray-200 font-medium">常に変化する、新しい刺激。</p>
+    <div className="relative z-10 w-full max-w-4xl bg-black/40 backdrop-blur-md border border-[#d4af37]/30 rounded-3xl p-16 shadow-[0_0_50px_rgba(212,175,55,0.15)] flex flex-col items-center">
+      <h3 className="text-[#d4af37] text-3xl font-bold tracking-widest mb-16">TODAY'S MENU</h3>
+      
+      <div className="space-y-12 mb-16 w-full px-8">
+        <div className="border-b border-white/10 pb-6">
+          <h2 className="text-6xl font-bold text-white tracking-widest" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>韓国チキン</h2>
+        </div>
+        <div className="border-b border-white/10 pb-6">
+          <h2 className="text-6xl font-bold text-white tracking-widest" style={{ textShadow: '2px 4px 10px rgba(0,0,0,0.8)' }}>煮込みハンバーグ</h2>
+        </div>
+        <div className="pt-4">
+          <h2 className="text-4xl font-bold text-gray-300 tracking-wider">その他、各種ドリンク</h2>
+        </div>
       </div>
-    </div>
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 bg-black text-white rounded-full w-32 h-32 flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.5)] border-2 border-[#d4af37]">
-      <h2 className="text-4xl font-bold uppercase tracking-widest">X</h2>
+
+      <p className="text-2xl text-[#d4af37] font-medium bg-black/50 px-8 py-3 rounded-full border border-[#d4af37]/50">
+        ※メニューは日々進化します。本日の味をお楽しみください。
+      </p>
     </div>
   </div>
 );
