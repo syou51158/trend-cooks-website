@@ -4,19 +4,6 @@ import './App.css';
 
 // 現在の営業状態を取得する関数（自動判定ロジック）
 const getAutoBusinessStatus = () => {
-  // --- 【一時対応】本日は午後オープン＆準備中も見学可能 ---
-  return {
-    badge: "PREPARING",
-    badgeColor: "bg-[#d4af37] text-black",
-    message: "本日は午後からオープンいたします。準備中ですが内装など見学可能ですので、お気軽にお入りください！",
-    overlay: "WELCOME",
-    overlayColor: "bg-[#d4af37]/90 text-black",
-    overlayDot: "bg-black",
-    isPulse: true
-  };
-  // --------------------------------------------------------
-
-  /*
   const now = new Date();
   const jstFormatter = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Asia/Tokyo',
@@ -28,25 +15,8 @@ const getAutoBusinessStatus = () => {
   const parts = jstFormatter.formatToParts(now);
   const getPart = (type: string) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
   
-  const year = getPart('year');
-  const month = getPart('month');
-  const day = getPart('day');
   const hours = getPart('hour');
   const minutes = getPart('minute');
-
-  // グランドオープン（2026年4月30日）前かどうかを判定
-  if (year < 2026 || (year === 2026 && month < 4) || (year === 2026 && month === 4 && day < 30)) {
-    return {
-      badge: "COMING SOON",
-      badgeColor: "bg-blue-600 text-white",
-      message: "4月30日 グランドオープン！現在オープンに向けて進化中です。",
-      overlay: "PREPARING",
-      overlayColor: "bg-blue-600/90 text-white",
-      overlayDot: "bg-white",
-      isPulse: true
-    };
-  }
-
   const time = hours + minutes / 60;
 
   // 11:00 - 17:00 (DAY)
@@ -54,8 +24,8 @@ const getAutoBusinessStatus = () => {
     return {
       badge: "NOW OPEN",
       badgeColor: "bg-[#d4af37] text-black",
-      message: "本日は営業中です［DAY］カフェタイムをお楽しみください。",
-      overlay: "OPEN",
+      message: "本日は営業中です！細かいこだわりを追求し、準備・調整をしながらの営業となります。お気軽にお入りください。",
+      overlay: "WELCOME",
       overlayColor: "bg-[#d4af37]/90 text-black",
       overlayDot: "bg-black",
       isPulse: true
@@ -66,8 +36,8 @@ const getAutoBusinessStatus = () => {
     return {
       badge: "NOW OPEN",
       badgeColor: "bg-[#00e5ff] text-black",
-      message: "本日は営業中です［NIGHT］バータイムをお楽しみください。",
-      overlay: "OPEN",
+      message: "本日は営業中です！夜も引き続き、店内の調整を行いながら営業しております。お気軽にお入りください。",
+      overlay: "WELCOME",
       overlayColor: "bg-[#00e5ff]/90 text-black",
       overlayDot: "bg-black",
       isPulse: true
@@ -78,11 +48,11 @@ const getAutoBusinessStatus = () => {
     return {
       badge: "PREPARING",
       badgeColor: "bg-zinc-200 text-black",
-      message: "ただいま開店準備中です。11:00より営業を開始いたします。",
-      overlay: "CLOSED",
+      message: "ただいま開店準備中です。11:00よりオープンいたします。準備中ですが内装の見学は可能ですので、お気軽にお声がけください！",
+      overlay: "PREPARING",
       overlayColor: "bg-zinc-800/90 text-white",
-      overlayDot: "bg-red-500",
-      isPulse: false
+      overlayDot: "bg-yellow-500",
+      isPulse: true
     };
   } 
   // 23:30 - 06:00 (営業時間外)
@@ -90,14 +60,13 @@ const getAutoBusinessStatus = () => {
     return {
       badge: "CLOSED",
       badgeColor: "bg-zinc-600 text-white",
-      message: "本日の営業は終了いたしました。またのお越しをお待ちしております。",
+      message: "本日の営業は終了いたしました。明日の進化をお楽しみに。またのお越しをお待ちしております。",
       overlay: "CLOSED",
       overlayColor: "bg-zinc-800/90 text-white",
       overlayDot: "bg-red-500",
       isPulse: false
     };
   }
-  */
 };
 
 // Slide 1: Concept & Atmosphere
