@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { supabase } from './lib/supabaseClient';
 import './App.css';
 
-// 現在の営業状態を取得する関数
-const getBusinessStatus = () => {
+// 現在の営業状態を取得する関数（自動判定ロジック）
+const getAutoBusinessStatus = () => {
   const now = new Date();
   const jstFormatter = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Asia/Tokyo',
@@ -204,7 +205,7 @@ const slides = [
 
 const SignageApp = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [bizStatus, setBizStatus] = useState(getBusinessStatus());
+  const [bizStatus, setBizStatus] = useState(getAutoBusinessStatus());
 
   useEffect(() => {
     // スライドを8秒ごとに自動切り替え
@@ -216,10 +217,66 @@ const SignageApp = () => {
   }, []);
 
   useEffect(() => {
-    // 営業ステータスを1分ごとに更新
-    const timer = setInterval(() => {
-      setBizStatus(getBusinessStatus());
-    }, 60000);
+    // Supabaseから設定を取得してステータスを更新する関数
+    const fetchStatus = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('signage_settings')
+          .select('override_status, custom_message')
+          .limit(1)
+          .single();
+
+        let newStatus = getAutoBusinessStatus(); // 基本は自動判定
+
+        if (!error && data) {
+          const override = data.override_status;
+          const msg = data.custom_message;
+
+          // 手動上書きが設定されている場合
+          if (override !== 'auto') {
+            if (override === 'preparing') {
+              newStatus = {
+                badge: "PREPARING", badgeColor: "bg-zinc-200 text-black",
+                message: msg || "ただいま開店準備中です。もうしばらくお待ちください。",
+                overlay: "CLOSED", overlayColor: "bg-zinc-800/90 text-white", overlayDot: "bg-red-500", isPulse: false
+              };
+            } else if (override === 'open_day') {
+              newStatus = {
+                badge: "NOW OPEN", badgeColor: "bg-[#d4af37] text-black",
+                message: msg || "本日は営業中です［DAY］カフェタイムをお楽しみください。",
+                overlay: "OPEN", overlayColor: "bg-[#d4af37]/90 text-black", overlayDot: "bg-black", isPulse: true
+              };
+            } else if (override === 'open_night') {
+              newStatus = {
+                badge: "NOW OPEN", badgeColor: "bg-[#00e5ff] text-black",
+                message: msg || "本日は営業中です［NIGHT］バータイムをお楽しみください。",
+                overlay: "OPEN", overlayColor: "bg-[#00e5ff]/90 text-black", overlayDot: "bg-black", isPulse: true
+              };
+            } else if (override === 'closed') {
+              newStatus = {
+                badge: "CLOSED", badgeColor: "bg-zinc-600 text-white",
+                message: msg || "本日の営業は終了いたしました。またのお越しをお待ちしております。",
+                overlay: "CLOSED", overlayColor: "bg-zinc-800/90 text-white", overlayDot: "bg-red-500", isPulse: false
+              };
+            }
+          } else if (msg) {
+            // auto設定でもカスタムメッセージだけ設定されている場合
+            newStatus.message = msg;
+          }
+        }
+
+        setBizStatus(newStatus);
+      } catch (err) {
+        console.error('Error fetching signage status:', err);
+        setBizStatus(getAutoBusinessStatus()); // エラー時は自動判定にフォールバック
+      }
+    };
+
+    // 初回取得
+    fetchStatus();
+
+    // 1分ごとに最新ステータスを確認
+    const timer = setInterval(fetchStatus, 60000);
 
     return () => clearInterval(timer);
   }, []);

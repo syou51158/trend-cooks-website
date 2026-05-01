@@ -83,6 +83,7 @@ export default function AdminLayout() {
             <Link to="/admin/gallery" className="hover:underline">ギャラリー</Link>
             <Link to="/admin/staff" className="hover:underline">スタッフ</Link>
             <Link to="/admin/settings" className="hover:underline">設定</Link>
+            <Link to="/admin/signage" className="hover:underline font-semibold text-yellow-600">サイネージ管理</Link>
             <Link to="/" className="hover:underline">サイトを見る</Link>
             <button
               className="hover:underline"
