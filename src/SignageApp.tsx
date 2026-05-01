@@ -114,7 +114,39 @@ const SlideMenu = () => (
   </div>
 );
 
-// Slide 3: Day & Night Atmosphere
+// Slide 3: Shoe-free / Hidden Retreat Concept
+const SlideShoeFree = () => (
+  <div className="absolute inset-0 flex bg-black">
+    <div className="absolute inset-0 z-0">
+      <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Background" className="w-full h-full object-cover opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/80"></div>
+    </div>
+    <div className="relative z-10 w-full flex flex-col items-center justify-center p-16 text-center">
+      <div className="max-w-5xl bg-black/50 backdrop-blur-xl border border-[#d4af37]/40 rounded-[3rem] p-20 shadow-[0_0_60px_rgba(212,175,55,0.15)]">
+        <h3 className="text-[#d4af37] text-3xl font-bold tracking-widest mb-8 uppercase">NO SHOES, NO SLIPPERS.</h3>
+        <h2 className="text-6xl md:text-7xl font-bold font-noto mb-12 text-white leading-tight" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
+          靴を脱ぐ、<br/><span className="text-[#d4af37]">非日常のカフェ＆バー。</span>
+        </h2>
+        <div className="space-y-8 text-3xl font-noto text-gray-200 leading-relaxed" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+          <p>
+            入り口で靴を脱ぎ、素足でくつろぐ。<br/>
+            ここは、日常を忘れる大人の隠れ家です。
+          </p>
+          <p className="text-2xl text-gray-300">
+            他のお客様と共有するスリッパは、あえてご用意しておりません。<br/>
+            完全土足禁止だからこそ実現できる、<br/>
+            圧倒的な<span className="text-white font-bold">「清潔感」</span>と<span className="text-white font-bold">「安心感」</span>。
+          </p>
+        </div>
+        <div className="mt-12 inline-block border border-[#d4af37]/50 bg-black/60 px-10 py-5 rounded-full text-2xl font-bold text-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+          ※小さなお子様連れのお客様にも、大変ご好評いただいております。
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// Slide 4: Day & Night Atmosphere
 const SlideDayNight = () => (
   <div className="absolute inset-0 flex">
     <div className="w-1/2 relative bg-[#fdfbf7] flex flex-col justify-center p-16 text-left">
@@ -174,6 +206,7 @@ const SlideCTA = () => (
 const slides = [
   SlideConcept,
   SlideMenu,
+  SlideShoeFree,
   SlideDayNight,
   SlideCTA
 ];
