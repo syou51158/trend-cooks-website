@@ -48,8 +48,8 @@ const getAutoBusinessStatus = () => {
       isPulse: true
     };
   } 
-  // 17:00 - 23:30 (NIGHT)
-  else if (time >= 17 && time < 23.5) {
+  // 17:00 - 22:00 (NIGHT)
+  else if (time >= 17 && time < 22) {
     return {
       badge: "NOW OPEN",
       badgeColor: "bg-[#00e5ff] text-black",
@@ -72,7 +72,7 @@ const getAutoBusinessStatus = () => {
       isPulse: true
     };
   } 
-  // 23:30 - 06:00 (営業時間外)
+  // 22:00 - 06:00 (営業時間外)
   else {
     return {
       badge: "CLOSED",
@@ -189,7 +189,7 @@ const SlideDayNight = () => (
       </div>
       <div className="relative z-10">
         <h2 className="text-7xl font-bold font-noto text-white mb-4">NIGHT</h2>
-        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 23:30</p>
+        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 22:00</p>
         <h3 className="text-4xl font-noto font-bold text-white mb-6">ダイニング＆バー</h3>
         <p className="text-2xl font-noto text-gray-300 leading-relaxed font-medium">ネオンとプロジェクターが彩る非日常。<br/>極上のお肉とお酒で、大人の遊び場へ。</p>
       </div>
