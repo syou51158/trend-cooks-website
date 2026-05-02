@@ -118,6 +118,12 @@ const SlideMenu = () => (
     <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
       <img src="/images/menu/stewed_hamburger.jpg" alt="国産合挽き煮込みハンバーグ定食" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+      
+      {/* LUNCH MENU Badge */}
+      <div className="absolute top-12 left-12 z-20 bg-white/95 backdrop-blur-md px-8 py-4 rounded-br-3xl rounded-tl-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-l-8 border-[#d4af37]">
+        <p className="text-[#d4af37] font-bold tracking-widest text-xl mb-1">11:00 - 17:00 限定</p>
+        <h3 className="text-zinc-900 font-noto font-black text-5xl tracking-wider">LUNCH MENU</h3>
+      </div>
     </div>
     <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
       <img src="/images/menu/beer_menu.jpg" alt="アサヒスーパードライ" className="absolute inset-0 w-full h-full object-cover" />
