@@ -156,7 +156,7 @@ const resources = {
         items: {
           one: {
             title: '昼夜二毛作',
-            description: '11:00–17:00は創作カフェ、17:00–23:30はスナック・バー営業。'
+            description: '11:00–17:00は創作カフェ、17:00–22:00はスナック・バー営業。'
           },
           two: {
             title: '近江牛創作',
@@ -171,7 +171,7 @@ const resources = {
             description: '通りがかりの子ども向け無料試食、柳崎公園でのアウトドアイベントも構想中。'
           },
           // 新しい命名の複製（desc付き）
-          dayNight: { title: '昼夜二毛作', desc: '11:00–17:00は創作カフェ、17:00–23:30はスナック・バー営業。' },
+          dayNight: { title: '昼夜二毛作', desc: '11:00–17:00は創作カフェ、17:00–22:00はスナック・バー営業。' },
           omiBeef: { title: '近江牛創作', desc: 'A5ランク近江牛を使った炙り寿司／スキレットステーキなどプレミアムメニュー。' },
           virtualBiwa: { title: 'バーチャル琵琶湖ビュー', desc: 'Nebulaレーザープロジェクターで湖畔の風景を店内に投影。' },
           community: { title: '地域交流', desc: '通りがかりの子ども向け無料試食、柳崎公園でのアウトドアイベントも構想中。' }
@@ -194,7 +194,7 @@ const resources = {
         hours: {
           title: '営業時間',
           day: '昼：11:00 - 17:00（創作カフェ）',
-          night: '夜：17:00 - 23:30（スナック・バー）'
+          night: '夜：17:00 - 22:00（スナック・バー）'
         }
       },
       // 追加: Eventsセクション
@@ -386,7 +386,7 @@ const resources = {
             title: '🍰 スイーツ・デザート'
           },
           dinner: {
-            title: '🌙 夜間営業（17:00〜23:30）',
+            title: '🌙 夜間営業（17:00〜22:00）',
             desc: '小皿料理とプロジェクター演出でリラックスタイム'
           },
           coffee: {
@@ -576,7 +576,7 @@ const resources = {
         items: {
           one: {
             title: 'Day & Night Concept',
-            description: 'Cafe with creative dishes 11:00–17:00, snack bar 17:00–23:30.'
+            description: 'Cafe with creative dishes 11:00–17:00, snack bar 17:00–22:00.'
           },
           two: {
             title: 'Omi Beef Creations',
@@ -590,7 +590,7 @@ const resources = {
             title: 'Community Engagement',
             description: 'Free tastings for kids passing by and plans for outdoor events at Yanagasaki Park.'
           },
-          dayNight: { title: 'Day & Night Concept', desc: 'Cafe with creative dishes 11:00–17:00, snack bar 17:00–23:30.' },
+          dayNight: { title: 'Day & Night Concept', desc: 'Cafe with creative dishes 11:00–17:00, snack bar 17:00–22:00.' },
           omiBeef: { title: 'Omi Beef Creations', desc: 'Premium menu featuring A5-grade Omi beef: aburi sushi, skillet steak, and more.' },
           virtualBiwa: { title: 'Virtual Lake Biwa View', desc: 'Nebula laser projector brings lakeside scenery into the dining space.' },
           community: { title: 'Community Engagement', desc: 'Free tastings for kids passing by and plans for outdoor events at Yanagasaki Park.' }
@@ -612,7 +612,7 @@ const resources = {
         hours: {
           title: 'Business hours',
           day: 'Daytime: 11:00 - 17:00 (Creative Cafe)',
-          night: 'Evening: 17:00 - 23:30 (Snack bar)'
+          night: 'Evening: 17:00 - 22:00 (Snack bar)'
         }
       },
       events: {
@@ -712,7 +712,7 @@ const resources = {
             title: '🍰 Sweets & Desserts'
           },
           dinner: {
-            title: '🌙 Evening (17:00–23:30)',
+            title: '🌙 Evening (17:00–22:00)',
             desc: 'Relax with small plates and projector ambience'
           },
           coffee: {
