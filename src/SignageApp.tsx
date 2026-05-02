@@ -15,9 +15,26 @@ const getAutoBusinessStatus = () => {
   const parts = jstFormatter.formatToParts(now);
   const getPart = (type: string) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
   
+  const year = getPart('year');
+  const month = getPart('month');
+  const day = getPart('day');
   const hours = getPart('hour');
   const minutes = getPart('minute');
   const time = hours + minutes / 60;
+
+  // --- 【特別対応】5月2日の17:00までは買い出し・仕込みのため特別メッセージ ---
+  if (year === 2026 && month === 5 && day === 2 && time < 17) {
+    return {
+      badge: "PREPARING",
+      badgeColor: "bg-[#d4af37] text-black",
+      message: "本日（5/2）は極上の食材を求めて仕入れに出向いております。17:00より、進化したメニューと共にディナー営業をスタートいたします！",
+      overlay: "SPECIAL PREP",
+      overlayColor: "bg-[#d4af37]/90 text-black",
+      overlayDot: "bg-black",
+      isPulse: true
+    };
+  }
+  // -------------------------------------------------------------------------
 
   // 11:00 - 17:00 (DAY)
   if (time >= 11 && time < 17) {
