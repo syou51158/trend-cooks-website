@@ -226,8 +226,56 @@ const SlideCTA = () => (
   </div>
 );
 
+// Slide 5: DIY & Future Tech
+const SlideFutureTech = () => (
+  <div className="absolute inset-0 flex bg-black">
+    <div className="absolute inset-0 z-0">
+      <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Background" className="w-full h-full object-cover opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/90"></div>
+    </div>
+    <div className="relative z-10 w-full flex flex-col items-center justify-center p-16 text-center">
+      <div className="max-w-6xl bg-black/60 backdrop-blur-xl border border-cyan-400/40 rounded-[3rem] p-16 shadow-[0_0_60px_rgba(0,229,255,0.15)]">
+        <h3 className="text-cyan-400 text-3xl font-bold tracking-widest mb-6 uppercase">CO-CREATION & SMART EXPERIENCE</h3>
+        <h2 className="text-5xl md:text-6xl font-bold font-noto mb-10 text-white leading-tight" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
+          お客様と創る「未完成」から、<br/><span className="text-cyan-400">近未来のオーダー体験へ。</span>
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left mt-8">
+          <div className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-cyan-400/30 transition-colors">
+            <h4 className="text-2xl text-[#d4af37] font-bold mb-4 flex items-center">
+              <span className="text-3xl mr-3">🛠️</span> DIYで進化する空間
+            </h4>
+            <p className="text-xl text-gray-300 leading-relaxed font-noto">
+              これまでの内装もDIYで作り上げてきました。<br/>
+              完成されたお店ではなく、地域の皆様やお客様のご意見をいただきながら、<br/>
+              日々アップデートを続ける「みんなのお店」です。
+            </p>
+          </div>
+          
+          <div className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-cyan-400/30 transition-colors">
+            <h4 className="text-2xl text-cyan-400 font-bold mb-4 flex items-center">
+              <span className="text-3xl mr-3">📱</span> スマート・モバイルオーダー
+            </h4>
+            <p className="text-xl text-gray-300 leading-relaxed font-noto">
+              ただいま、新しい注文システムを自作(DIY)で開発中。<br/>
+              近隣マンションからのデリバリー注文や、<br/>
+              公園の砂浜でくつろぎながらスマホでオーダーできる、<br/>
+              シームレスな近未来体験を準備しています。
+            </p>
+          </div>
+        </div>
+        
+        <div className="mt-12 inline-block border border-cyan-400/50 bg-black/60 px-10 py-5 rounded-full text-2xl font-bold text-cyan-400 shadow-[0_0_30px_rgba(0,229,255,0.2)]">
+          ※テクノロジーと手作りの温かさが融合する、新しい飲食店を目指して。
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const slides = [
   SlideConcept,
+  SlideFutureTech,
   SlideMenu,
   SlideShoeFree,
   SlideDayNight,
