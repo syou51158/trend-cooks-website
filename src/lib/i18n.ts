@@ -147,6 +147,19 @@ const resources = {
           }
         }
       },
+      tech: {
+        title: 'CO-CREATION & SMART EXPERIENCE',
+        subtitle: 'お客様と創る「未完成」から、近未来のオーダー体験へ。',
+        diy: {
+          title: '🛠️ AI×DIYで自作する注文システム',
+          desc: '私たちは内装だけでなく、テクノロジーもDIY！現在、最先端のAIを活用し、お店独自のスマートオーダーシステムを自ら開発しています。コストを抑えながらも、お客様にとって最高に使いやすいシステムを追求する「手作り×近未来」の挑戦にご期待ください。'
+        },
+        delivery: {
+          title: '🌊 柳が崎湖畔デリバリー（開発中）',
+          desc: 'お店から一歩飛び出し、柳が崎の湖畔（砂浜）でくつろぎながらスマホで注文・決済できる画期的なシステムを構築中。雄大な琵琶湖の景色を眺めながら、当店自慢の料理やドリンクをシームレスにお届けする「非日常のアウトドア体験」を準備しています！'
+        },
+        footer: '※テクノロジーと手作りの温かさが融合する、新しい飲食店を目指して。'
+      },
       features: {
         heading: '私たちの特徴',
         subheading: 'Trend Cooksが選ばれる理由',
@@ -567,6 +580,19 @@ const resources = {
             ]
           }
         }
+      },
+      tech: {
+        title: 'CO-CREATION & SMART EXPERIENCE',
+        subtitle: 'From "incomplete" co-creation to a near-future ordering experience.',
+        diy: {
+          title: '🛠️ AI × DIY Custom Ordering System',
+          desc: 'We DIY not just our interior, but our technology too! We are currently developing our own smart ordering system from scratch using cutting-edge AI. Look forward to our challenge of blending "handcrafted warmth" with "near-future tech" to create the ultimate user-friendly system.'
+        },
+        delivery: {
+          title: '🌊 Yanagasaki Lakeside Delivery (In Development)',
+          desc: 'We are building a groundbreaking system that lets you order and pay from your smartphone while relaxing on the sandy beach of Yanagasaki lakefront. We are preparing an "extraordinary outdoor experience" delivering our proud dishes and drinks seamlessly while you enjoy the magnificent view of Lake Biwa!'
+        },
+        footer: '* Aiming for a new kind of restaurant where technology meets handcrafted warmth.'
       },
       features: {
         heading: 'Our Features',

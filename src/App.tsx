@@ -3,13 +3,7 @@ import { Suspense, lazy } from 'react'
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Hero from './components/sections/Hero';
-// import Features from './components/sections/Features';
-// import About from './components/sections/About';
-// import Menu from './components/sections/Menu';
-// import Events from './components/sections/Events';
-// import News from './components/sections/News';
-// import Gallery from './components/sections/Gallery';
-// import Contact from './components/sections/Contact';
+import TechInnovation from './components/sections/TechInnovation';
 import './App.css';
 import { useTranslation } from 'react-i18next';
 
@@ -31,6 +25,7 @@ function App() {
       <Header />
       <main id="main-content" role="main">
         <Hero />
+        <TechInnovation />
         <Suspense fallback={<div className="max-w-7xl mx-auto px-4 py-16 text-center text-trend-text">{t('common.loading')}</div>}>
           <Features />
           <About />
