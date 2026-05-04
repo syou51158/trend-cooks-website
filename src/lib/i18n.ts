@@ -7,9 +7,9 @@ const resources = {
     translation: {
       hero: {
         title: 'Trend Cooks',
-        subtitle: '最新のトレンドと伝統の味が融合した、極上の食体験',
-        description: '厳選された近江牛と革新的な創作料理で、日常を忘れるような特別な美食の時間をお約束します。',
-        cta: '今すぐオンライン予約',
+        subtitle: '未完成という、最高のスパイス。',
+        description: 'ここは完成されたレストランではありません。お客様の声と共に毎日「進化」を続ける、実験的カフェ＆バーです。「みんなで作るお店」として、現在のメニューも日々調整中。ぜひあなたのご意見をお聞かせください。',
+        cta: '進化の過程を見に来る',
         ctaAria: 'お問い合わせセクションへ移動'
       },
       nav: {
@@ -311,8 +311,8 @@ const resources = {
       },
       // 追加: Menu セクション
       menu: {
-        title: 'メニュー',
-        subtitle: 'こだわりの創作料理と近江牛をお楽しみください',
+        title: 'メニュー（現在進化中！）',
+        subtitle: '現在表示されているメニューはプロトタイプ（仮）も含まれており、お客様のご意見を取り入れながら日々アップデートしています。本日の実際の提供メニューは店頭でご確認ください。',
         badges: {
           popular: '人気',
           special: '特選'
@@ -428,10 +428,10 @@ const resources = {
     translation: {
       hero: {
         title: 'Trend Cooks',
-        subtitle: 'A supreme culinary experience blending modern trends and timeless tradition',
+        subtitle: 'Being incomplete is our best spice.',
         description:
-          'Savor carefully selected Omi beef and innovative creative dishes in our secluded space, promising an unforgettable dining experience.',
-        cta: 'Book Online Now',
+          'This is not a finished restaurant. We are an experimental cafe & bar that evolves daily with our customers. As a "co-created shop", our current menu is constantly being adjusted. We would love to hear your feedback.',
+        cta: 'Come see our evolution',
         ctaAria: 'Jump to contact section'
       },
       nav: {
@@ -689,8 +689,8 @@ const resources = {
         ]
       },
       menu: {
-        title: 'Menu',
-        subtitle: 'Enjoy creative dishes and premium Omi beef',
+        title: 'Menu (Currently Evolving!)',
+        subtitle: 'The menu shown here includes prototypes and is updated daily based on customer feedback. Please check in-store for today\'s actual offerings.',
         badges: {
           popular: 'Popular',
           special: 'Special'

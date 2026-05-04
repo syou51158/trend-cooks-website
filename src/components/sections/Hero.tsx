@@ -20,9 +20,23 @@ const Hero = () => {
         imageUrl="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
         className="min-h-screen w-full"
         parallaxFactor={0.3}
-        overlayOpacity={0.5}
+        overlayOpacity={0.7}
       >
-        <div className="flex items-center justify-center min-h-screen w-full">
+        <div className="flex flex-col items-center justify-center min-h-screen w-full pt-20">
+          
+          {/* Evolving Alert Banner */}
+          <AnimatedElement animation="fadeInUp" delay={50} className="w-full max-w-4xl mx-auto px-4 mb-8">
+            <div className="bg-black/60 backdrop-blur-md border border-[#d4af37]/50 rounded-2xl p-4 sm:p-6 text-center shadow-[0_0_30px_rgba(212,175,55,0.2)]">
+              <span className="inline-block bg-[#d4af37] text-black text-xs sm:text-sm font-bold px-3 py-1 rounded-full mb-3 animate-pulse">
+                NOW EVOLVING
+              </span>
+              <p className="text-white text-sm sm:text-base md:text-lg font-medium leading-relaxed font-noto">
+                当店は現在<span className="text-[#d4af37] font-bold">「プレオープン（準備・調整中）」</span>の段階です。<br className="hidden sm:block"/>
+                お客様と一緒にメニューやお店の形を作っていくため、見学やアドバイスも大歓迎です！
+              </p>
+            </div>
+          </AnimatedElement>
+
           <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 text-center text-white">
             <AnimatedElement animation="fadeInUp" delay={100}>
               <h1 className="text-5xl md:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white mb-6 xl:mb-8 2xl:mb-12 leading-tight font-noto drop-shadow-2xl transform hover:scale-105 transition-transform duration-300">

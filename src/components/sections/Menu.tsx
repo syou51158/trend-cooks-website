@@ -434,10 +434,13 @@ const Menu = () => {
       <div className="max-w-7xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 relative z-10">
         <AnimatedElement animation="fadeInUp" delay={100}>
           <div className="text-center mb-16 xl:mb-20 2xl:mb-24">
+            <div className="inline-block bg-amber-100 border border-amber-300 text-amber-800 px-6 py-3 rounded-full mb-6 font-bold shadow-sm">
+              🚀 現在、メニューはプロトタイプも含め日々進化中です！
+            </div>
             <h2 className="text-3xl md:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-trend-text mb-4 xl:mb-6 2xl:mb-8 font-noto">
               {t('menu.title')}
             </h2>
-            <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
+            <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto max-w-3xl mx-auto">
               {t('menu.subtitle')}
             </p>
           </div>
