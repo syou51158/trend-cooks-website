@@ -27,7 +27,7 @@ const getAutoBusinessStatus = () => {
     return {
       badge: "PREPARING & PREVIEW",
       badgeColor: "bg-[#d4af37] text-black",
-      message: "本日は17:00オープン予定（早まる可能性あり）！準備中ですが【見学自由・ビール等提供OK】です。現在、AIを活用した独自の注文システムをDIYで絶賛開発中！「みんなで作るお店」として進化中ですので、ぜひ店内をご覧いただきアドバイスをください！",
+      message: "本日は17:00から調整・テスト営業をスタートします（早まる可能性あり）！現在準備中ですが【見学自由・ビール等提供OK】です。AIを活用した独自の注文システムもDIYで絶賛開発中！「みんなで作るお店」として進化中ですので、ぜひ店内をご覧いただきアドバイスをください！",
       overlay: "TOUR & DRINK OK",
       overlayColor: "bg-[#d4af37]/90 text-black",
       overlayDot: "bg-black",
