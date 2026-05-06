@@ -22,12 +22,12 @@ const getAutoBusinessStatus = () => {
   const minutes = getPart('minute');
   const time = hours + minutes / 60;
 
-  // --- 【特別対応】本日（5/5）の17:00までの特別メッセージ ---
-  if (year === 2026 && month === 5 && day === 5 && time < 17) {
+  // --- 【特別対応】本日（5/6）の17:00までの特別メッセージ ---
+  if (year === 2026 && month === 5 && day === 6 && time < 17) {
     return {
       badge: "PREPARING & PREVIEW",
       badgeColor: "bg-[#d4af37] text-black",
-      message: "本日は17:00オープン予定（早まる可能性あり）！準備中ですが【見学自由・ジュースやビール等ドリンク提供OK】です。「みんなで作るお店」として進化中ですので、ぜひ店内をご覧いただきアドバイスをください！",
+      message: "本日は17:00オープン予定（早まる可能性あり）！準備中ですが【見学自由・ビール等提供OK】です。現在、AIを活用した独自の注文システムをDIYで絶賛開発中！「みんなで作るお店」として進化中ですので、ぜひ店内をご覧いただきアドバイスをください！",
       overlay: "TOUR & DRINK OK",
       overlayColor: "bg-[#d4af37]/90 text-black",
       overlayDot: "bg-black",
