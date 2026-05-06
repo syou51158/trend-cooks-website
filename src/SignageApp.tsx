@@ -22,8 +22,8 @@ const getAutoBusinessStatus = () => {
   const minutes = getPart('minute');
   const time = hours + minutes / 60;
 
-  // --- 【特別対応】本日（5/6）の17:00までの特別メッセージ ---
-  if (year === 2026 && month === 5 && day === 6 && time < 17) {
+  // --- 【特別対応】本日（5/6 および 5/7）の17:00までの特別メッセージ ---
+  if (year === 2026 && month === 5 && (day === 6 || day === 7) && time < 17) {
     return {
       badge: "PREPARING & PREVIEW",
       badgeColor: "bg-[#d4af37] text-black",
