@@ -123,78 +123,107 @@ const SlideMenu = () => {
         .from('menus')
         .select('*')
         .eq('is_active', true)
-        .order('display_order', { ascending: true })
-        .limit(6);
+        .order('display_order', { ascending: true });
       
       if (!error && data) {
-        // 画像があるものを優先してセット
-        const withImages = data.filter(m => m.image_url);
-        const withoutImages = data.filter(m => !m.image_url);
-        setMenus([...withImages, ...withoutImages]);
+        setMenus(data);
       }
     };
     fetchMenus();
   }, []);
 
+  const resolveImageUrl = (url: string | null) => {
+    if (!url) return null;
+    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
+    return `/images/menu/${url}`;
+  };
+
   return (
-    <div className="absolute inset-0 flex bg-black">
+    <div className="absolute inset-0 flex flex-col bg-black overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Background" className="w-full h-full object-cover opacity-40" />
       </div>
       
-      <div className="relative z-10 w-full flex flex-col pt-32 pb-16 px-16">
-        <h2 className="text-5xl font-bold font-noto mb-10 text-white text-center tracking-widest" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
+      <div className="relative z-10 w-full flex flex-col pt-32 pb-16 h-full justify-between">
+        <h2 className="text-5xl font-bold font-noto mb-8 text-white text-center tracking-widest" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
           TODAY'S <span className="text-[#d4af37]">SPECIAL MENU</span>
         </h2>
         
-        <div className="flex-1 grid grid-cols-3 gap-8">
-          {menus.length > 0 ? menus.slice(0, 6).map((menu) => (
-            <div key={menu.id} className="bg-black/60 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group shadow-2xl">
-              {menu.status === 'sold_out' && (
-                <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-red-500 font-black text-6xl transform -rotate-12 border-4 border-red-500 px-6 py-2 rounded-xl">SOLD OUT</span>
+        {/* 流れる（Marquee）コンテナ */}
+        <div className="flex-1 flex items-center relative w-full overflow-hidden">
+          {menus.length > 0 ? (
+            <div className="flex w-max animate-[marquee_40s_linear_infinite]">
+              {/* ループ用に配列を2つ繋げる */}
+              {[...menus, ...menus].map((menu, idx) => (
+                <div key={`${menu.id}-${idx}`} className="w-[400px] h-[450px] flex-shrink-0 mx-6 bg-black/60 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden flex flex-col relative shadow-2xl">
+                  {menu.status === 'sold_out' && (
+                    <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
+                      <span className="text-red-500 font-black text-6xl transform -rotate-12 border-4 border-red-500 px-6 py-2 rounded-xl">SOLD OUT</span>
+                    </div>
+                  )}
+                  {menu.status === 'preparing' && (
+                    <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-sm">
+                      <span className="text-yellow-500 font-black text-5xl transform -rotate-12 border-4 border-yellow-500 px-6 py-2 rounded-xl bg-black/40">PREPARING</span>
+                    </div>
+                  )}
+                  
+                  <div className="h-56 relative overflow-hidden bg-zinc-900 flex items-center justify-center">
+                    {resolveImageUrl(menu.image_url) ? (
+                      <img 
+                        src={resolveImageUrl(menu.image_url)!} 
+                        alt={menu.name} 
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                          const parent = (e.target as HTMLImageElement).parentElement;
+                          if (parent && !parent.querySelector('.fallback-icon')) {
+                            const fallback = document.createElement('div');
+                            fallback.className = 'fallback-icon text-7xl';
+                            fallback.innerText = '🍽️';
+                            parent.appendChild(fallback);
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="text-7xl">🍽️</div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                  </div>
+                  
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white font-noto mb-2 line-clamp-2 leading-tight">{menu.name}</h3>
+                      {menu.description && <p className="text-gray-400 text-sm line-clamp-2">{menu.description}</p>}
+                    </div>
+                    <div className="mt-4 flex justify-between items-end">
+                      <span className="text-3xl font-bold text-[#d4af37]">¥{menu.price.toLocaleString()}</span>
+                      {menu.status === 'available' && <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-bold border border-green-500/30">AVAILABLE</span>}
+                    </div>
+                  </div>
                 </div>
-              )}
-              {menu.status === 'preparing' && (
-                <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-sm">
-                  <span className="text-yellow-500 font-black text-5xl transform -rotate-12 border-4 border-yellow-500 px-6 py-2 rounded-xl bg-black/40">PREPARING</span>
-                </div>
-              )}
-              
-              <div className="h-48 relative overflow-hidden bg-zinc-900">
-                {menu.image_url ? (
-                  <img src={menu.image_url} alt={menu.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-zinc-700 text-6xl">🍽️</div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-              </div>
-              
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-2xl font-bold text-white font-noto mb-2 line-clamp-2 leading-tight">{menu.name}</h3>
-                  {menu.description && <p className="text-gray-400 text-sm line-clamp-2">{menu.description}</p>}
-                </div>
-                <div className="mt-4 flex justify-between items-end">
-                  <span className="text-3xl font-bold text-[#d4af37]">¥{menu.price.toLocaleString()}</span>
-                  {menu.status === 'available' && <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold border border-green-500/30">AVAILABLE</span>}
-                </div>
-              </div>
+              ))}
             </div>
-          )) : (
-            // ロード中またはデータがない場合の一時表示
-            <div className="col-span-3 flex justify-center items-center h-full">
+          ) : (
+            <div className="w-full flex justify-center">
               <p className="text-3xl text-gray-400 animate-pulse">Loading menu from Trend Order...</p>
             </div>
           )}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-10 text-center z-10">
           <p className="inline-block text-2xl text-[#d4af37] font-medium bg-black/70 px-8 py-3 rounded-full border border-[#d4af37]/50 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.2)]">
             ※リアルタイムで在庫・メニューが変動します。モバイルオーダーから最新情報をご確認ください。
           </p>
         </div>
       </div>
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}
+      </style>
     </div>
   );
 };
