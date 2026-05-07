@@ -438,21 +438,21 @@ const SignageApp = () => {
       </div>
 
       {/* Global Bottom Ticker (Menu Marquee) */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/95 to-transparent z-40 flex flex-col justify-end pb-3 overflow-hidden pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-black/95 to-transparent z-40 flex flex-col justify-end pb-4 overflow-hidden pointer-events-none">
         {menus.length > 0 && (
-          <div className="flex w-max animate-[marquee_200s_linear_infinite]">
+          <div className="flex w-max animate-[marquee_300s_linear_infinite]">
             {[...menus, ...menus, ...menus, ...menus].map((menu, idx) => (
-              <div key={`${menu.id}-${idx}`} className="w-[420px] h-[96px] mx-6 bg-black/80 backdrop-blur-xl rounded-2xl border border-white/20 flex flex-row items-center overflow-hidden shadow-2xl">
+              <div key={`${menu.id}-${idx}`} className="w-[500px] h-[120px] mx-6 bg-black/80 backdrop-blur-xl rounded-3xl border border-white/20 flex flex-row items-center overflow-hidden shadow-2xl">
                 {/* Image */}
-                <div className="w-32 h-full relative flex-shrink-0 bg-zinc-900">
+                <div className="w-40 h-full relative flex-shrink-0 bg-zinc-900">
                   {menu.status === 'sold_out' && (
                     <div className="absolute inset-0 bg-black/80 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-red-500 font-black text-xs border-2 border-red-500 px-2 py-0.5 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
+                      <span className="text-red-500 font-black text-sm border-2 border-red-500 px-2 py-1 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
                     </div>
                   )}
                   {menu.status === 'preparing' && (
                     <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-yellow-500 font-black text-xs border-2 border-yellow-500 px-2 py-0.5 rounded bg-black/40 transform -rotate-12">PREPARING</span>
+                      <span className="text-yellow-500 font-black text-sm border-2 border-yellow-500 px-2 py-1 rounded bg-black/40 transform -rotate-12">PREPARING</span>
                     </div>
                   )}
                   {resolveImageUrl(menu.image_url) ? (
@@ -465,22 +465,22 @@ const SignageApp = () => {
                         const parent = (e.target as HTMLImageElement).parentElement;
                         if (parent && !parent.querySelector('.fallback-icon')) {
                           const fallback = document.createElement('div');
-                          fallback.className = 'fallback-icon text-4xl flex items-center justify-center w-full h-full';
+                          fallback.className = 'fallback-icon text-5xl flex items-center justify-center w-full h-full';
                           fallback.innerText = '🍽️';
                           parent.appendChild(fallback);
                         }
                       }}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-4xl">🍽️</div>
+                    <div className="w-full h-full flex items-center justify-center text-5xl">🍽️</div>
                   )}
                 </div>
                 {/* Info */}
-                <div className="flex-1 p-4 flex flex-col justify-center">
-                  <h4 className="text-white font-bold text-lg line-clamp-1 leading-tight">{menu.name}</h4>
+                <div className="flex-1 p-5 flex flex-col justify-center">
+                  <h4 className="text-white font-bold text-xl line-clamp-1 leading-tight">{menu.name}</h4>
                   <div className="flex justify-between items-center mt-2">
-                    <span className="text-[#d4af37] font-black text-xl">¥{menu.price.toLocaleString()}</span>
-                    {menu.status === 'available' && <span className="text-green-400 text-xs font-bold border border-green-500/30 px-2 py-0.5 rounded bg-green-500/10">AVAILABLE</span>}
+                    <span className="text-[#d4af37] font-black text-2xl">¥{menu.price.toLocaleString()}</span>
+                    {menu.status === 'available' && <span className="text-green-400 text-sm font-bold border border-green-500/30 px-3 py-1 rounded-full bg-green-500/10">AVAILABLE</span>}
                   </div>
                 </div>
               </div>
