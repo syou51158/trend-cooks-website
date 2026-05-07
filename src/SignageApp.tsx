@@ -312,8 +312,8 @@ const SignageApp = () => {
     };
     fetchMenus();
     
-    // 5分ごとにメニューを更新（リアルタイム性）
-    const menuTimer = setInterval(fetchMenus, 300000);
+    // 30秒ごとにメニューを更新（リアルタイム性を向上）
+    const menuTimer = setInterval(fetchMenus, 30000);
     return () => clearInterval(menuTimer);
   }, []);
 
