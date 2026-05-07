@@ -113,120 +113,28 @@ const SlideConcept = () => (
   </div>
 );
 
-// Slide 2: Today's Special Images (Dynamic from Trend Order)
-const SlideMenu = () => {
-  const [menus, setMenus] = useState<any[]>([]);
-
-  useEffect(() => {
-    const fetchMenus = async () => {
-      const { data, error } = await trendOrderSupabase
-        .from('menus')
-        .select('*')
-        .eq('is_active', true)
-        .order('display_order', { ascending: true });
+// Slide 2: Today's Special Images (Static Highlight)
+const SlideMenu = () => (
+  <div className="absolute inset-0 flex bg-black">
+    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
+      <img src="/images/menu/stewed_hamburger.jpg" alt="国産合挽き煮込みハンバーグ定食" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
       
-      if (!error && data) {
-        setMenus(data);
-      }
-    };
-    fetchMenus();
-  }, []);
-
-  const resolveImageUrl = (url: string | null) => {
-    if (!url) return null;
-    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
-    return `/images/menu/${url}`;
-  };
-
-  return (
-    <div className="absolute inset-0 flex flex-col bg-black overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Background" className="w-full h-full object-cover opacity-40" />
+      <div className="absolute top-32 left-12 z-20 bg-white/95 backdrop-blur-md px-8 py-4 rounded-br-3xl rounded-tl-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-l-8 border-[#d4af37]">
+        <h3 className="text-zinc-900 font-noto font-black text-5xl tracking-wider">SIGNATURE</h3>
       </div>
-      
-      <div className="relative z-10 w-full flex flex-col pt-32 pb-16 h-full justify-between">
-        <h2 className="text-5xl font-bold font-noto mb-8 text-white text-center tracking-widest" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
-          TODAY'S <span className="text-[#d4af37]">SPECIAL MENU</span>
-        </h2>
-        
-        {/* 流れる（Marquee）コンテナ */}
-        <div className="flex-1 flex items-center relative w-full overflow-hidden">
-          {menus.length > 0 ? (
-            <div className="flex w-max animate-[marquee_40s_linear_infinite]">
-              {/* ループ用に配列を2つ繋げる */}
-              {[...menus, ...menus].map((menu, idx) => (
-                <div key={`${menu.id}-${idx}`} className="w-[400px] h-[450px] flex-shrink-0 mx-6 bg-black/60 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden flex flex-col relative shadow-2xl">
-                  {menu.status === 'sold_out' && (
-                    <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-red-500 font-black text-6xl transform -rotate-12 border-4 border-red-500 px-6 py-2 rounded-xl">SOLD OUT</span>
-                    </div>
-                  )}
-                  {menu.status === 'preparing' && (
-                    <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-yellow-500 font-black text-5xl transform -rotate-12 border-4 border-yellow-500 px-6 py-2 rounded-xl bg-black/40">PREPARING</span>
-                    </div>
-                  )}
-                  
-                  <div className="h-56 relative overflow-hidden bg-zinc-900 flex items-center justify-center">
-                    {resolveImageUrl(menu.image_url) ? (
-                      <img 
-                        src={resolveImageUrl(menu.image_url)!} 
-                        alt={menu.name} 
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                          const parent = (e.target as HTMLImageElement).parentElement;
-                          if (parent && !parent.querySelector('.fallback-icon')) {
-                            const fallback = document.createElement('div');
-                            fallback.className = 'fallback-icon text-7xl';
-                            fallback.innerText = '🍽️';
-                            parent.appendChild(fallback);
-                          }
-                        }}
-                      />
-                    ) : (
-                      <div className="text-7xl">🍽️</div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                  </div>
-                  
-                  <div className="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white font-noto mb-2 line-clamp-2 leading-tight">{menu.name}</h3>
-                      {menu.description && <p className="text-gray-400 text-sm line-clamp-2">{menu.description}</p>}
-                    </div>
-                    <div className="mt-4 flex justify-between items-end">
-                      <span className="text-3xl font-bold text-[#d4af37]">¥{menu.price.toLocaleString()}</span>
-                      {menu.status === 'available' && <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-bold border border-green-500/30">AVAILABLE</span>}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="w-full flex justify-center">
-              <p className="text-3xl text-gray-400 animate-pulse">Loading menu from Trend Order...</p>
-            </div>
-          )}
-        </div>
-
-        <div className="mt-10 text-center z-10">
-          <p className="inline-block text-2xl text-[#d4af37] font-medium bg-black/70 px-8 py-3 rounded-full border border-[#d4af37]/50 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-            ※リアルタイムで在庫・メニューが変動します。モバイルオーダーから最新情報をご確認ください。
-          </p>
-        </div>
-      </div>
-      <style>
-        {`
-          @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-        `}
-      </style>
     </div>
-  );
-};
+    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
+      <img src="/images/menu/beer_menu.jpg" alt="アサヒスーパードライ" className="absolute inset-0 w-full h-full object-cover opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+    </div>
+    <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20">
+      <p className="text-2xl text-[#d4af37] font-medium bg-black/80 px-8 py-3 rounded-full border border-[#d4af37]/50 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+        ※メニューは日々進化します。本日の味をお楽しみください。
+      </p>
+    </div>
+  </div>
+);
 
 // Slide 3: Shoe-free / Hidden Retreat Concept
 const SlideShoeFree = () => (
@@ -376,6 +284,7 @@ const slides = [
 const SignageApp = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [bizStatus, setBizStatus] = useState(getAutoBusinessStatus());
+  const [menus, setMenus] = useState<any[]>([]);
 
   useEffect(() => {
     // スライドを8秒ごとに自動切り替え
@@ -385,6 +294,32 @@ const SignageApp = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    // Trend Orderからメニューを取得
+    const fetchMenus = async () => {
+      const { data, error } = await trendOrderSupabase
+        .from('menus')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+      
+      if (!error && data) {
+        setMenus(data);
+      }
+    };
+    fetchMenus();
+    
+    // 5分ごとにメニューを更新（リアルタイム性）
+    const menuTimer = setInterval(fetchMenus, 300000);
+    return () => clearInterval(menuTimer);
+  }, []);
+
+  const resolveImageUrl = (url: string | null) => {
+    if (!url) return null;
+    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
+    return `/images/menu/${url}`;
+  };
 
   useEffect(() => {
     // Supabaseから設定を取得してステータスを更新する関数
@@ -495,10 +430,70 @@ const SignageApp = () => {
       </div>
 
       {/* Global Overlay */}
-      <div className={`absolute bottom-8 right-8 z-50 flex items-center space-x-3 ${bizStatus.overlayColor} backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl transition-colors duration-1000`}>
+      <div className={`absolute bottom-[104px] right-8 z-50 flex items-center space-x-3 ${bizStatus.overlayColor} backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl transition-colors duration-1000`}>
         <div className={`w-4 h-4 rounded-full ${bizStatus.overlayDot} ${bizStatus.isPulse ? 'animate-pulse' : ''}`}></div>
         <span className="text-xl font-bold tracking-widest font-noto">{bizStatus.overlay}</span>
       </div>
+
+      {/* Global Bottom Ticker (Menu Marquee) */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black via-black/90 to-transparent z-40 flex flex-col justify-end pb-2 overflow-hidden pointer-events-none">
+        {menus.length > 0 && (
+          <div className="flex w-max animate-[marquee_120s_linear_infinite]">
+            {[...menus, ...menus, ...menus, ...menus].map((menu, idx) => (
+              <div key={`${menu.id}-${idx}`} className="w-[320px] h-[72px] mx-4 bg-black/80 backdrop-blur-md rounded-xl border border-white/20 flex flex-row items-center overflow-hidden shadow-lg">
+                {/* Image */}
+                <div className="w-24 h-full relative flex-shrink-0 bg-zinc-900">
+                  {menu.status === 'sold_out' && (
+                    <div className="absolute inset-0 bg-black/80 z-20 flex items-center justify-center backdrop-blur-sm">
+                      <span className="text-red-500 font-black text-[10px] border border-red-500 px-1 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
+                    </div>
+                  )}
+                  {menu.status === 'preparing' && (
+                    <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
+                      <span className="text-yellow-500 font-black text-[10px] border border-yellow-500 px-1 rounded bg-black/40 transform -rotate-12">PREPARING</span>
+                    </div>
+                  )}
+                  {resolveImageUrl(menu.image_url) ? (
+                    <img 
+                      src={resolveImageUrl(menu.image_url)!} 
+                      alt={menu.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                        const parent = (e.target as HTMLImageElement).parentElement;
+                        if (parent && !parent.querySelector('.fallback-icon')) {
+                          const fallback = document.createElement('div');
+                          fallback.className = 'fallback-icon text-3xl flex items-center justify-center w-full h-full';
+                          fallback.innerText = '🍽️';
+                          parent.appendChild(fallback);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-3xl">🍽️</div>
+                  )}
+                </div>
+                {/* Info */}
+                <div className="flex-1 p-3 flex flex-col justify-center">
+                  <h4 className="text-white font-bold text-sm line-clamp-1 leading-tight">{menu.name}</h4>
+                  <div className="flex justify-between items-center mt-1">
+                    <span className="text-[#d4af37] font-bold text-sm">¥{menu.price.toLocaleString()}</span>
+                    {menu.status === 'available' && <span className="text-green-400 text-[10px] font-bold border border-green-500/30 px-1 rounded bg-green-500/10">AVAILABLE</span>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+        `}
+      </style>
     </div>
   );
 };
