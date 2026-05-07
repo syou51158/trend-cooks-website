@@ -116,20 +116,22 @@ const SlideConcept = () => (
 // Slide 2: Today's Special Images (Static Highlight)
 const SlideMenu = () => (
   <div className="absolute inset-0 flex bg-black">
-    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
-      <img src="/images/menu/stewed_hamburger.jpg" alt="国産合挽き煮込みハンバーグ定食" className="absolute inset-0 w-full h-full object-cover opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center overflow-hidden">
+      <img src="/menu-images/premium-chicken-box-l.jpg" alt="プレミアム韓国チキンボックス" className="absolute inset-0 w-full h-full object-cover opacity-90 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent"></div>
       
-      <div className="absolute top-32 left-12 z-20 bg-white/95 backdrop-blur-md px-8 py-4 rounded-br-3xl rounded-tl-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-l-8 border-[#d4af37]">
-        <h3 className="text-zinc-900 font-noto font-black text-5xl tracking-wider">SIGNATURE</h3>
+      <div className="absolute top-32 left-12 z-20">
+        <p className="text-cyan-400 font-bold tracking-[0.3em] text-2xl mb-2 drop-shadow-[0_0_8px_rgba(0,229,255,0.8)]">TREND SIGNATURE</p>
+        <h3 className="text-white font-noto font-black text-7xl tracking-wider leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">PREMIUM<br/>CHICKEN BOX</h3>
       </div>
     </div>
     <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
       <img src="/images/menu/beer_menu.jpg" alt="アサヒスーパードライ" className="absolute inset-0 w-full h-full object-cover opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
     </div>
-    <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 z-20">
-      <p className="text-2xl text-[#d4af37] font-medium bg-black/80 px-8 py-3 rounded-full border border-[#d4af37]/50 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+    <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 z-20">
+      <p className="text-3xl text-cyan-400 font-medium bg-black/80 px-10 py-4 rounded-full border border-cyan-400/50 backdrop-blur-md shadow-[0_0_30px_rgba(0,229,255,0.3)]">
         ※メニューは日々進化します。本日の味をお楽しみください。
       </p>
     </div>
@@ -436,21 +438,21 @@ const SignageApp = () => {
       </div>
 
       {/* Global Bottom Ticker (Menu Marquee) */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black via-black/90 to-transparent z-40 flex flex-col justify-end pb-2 overflow-hidden pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/95 to-transparent z-40 flex flex-col justify-end pb-3 overflow-hidden pointer-events-none">
         {menus.length > 0 && (
-          <div className="flex w-max animate-[marquee_120s_linear_infinite]">
+          <div className="flex w-max animate-[marquee_200s_linear_infinite]">
             {[...menus, ...menus, ...menus, ...menus].map((menu, idx) => (
-              <div key={`${menu.id}-${idx}`} className="w-[320px] h-[72px] mx-4 bg-black/80 backdrop-blur-md rounded-xl border border-white/20 flex flex-row items-center overflow-hidden shadow-lg">
+              <div key={`${menu.id}-${idx}`} className="w-[420px] h-[96px] mx-6 bg-black/80 backdrop-blur-xl rounded-2xl border border-white/20 flex flex-row items-center overflow-hidden shadow-2xl">
                 {/* Image */}
-                <div className="w-24 h-full relative flex-shrink-0 bg-zinc-900">
+                <div className="w-32 h-full relative flex-shrink-0 bg-zinc-900">
                   {menu.status === 'sold_out' && (
                     <div className="absolute inset-0 bg-black/80 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-red-500 font-black text-[10px] border border-red-500 px-1 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
+                      <span className="text-red-500 font-black text-xs border-2 border-red-500 px-2 py-0.5 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
                     </div>
                   )}
                   {menu.status === 'preparing' && (
                     <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-yellow-500 font-black text-[10px] border border-yellow-500 px-1 rounded bg-black/40 transform -rotate-12">PREPARING</span>
+                      <span className="text-yellow-500 font-black text-xs border-2 border-yellow-500 px-2 py-0.5 rounded bg-black/40 transform -rotate-12">PREPARING</span>
                     </div>
                   )}
                   {resolveImageUrl(menu.image_url) ? (
@@ -463,22 +465,22 @@ const SignageApp = () => {
                         const parent = (e.target as HTMLImageElement).parentElement;
                         if (parent && !parent.querySelector('.fallback-icon')) {
                           const fallback = document.createElement('div');
-                          fallback.className = 'fallback-icon text-3xl flex items-center justify-center w-full h-full';
+                          fallback.className = 'fallback-icon text-4xl flex items-center justify-center w-full h-full';
                           fallback.innerText = '🍽️';
                           parent.appendChild(fallback);
                         }
                       }}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-3xl">🍽️</div>
+                    <div className="w-full h-full flex items-center justify-center text-4xl">🍽️</div>
                   )}
                 </div>
                 {/* Info */}
-                <div className="flex-1 p-3 flex flex-col justify-center">
-                  <h4 className="text-white font-bold text-sm line-clamp-1 leading-tight">{menu.name}</h4>
-                  <div className="flex justify-between items-center mt-1">
-                    <span className="text-[#d4af37] font-bold text-sm">¥{menu.price.toLocaleString()}</span>
-                    {menu.status === 'available' && <span className="text-green-400 text-[10px] font-bold border border-green-500/30 px-1 rounded bg-green-500/10">AVAILABLE</span>}
+                <div className="flex-1 p-4 flex flex-col justify-center">
+                  <h4 className="text-white font-bold text-lg line-clamp-1 leading-tight">{menu.name}</h4>
+                  <div className="flex justify-between items-center mt-2">
+                    <span className="text-[#d4af37] font-black text-xl">¥{menu.price.toLocaleString()}</span>
+                    {menu.status === 'available' && <span className="text-green-400 text-xs font-bold border border-green-500/30 px-2 py-0.5 rounded bg-green-500/10">AVAILABLE</span>}
                   </div>
                 </div>
               </div>
