@@ -1,14 +1,40 @@
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import { useParallax } from '@/hooks/useParallax';
 import { Wine, Star, Crown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { trendOrderSupabase } from '@/lib/trendOrderClient';
 
 const Menu = () => {
   const parallaxOffset = useParallax(0.1);
   const { t, i18n } = useTranslation();
   const isJa = i18n.language?.startsWith('ja');
+
+  // Trend Orderからのリアルタイムメニュー
+  const [currentMenus, setCurrentMenus] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchMenus = async () => {
+      const { data, error } = await trendOrderSupabase
+        .from('menus')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+      
+      if (!error && data) {
+        setCurrentMenus(data);
+      }
+    };
+    fetchMenus();
+  }, []);
+
+  const resolveImageUrl = (url: string | null) => {
+    if (!url) return null;
+    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
+    return `/images/menu/${url}`;
+  };
 
   // 昼間営業 - 創作ランチプレート（基本メニュー）
   const lunchMenu = [
@@ -441,13 +467,111 @@ const Menu = () => {
               {t('menu.title')}
             </h2>
             <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto max-w-3xl mx-auto">
-              {t('menu.subtitle')}
+              リアルタイムで提供中のメニューと、今後の進化をお楽しみください。
             </p>
           </div>
         </AnimatedElement>
 
-        {/* 昼間営業 */}
-        <div className="mb-16 xl:mb-20 2xl:mb-24">
+        {/* リアルタイム提供中メニュー（Trend Order連携） */}
+        <div className="mb-24 xl:mb-32 2xl:mb-40">
+          <AnimatedElement animation="fadeInUp" delay={200}>
+            <div className="text-center mb-12 xl:mb-16 2xl:mb-20 relative">
+              <h3 className="text-3xl xl:text-4xl 2xl:text-5xl font-bold text-trend-accent mb-4 xl:mb-6 2xl:mb-8 font-noto inline-block relative">
+                現在提供中のメニュー
+                <span className="absolute -top-6 -right-12 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">LIVE!</span>
+              </h3>
+              <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-600 font-noto">
+                厨房とリアルタイムで連動しています。（※売り切れ・準備中の場合があります）
+              </p>
+            </div>
+          </AnimatedElement>
+
+          {currentMenus.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 xl:gap-8 2xl:gap-10">
+              {currentMenus.map((item, index) => (
+                <AnimatedElement key={index} animation="scaleIn" delay={250 + index * 50}>
+                  <Card className="border-none shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group h-full overflow-hidden flex flex-col bg-white">
+                    <div className="relative h-56 xl:h-64 2xl:h-72 w-full overflow-hidden bg-zinc-100 flex items-center justify-center">
+                      {item.status === 'sold_out' && (
+                        <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-[2px]">
+                          <span className="text-red-500 font-black text-2xl border-4 border-red-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">SOLD OUT</span>
+                        </div>
+                      )}
+                      {item.status === 'preparing' && (
+                        <div className="absolute inset-0 bg-black/50 z-20 flex items-center justify-center backdrop-blur-[2px]">
+                          <span className="text-yellow-500 font-black text-2xl border-4 border-yellow-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">PREPARING</span>
+                        </div>
+                      )}
+                      {resolveImageUrl(item.image_url) ? (
+                        <img
+                          src={resolveImageUrl(item.image_url)!}
+                          alt={item.name}
+                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                          loading="lazy"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = 'none';
+                            const parent = (e.target as HTMLImageElement).parentElement;
+                            if (parent && !parent.querySelector('.fallback-icon')) {
+                              const fallback = document.createElement('div');
+                              fallback.className = 'fallback-icon text-6xl text-gray-300';
+                              fallback.innerText = '🍽️';
+                              parent.appendChild(fallback);
+                            }
+                          }}
+                        />
+                      ) : (
+                        <div className="text-6xl text-gray-300">🍽️</div>
+                      )}
+                    </div>
+                    <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col flex-grow">
+                      <div className="flex justify-between items-start mb-3">
+                        <h4 className="text-xl xl:text-2xl font-bold text-trend-text font-noto group-hover:text-trend-accent transition-colors duration-300 leading-tight">
+                          {item.name}
+                        </h4>
+                      </div>
+                      {item.description && (
+                        <p className="text-gray-600 text-sm xl:text-base font-noto mb-6 flex-grow leading-relaxed">
+                          {item.description}
+                        </p>
+                      )}
+                      <div className="flex justify-between items-end mt-auto pt-4 border-t border-gray-100">
+                        <span className="text-trend-accent text-2xl xl:text-3xl font-black font-noto">
+                          ¥{item.price.toLocaleString()}
+                        </span>
+                        {item.status === 'available' && (
+                          <Badge className="bg-green-500/10 text-green-600 hover:bg-green-500/20 border-green-200">
+                            提供可能
+                          </Badge>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedElement>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-gray-50 rounded-3xl border border-gray-200">
+              <p className="text-2xl text-gray-400 font-noto animate-pulse">メニュー情報を取得中...</p>
+            </div>
+          )}
+        </div>
+
+        {/* --- ここから下は「今後出す予定のメニュー（既存の全メニュー）」 --- */}
+        <AnimatedElement animation="fadeInUp" delay={400}>
+          <div className="bg-gradient-to-b from-gray-50 to-white rounded-[3rem] p-8 xl:p-12 2xl:p-16 border border-gray-200 shadow-inner relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-trend-accent via-amber-400 to-trend-text"></div>
+            
+            <div className="text-center mb-16 xl:mb-20">
+              <h2 className="text-4xl xl:text-5xl 2xl:text-6xl font-bold text-gray-800 mb-6 font-noto">
+                {t('menu.future.title') || '今後出す予定のメニュー（開発中）'}
+              </h2>
+              <p className="text-xl text-gray-500 font-noto max-w-3xl mx-auto">
+                私たちはお客様のフィードバックをもとに、常に新しいメニューを開発しています。以下は、近日中に順次提供開始を予定しているメニューのラインナップです。
+              </p>
+            </div>
+
+            {/* 昼間営業予定 */}
+            <div className="mb-16 xl:mb-20 2xl:mb-24 opacity-80 hover:opacity-100 transition-opacity duration-500">
           <AnimatedElement animation="fadeInLeft" delay={200}>
             <div className="text-center mb-12 xl:mb-16 2xl:mb-20">
               <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-4 xl:mb-6 2xl:mb-8 font-noto">
@@ -952,9 +1076,9 @@ const Menu = () => {
 
         {/* 将来展開 */}
         <AnimatedElement animation="fadeInUp" delay={900}>
-          <div className="bg-gradient-to-r from-trend-accent/5 to-trend-accent/10 rounded-lg p-8 xl:p-12 2xl:p-16 text-center">
+          <div className="bg-gradient-to-r from-trend-accent/5 to-trend-accent/10 rounded-lg p-8 xl:p-12 2xl:p-16 text-center mt-16">
             <h3 className="text-2xl xl:text-3xl 2xl:text-4xl font-bold text-trend-accent mb-6 xl:mb-8 2xl:mb-10 font-noto">
-              {t('menu.future.title')}
+              その他のアイデア・構想
             </h3>
             <p className="text-lg xl:text-xl 2xl:text-2xl text-gray-700 font-noto mb-8 xl:mb-12 2xl:mb-16">
               {t('menu.future.desc')}
@@ -1011,6 +1135,7 @@ const Menu = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
           </div>
         </AnimatedElement>
 
