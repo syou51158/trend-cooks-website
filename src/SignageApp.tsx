@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './lib/supabaseClient';
+import { trendOrderSupabase } from './lib/trendOrderClient';
 import './App.css';
 
 // 現在の営業状態を取得する関数（自動判定ロジック）
@@ -112,30 +113,91 @@ const SlideConcept = () => (
   </div>
 );
 
-// Slide 2: Today's Special Images
-const SlideMenu = () => (
-  <div className="absolute inset-0 flex bg-black">
-    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
-      <img src="/images/menu/stewed_hamburger.jpg" alt="国産合挽き煮込みハンバーグ定食" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+// Slide 2: Today's Special Images (Dynamic from Trend Order)
+const SlideMenu = () => {
+  const [menus, setMenus] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchMenus = async () => {
+      const { data, error } = await trendOrderSupabase
+        .from('menus')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true })
+        .limit(6);
       
-      {/* LUNCH MENU Badge */}
-      <div className="absolute top-12 left-12 z-20 bg-white/95 backdrop-blur-md px-8 py-4 rounded-br-3xl rounded-tl-3xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-l-8 border-[#d4af37]">
-        <p className="text-[#d4af37] font-bold tracking-widest text-xl mb-1">11:00 - 17:00 限定</p>
-        <h3 className="text-zinc-900 font-noto font-black text-5xl tracking-wider">LUNCH MENU</h3>
+      if (!error && data) {
+        // 画像があるものを優先してセット
+        const withImages = data.filter(m => m.image_url);
+        const withoutImages = data.filter(m => !m.image_url);
+        setMenus([...withImages, ...withoutImages]);
+      }
+    };
+    fetchMenus();
+  }, []);
+
+  return (
+    <div className="absolute inset-0 flex bg-black">
+      <div className="absolute inset-0 z-0">
+        <img src="/images/signage/bg_luxury_dark.svg" alt="Luxury Background" className="w-full h-full object-cover opacity-40" />
+      </div>
+      
+      <div className="relative z-10 w-full flex flex-col pt-32 pb-16 px-16">
+        <h2 className="text-5xl font-bold font-noto mb-10 text-white text-center tracking-widest" style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}>
+          TODAY'S <span className="text-[#d4af37]">SPECIAL MENU</span>
+        </h2>
+        
+        <div className="flex-1 grid grid-cols-3 gap-8">
+          {menus.length > 0 ? menus.slice(0, 6).map((menu) => (
+            <div key={menu.id} className="bg-black/60 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden flex flex-col relative group shadow-2xl">
+              {menu.status === 'sold_out' && (
+                <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-red-500 font-black text-6xl transform -rotate-12 border-4 border-red-500 px-6 py-2 rounded-xl">SOLD OUT</span>
+                </div>
+              )}
+              {menu.status === 'preparing' && (
+                <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-sm">
+                  <span className="text-yellow-500 font-black text-5xl transform -rotate-12 border-4 border-yellow-500 px-6 py-2 rounded-xl bg-black/40">PREPARING</span>
+                </div>
+              )}
+              
+              <div className="h-48 relative overflow-hidden bg-zinc-900">
+                {menu.image_url ? (
+                  <img src={menu.image_url} alt={menu.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-zinc-700 text-6xl">🍽️</div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+              </div>
+              
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-white font-noto mb-2 line-clamp-2 leading-tight">{menu.name}</h3>
+                  {menu.description && <p className="text-gray-400 text-sm line-clamp-2">{menu.description}</p>}
+                </div>
+                <div className="mt-4 flex justify-between items-end">
+                  <span className="text-3xl font-bold text-[#d4af37]">¥{menu.price.toLocaleString()}</span>
+                  {menu.status === 'available' && <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold border border-green-500/30">AVAILABLE</span>}
+                </div>
+              </div>
+            </div>
+          )) : (
+            // ロード中またはデータがない場合の一時表示
+            <div className="col-span-3 flex justify-center items-center h-full">
+              <p className="text-3xl text-gray-400 animate-pulse">Loading menu from Trend Order...</p>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-10 text-center">
+          <p className="inline-block text-2xl text-[#d4af37] font-medium bg-black/70 px-8 py-3 rounded-full border border-[#d4af37]/50 backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+            ※リアルタイムで在庫・メニューが変動します。モバイルオーダーから最新情報をご確認ください。
+          </p>
+        </div>
       </div>
     </div>
-    <div className="w-1/2 relative bg-black flex flex-col justify-center items-center">
-      <img src="/images/menu/beer_menu.jpg" alt="アサヒスーパードライ" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-    </div>
-    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-      <p className="text-2xl text-[#d4af37] font-medium bg-black/70 px-8 py-3 rounded-full border border-[#d4af37]/50 backdrop-blur-md shadow-lg">
-        ※メニューは日々進化します。本日の味をお楽しみください。
-      </p>
-    </div>
-  </div>
-);
+  );
+};
 
 // Slide 3: Shoe-free / Hidden Retreat Concept
 const SlideShoeFree = () => (
