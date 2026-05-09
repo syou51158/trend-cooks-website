@@ -6,6 +6,8 @@ import { useParallax } from '@/hooks/useParallax';
 import { useTranslation } from 'react-i18next';
 import { trendOrderSupabase } from '@/lib/trendOrderClient';
 
+const CACHE_BUSTER = Date.now();
+
 const Menu = () => {
   const parallaxOffset = useParallax(0.1);
   const { t, i18n } = useTranslation();
@@ -31,8 +33,12 @@ const Menu = () => {
 
   const resolveImageUrl = (url: string | null) => {
     if (!url) return null;
-    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
-    return `/images/menu/${url}`;
+    let finalUrl = url;
+    if (!(url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))) {
+      finalUrl = `/images/menu/${url}`;
+    }
+    const separator = finalUrl.includes('?') ? '&' : '?';
+    return `${finalUrl}${separator}cb=${CACHE_BUSTER}`;
   };
 
   // 昼間営業 - 創作ランチプレート（基本メニュー）

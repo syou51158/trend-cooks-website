@@ -3,6 +3,8 @@ import { supabase } from './lib/supabaseClient';
 import { trendOrderSupabase } from './lib/trendOrderClient';
 import './App.css';
 
+const CACHE_BUSTER = Date.now();
+
 // 現在の営業状態を取得する関数（自動判定ロジック）
 const getAutoBusinessStatus = () => {
   const now = new Date();
@@ -319,8 +321,12 @@ const SignageApp = () => {
 
   const resolveImageUrl = (url: string | null) => {
     if (!url) return null;
-    if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
-    return `/images/menu/${url}`;
+    let finalUrl = url;
+    if (!(url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))) {
+      finalUrl = `/images/menu/${url}`;
+    }
+    const separator = finalUrl.includes('?') ? '&' : '?';
+    return `${finalUrl}${separator}cb=${CACHE_BUSTER}`;
   };
 
   useEffect(() => {
