@@ -117,7 +117,7 @@ const SlideConcept = () => (
 const SlideMenu = () => (
   <div className="absolute inset-0 flex bg-black">
     <div className="w-1/2 relative bg-black flex flex-col justify-center items-center overflow-hidden">
-      <img src="/menu-images/premium-chicken-box-l.jpg" alt="プレミアム韓国チキンボックス" className="absolute inset-0 w-full h-full object-cover opacity-90 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" />
+      <img src="/images/menu/premium-chicken-box-l.jpg" alt="プレミアム韓国チキンボックス" className="absolute inset-0 w-full h-full object-cover opacity-90 scale-105 animate-[pulse_10s_ease-in-out_infinite_alternate]" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-transparent"></div>
       
