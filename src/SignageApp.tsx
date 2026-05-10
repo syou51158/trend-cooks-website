@@ -24,6 +24,21 @@ const getAutoBusinessStatus = () => {
   const hours = getPart('hour');
   const minutes = getPart('minute');
   const time = hours + minutes / 60;
+  const dayOfWeek = now.getDay(); // 0: Sunday, 1: Monday, ...
+
+  // --- 【定休日（月曜日）の対応】 ---
+  if (dayOfWeek === 1) {
+    return {
+      badge: "REGULAR HOLIDAY",
+      badgeColor: "bg-zinc-600 text-white",
+      message: "本日は定休日となっております。ご不便をおかけしますが、明日のご来店を心よりお待ちしております。",
+      overlay: "CLOSED",
+      overlayColor: "bg-zinc-800/90 text-white",
+      overlayDot: "bg-red-500",
+      isPulse: false
+    };
+  }
+  // -------------------------------------------------------------------------
 
   // --- 【特別対応】5月15日までの17:00オープン（プレオープン/調整期間）メッセージ ---
   if (year === 2026 && month === 5 && day <= 15 && time < 17) {
