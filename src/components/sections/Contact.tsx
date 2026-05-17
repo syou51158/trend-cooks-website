@@ -62,7 +62,7 @@ const Contact = () => {
     }
     
     try {
-      const { error } = await trendOrderSupabase.from('contacts').insert([{
+      const payload = {
         type: formData.type,
         name: formData.name,
         email: formData.email,
@@ -71,9 +71,25 @@ const Contact = () => {
         reservation_time: formData.time || null,
         guests: formData.guests ? parseInt(formData.guests) : null,
         message: formData.message + (formData.menu ? `\n\n【希望メニュー】${formData.menu}` : '')
-      }]);
+      };
 
+      // 1. Supabaseへ履歴を保存（Trend Order管理画面用）
+      const { error } = await trendOrderSupabase.from('contacts').insert([payload]);
       if (error) throw error;
+
+      // 2. LolipopサーバーのPHPを利用してメールを自動送信
+      try {
+        await fetch('/send_mail.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+      } catch (mailError) {
+        console.error('Mail send warning:', mailError);
+        // DBには保存されているので処理は続行
+      }
 
       setSubmitMessage(t('contact.thanks'));
       setFormData({
