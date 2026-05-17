@@ -12,10 +12,12 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/style.css';
 import { format } from 'date-fns';
 import { ja as jaLocale, enUS } from 'date-fns/locale';
+import { trendOrderSupabase } from '../../lib/trendOrderClient';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
+    type: 'reservation',
     name: '',
     email: '',
     phone: '',
@@ -53,17 +55,29 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitMessage('');
 
-    // 簡易バリデーション
     if (!formData.name || !formData.email) {
       setSubmitMessage(t('contact.validationRequired'));
       setIsSubmitting(false);
       return;
     }
     
-    setTimeout(() => {
+    try {
+      const { error } = await trendOrderSupabase.from('contacts').insert([{
+        type: formData.type,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        reservation_date: formData.date || null,
+        reservation_time: formData.time || null,
+        guests: formData.guests ? parseInt(formData.guests) : null,
+        message: formData.message + (formData.menu ? `\n\n【希望メニュー】${formData.menu}` : '')
+      }]);
+
+      if (error) throw error;
+
       setSubmitMessage(t('contact.thanks'));
-      setIsSubmitting(false);
       setFormData({
+        type: 'reservation',
         name: '',
         email: '',
         phone: '',
@@ -73,7 +87,12 @@ const Contact = () => {
         menu: '',
         message: ''
       });
-    }, 1000);
+    } catch (err) {
+      console.error('Error submitting contact form:', err);
+      setSubmitMessage('エラーが発生しました。もう一度お試しください。');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -97,6 +116,33 @@ const Contact = () => {
             </CardHeader>
             <CardContent className="xl:p-8 2xl:p-10">
               <form onSubmit={handleSubmit} className="space-y-6" aria-label={t('contact.formAria')}>
+                
+                {/* 問い合わせタイプ選択 */}
+                <div className="flex gap-6 mb-6">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="type" 
+                      value="reservation" 
+                      checked={formData.type === 'reservation'} 
+                      onChange={handleInputChange} 
+                      className="accent-trend-accent w-4 h-4"
+                    />
+                    <span className="font-bold text-gray-700">席のご予約</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="radio" 
+                      name="type" 
+                      value="inquiry" 
+                      checked={formData.type === 'inquiry'} 
+                      onChange={handleInputChange} 
+                      className="accent-trend-accent w-4 h-4"
+                    />
+                    <span className="font-bold text-gray-700">その他のお問い合わせ</span>
+                  </label>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name" className="font-noto">{t('contact.labels.name')}</Label>
@@ -135,75 +181,79 @@ const Contact = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <Label htmlFor="date" className="font-noto">{t('contact.labels.date')}</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
+                {formData.type === 'reservation' && (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="date" className="font-noto">{t('contact.labels.date')}</Label>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Input
+                              id="date"
+                              name="date"
+                              type="text"
+                              value={dateDisplay}
+                              readOnly
+                              required={formData.type === 'reservation'}
+                              placeholder={i18n.language?.startsWith('en') ? 'Select date' : '日付を選択'}
+                              className="mt-1 cursor-pointer"
+                            />
+                          </PopoverTrigger>
+                          <PopoverContent align="start" className="p-0">
+                            <DayPicker
+                              mode="single"
+                              selected={selectedDate}
+                              onSelect={(d) => {
+                                const iso = d ? format(d, 'yyyy-MM-dd') : '';
+                                setFormData((prev) => ({ ...prev, date: iso }));
+                              }}
+                              locale={localeObj}
+                            />
+                          </PopoverContent>
+                        </Popover>
+                      </div>
+                      <div>
+                        <Label htmlFor="time" className="font-noto">{t('contact.labels.time')}</Label>
                         <Input
-                          id="date"
-                          name="date"
-                          type="text"
-                          value={dateDisplay}
-                          readOnly
-                          required
-                          placeholder={i18n.language?.startsWith('en') ? 'Select date' : '日付を選択'}
-                          className="mt-1 cursor-pointer"
+                          id="time"
+                          name="time"
+                          type="time"
+                          value={formData.time}
+                          onChange={handleInputChange}
+                          required={formData.type === 'reservation'}
+                          className="mt-1"
+                          lang={i18n.language}
                         />
-                      </PopoverTrigger>
-                      <PopoverContent align="start" className="p-0">
-                        <DayPicker
-                          mode="single"
-                          selected={selectedDate}
-                          onSelect={(d) => {
-                            const iso = d ? format(d, 'yyyy-MM-dd') : '';
-                            setFormData((prev) => ({ ...prev, date: iso }));
-                          }}
-                          locale={localeObj}
+                      </div>
+                      <div>
+                        <Label htmlFor="guests" className="font-noto">{t('contact.labels.guests')}</Label>
+                        <Input
+                          id="guests"
+                          name="guests"
+                          type="number"
+                          min="1"
+                          max="20"
+                          value={formData.guests}
+                          onChange={handleInputChange}
+                          required={formData.type === 'reservation'}
+                          className="mt-1"
                         />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                  <div>
-                    <Label htmlFor="time" className="font-noto">{t('contact.labels.time')}</Label>
-                    <Input
-                      id="time"
-                      name="time"
-                      type="time"
-                      value={formData.time}
-                      onChange={handleInputChange}
-                      required
-                      className="mt-1"
-                      lang={i18n.language}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="guests" className="font-noto">{t('contact.labels.guests')}</Label>
-                    <Input
-                      id="guests"
-                      name="guests"
-                      type="number"
-                      min="1"
-                      max="20"
-                      value={formData.guests}
-                      onChange={handleInputChange}
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                </div>
+                      </div>
+                    </div>
 
-                <div>
-                  <Label htmlFor="menu" className="font-noto">{t('contact.labels.menu')}</Label>
-                  <Input
-                    id="menu"
-                    name="menu"
-                    value={formData.menu}
-                    onChange={handleInputChange}
-                    placeholder={t('contact.placeholders.menu')}
-                    className="mt-1"
-                  />
-                </div>
+                    <div>
+                      <Label htmlFor="menu" className="font-noto">{t('contact.labels.menu')}</Label>
+                      <Input
+                        id="menu"
+                        name="menu"
+                        value={formData.menu}
+                        onChange={handleInputChange}
+                        placeholder={t('contact.placeholders.menu')}
+                        className="mt-1"
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div>
                   <Label htmlFor="message" className="font-noto">{t('contact.labels.message')}</Label>
