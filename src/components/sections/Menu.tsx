@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import { useParallax } from '@/hooks/useParallax';
 import { useTranslation } from 'react-i18next';
-import { trendOrderSupabase } from '@/lib/trendOrderClient';
+import { trendOrderSupabase, fixMenuName } from '@/lib/trendOrderClient';
 
 const CACHE_BUSTER = Date.now();
 
@@ -157,7 +157,7 @@ const Menu = () => {
                     <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-3">
                         <h4 className="text-xl xl:text-2xl font-bold text-trend-text font-noto group-hover:text-trend-accent transition-colors duration-300 leading-tight">
-                          {item.name}
+                          {fixMenuName(item.name)}
                         </h4>
                       </div>
                       {item.description && (

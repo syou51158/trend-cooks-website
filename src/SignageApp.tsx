@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './lib/supabaseClient';
-import { trendOrderSupabase } from './lib/trendOrderClient';
+import { trendOrderSupabase, fixMenuName } from './lib/trendOrderClient';
 import './App.css';
 
 const CACHE_BUSTER = Date.now();
@@ -498,7 +498,7 @@ const SignageApp = () => {
                 </div>
                 {/* Info */}
                 <div className="flex-1 p-5 flex flex-col justify-center">
-                  <h4 className="text-white font-bold text-xl line-clamp-1 leading-tight">{menu.name}</h4>
+                  <h4 className="text-white font-bold text-xl line-clamp-1 leading-tight">{fixMenuName(menu.name)}</h4>
                   <div className="flex justify-between items-center mt-2">
                     <span className="text-[#d4af37] font-black text-2xl">¥{menu.price.toLocaleString()}</span>
                     {menu.status === 'available' && <span className="text-green-400 text-sm font-bold border border-green-500/30 px-3 py-1 rounded-full bg-green-500/10">AVAILABLE</span>}

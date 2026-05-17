@@ -65,6 +65,9 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
+              <a href="/order" target="_blank" rel="noopener noreferrer" className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${isScrolled ? 'bg-trend-accent text-white hover:bg-trend-accent/90' : 'bg-white text-trend-accent hover:bg-gray-100'}`}>
+                テイクアウト注文
+              </a>
               <button
                 onClick={toggleLanguage}
                 className={`${isScrolled ? 'text-trend-text/80' : 'text-white/90'} hover:text-trend-accent px-3 py-2 text-sm xl:text-base 2xl:text-lg font-medium flex items-center gap-1 transition-colors duration-200 break-keep whitespace-nowrap`}
@@ -105,6 +108,9 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
+              <a href="/order" target="_blank" rel="noopener noreferrer" className="block w-full text-center px-3 py-2 mt-2 text-base font-bold text-white bg-trend-accent hover:bg-trend-accent/90 rounded-md font-noto">
+                テイクアウト注文
+              </a>
               <button
                 onClick={toggleLanguage}
                 className="text-trend-text/80 hover:text-trend-accent block px-3 py-2 text-base font-medium w-full text-left flex items-center gap-2 break-keep whitespace-nowrap"
