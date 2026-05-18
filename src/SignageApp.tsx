@@ -41,56 +41,53 @@ const getAutoBusinessStatus = () => {
   // -------------------------------------------------------------------------
 
   // --- 【特別対応】5月15日までの17:00オープン（プレオープン/調整期間）メッセージ ---
-  if (year === 2026 && month === 5 && day <= 15 && time < 17) {
-    return {
-      badge: "PREPARING & PREVIEW",
-      badgeColor: "bg-[#d4af37] text-black",
-      message: "本日は17:00オープン予定（早まる可能性あり）！準備中ですが【見学自由・ジュースやビール等ドリンク提供OK】です。「みんなで作るお店」として進化中ですので、ぜひ店内をご覧いただきアドバイスをください！",
-      overlay: "TOUR & DRINK OK",
-      overlayColor: "bg-[#d4af37]/90 text-black",
-      overlayDot: "bg-black",
-      isPulse: true
-    };
-  }
+  // （期間終了につき削除）
   // -------------------------------------------------------------------------
 
-  // 11:00 - 17:00 (DAY)
-  if (time >= 11 && time < 17) {
-    return {
-      badge: "NOW OPEN",
-      badgeColor: "bg-[#d4af37] text-black",
-      message: "本日は営業中です！細かいこだわりを追求し、準備・調整をしながらの営業となります。お気軽にお入りください。",
-      overlay: "WELCOME",
-      overlayColor: "bg-[#d4af37]/90 text-black",
-      overlayDot: "bg-black",
-      isPulse: true
-    };
-  } 
-  // 17:00 - 22:00 (NIGHT)
-  else if (time >= 17 && time < 22) {
-    return {
-      badge: "NOW OPEN",
-      badgeColor: "bg-[#00e5ff] text-black",
-      message: "本日は営業中です！夜も引き続き、店内の調整を行いながら営業しております。お気軽にお入りください。",
-      overlay: "WELCOME",
-      overlayColor: "bg-[#00e5ff]/90 text-black",
-      overlayDot: "bg-black",
-      isPulse: true
-    };
-  } 
-  // 06:00 - 11:00 (開店準備中)
-  else if (time >= 6 && time < 11) {
+  // 土日祝日判定（簡易的に土曜(6)と日曜(0)を休日とする。祝日は手動で `isWeekend` 扱いにするか、今後の拡張とする）
+  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+  const openTime = isWeekend ? 11 : 17;
+
+  // 開店準備中 (06:00 - openTime)
+  if (time >= 6 && time < openTime) {
     return {
       badge: "PREPARING",
       badgeColor: "bg-zinc-200 text-black",
-      message: "ただいま開店準備中です。11:00よりオープンいたします。準備中ですが内装の見学は可能ですので、お気軽にお声がけください！",
+      message: `ただいま開店準備中です。本日は${openTime}:00よりオープンいたします。準備中ですが内装の見学は可能ですので、お気軽にお声がけください！`,
       overlay: "PREPARING",
       overlayColor: "bg-zinc-800/90 text-white",
       overlayDot: "bg-yellow-500",
       isPulse: true
     };
   } 
-  // 22:00 - 06:00 (営業時間外)
+  // 営業時間中 (openTime - 22:00)
+  else if (time >= openTime && time < 22) {
+    // 昼の時間帯 (11:00 - 17:00) ※土日のみ
+    if (time < 17) {
+      return {
+        badge: "NOW OPEN",
+        badgeColor: "bg-[#d4af37] text-black",
+        message: "本日は営業中です！細かいこだわりを追求し、準備・調整をしながらの営業となります。お気軽にお入りください。",
+        overlay: "WELCOME",
+        overlayColor: "bg-[#d4af37]/90 text-black",
+        overlayDot: "bg-black",
+        isPulse: true
+      };
+    } 
+    // 夜の時間帯 (17:00 - 22:00) ※全日共通
+    else {
+      return {
+        badge: "NOW OPEN",
+        badgeColor: "bg-[#00e5ff] text-black",
+        message: "本日は営業中です！夜も引き続き、店内の調整を行いながら営業しております。お気軽にお入りください。",
+        overlay: "WELCOME",
+        overlayColor: "bg-[#00e5ff]/90 text-black",
+        overlayDot: "bg-black",
+        isPulse: true
+      };
+    }
+  } 
+  // 営業時間外 (22:00 - 06:00)
   else {
     return {
       badge: "CLOSED",
@@ -196,7 +193,7 @@ const SlideDayNight = () => (
       </div>
       <div className="relative z-10">
         <h2 className="text-7xl font-bold font-noto text-zinc-800 mb-4">DAY</h2>
-        <p className="text-3xl text-[#d4af37] font-bold tracking-widest mb-8">11:00 - 17:00</p>
+        <p className="text-3xl text-[#d4af37] font-bold tracking-widest mb-8">11:00 - 17:00 <span className="text-xl">（土日祝のみ）</span></p>
         <h3 className="text-4xl font-noto font-bold text-zinc-800 mb-6">カフェ＆リラックス</h3>
         <p className="text-2xl font-noto text-zinc-700 leading-relaxed font-medium">明るい日差しと最新スイーツ。<br/>誰もが気軽に立ち寄れる、オープンな時間。</p>
       </div>
@@ -207,7 +204,7 @@ const SlideDayNight = () => (
       </div>
       <div className="relative z-10">
         <h2 className="text-7xl font-bold font-noto text-white mb-4">NIGHT</h2>
-        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 22:00</p>
+        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 22:00 <span className="text-xl">（全日）</span></p>
         <h3 className="text-4xl font-noto font-bold text-white mb-6">ダイニング＆バー</h3>
         <p className="text-2xl font-noto text-gray-300 leading-relaxed font-medium">ネオンとプロジェクターが彩る非日常。<br/>極上のお肉とお酒で、大人の遊び場へ。</p>
       </div>
