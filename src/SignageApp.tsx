@@ -18,9 +18,6 @@ const getAutoBusinessStatus = () => {
   const parts = jstFormatter.formatToParts(now);
   const getPart = (type: string) => parseInt(parts.find(p => p.type === type)?.value || '0', 10);
   
-  const year = getPart('year');
-  const month = getPart('month');
-  const day = getPart('day');
   const hours = getPart('hour');
   const minutes = getPart('minute');
   const time = hours + minutes / 60;
