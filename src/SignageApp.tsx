@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from './lib/supabaseClient';
 import { trendOrderSupabase, fixMenuName } from './lib/trendOrderClient';
+import { SafeImage } from './components/ui/SafeImage';
 import './App.css';
+
 
 const CACHE_BUSTER = Date.now();
 
@@ -285,6 +287,15 @@ const SlideFutureTech = () => (
   </div>
 );
 
+const getBaseSegment = () => {
+  if (typeof window !== 'undefined' && window.location.pathname.startsWith('/trendcooks')) {
+    return '/trendcooks';
+  }
+  return '';
+};
+
+// Slide 5: DIY & Future Tech
+// (省略: slides array definitions or other above contents remain unchanged)
 const slides = [
   SlideConcept,
   SlideFutureTech,
@@ -318,6 +329,7 @@ const SignageApp = () => {
         .order('display_order', { ascending: true });
       
       if (!error && data) {
+        // すべてのアクティブなメニューを表示対象とする（画像が無いメニューも勝手に非表示にしない）
         setMenus(data);
       }
     };
@@ -334,9 +346,18 @@ const SignageApp = () => {
     if (!(url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))) {
       finalUrl = `/images/menu/${url}`;
     }
+
+    // 本番環境のサブディレクトリ (/trendcooks) 配下で動いている場合、先頭がスラッシュから始まる絶対パスであれば自動補正
+    const base = getBaseSegment();
+    if (base && finalUrl.startsWith('/') && !finalUrl.startsWith(base)) {
+      finalUrl = `${base}${finalUrl}`;
+    }
+
     const separator = finalUrl.includes('?') ? '&' : '?';
     return `${finalUrl}${separator}cb=${CACHE_BUSTER}`;
   };
+
+
 
   useEffect(() => {
     // Supabaseから設定を取得してステータスを更新する関数
@@ -454,54 +475,52 @@ const SignageApp = () => {
 
       {/* Global Bottom Ticker (Menu Marquee) */}
       <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-black via-black/95 to-transparent z-40 flex flex-col justify-end pb-4 overflow-hidden pointer-events-none">
-        {menus.length > 0 && (
-          <div className="flex w-max animate-[marquee_300s_linear_infinite]">
-            {[...menus, ...menus, ...menus, ...menus].map((menu, idx) => (
-              <div key={`${menu.id}-${idx}`} className="w-[500px] h-[120px] mx-6 bg-black/80 backdrop-blur-xl rounded-3xl border border-white/20 flex flex-row items-center overflow-hidden shadow-2xl">
-                {/* Image */}
-                <div className="w-40 h-full relative flex-shrink-0 bg-zinc-900">
-                  {menu.status === 'sold_out' && (
-                    <div className="absolute inset-0 bg-black/80 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-red-500 font-black text-sm border-2 border-red-500 px-2 py-1 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
-                    </div>
-                  )}
-                  {menu.status === 'preparing' && (
-                    <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-yellow-500 font-black text-sm border-2 border-yellow-500 px-2 py-1 rounded bg-black/40 transform -rotate-12">PREPARING</span>
-                    </div>
-                  )}
-                  {resolveImageUrl(menu.image_url) ? (
-                    <img 
-                      src={resolveImageUrl(menu.image_url)!} 
+        {(() => {
+          if (menus.length === 0) return null;
+          
+          // ループ表示を滑らかにするため、要素数が少ない場合は複製回数を増やす
+          let marqueeItems = [...menus];
+          while (marqueeItems.length < 8) {
+            marqueeItems = [...marqueeItems, ...menus];
+          }
+          // 最低4倍の繰り返しを保証して無限ループを滑らかに
+          const repeatedItems = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems];
+
+          return (
+            <div className="flex w-max animate-[marquee_300s_linear_infinite]">
+              {repeatedItems.map((menu, idx) => (
+                <div key={`${menu.id}-${idx}`} className="w-[500px] h-[120px] mx-6 bg-black/80 backdrop-blur-xl rounded-3xl border border-white/20 flex flex-row items-center overflow-hidden shadow-2xl">
+                  {/* Image */}
+                  <div className="w-40 h-full relative flex-shrink-0 bg-zinc-900 flex items-center justify-center">
+                    {menu.status === 'sold_out' && (
+                      <div className="absolute inset-0 bg-black/80 z-20 flex items-center justify-center backdrop-blur-sm">
+                        <span className="text-red-500 font-black text-sm border-2 border-red-500 px-2 py-1 rounded bg-black/50 transform -rotate-12">SOLD OUT</span>
+                      </div>
+                    )}
+                    {menu.status === 'preparing' && (
+                      <div className="absolute inset-0 bg-black/70 z-20 flex items-center justify-center backdrop-blur-sm">
+                        <span className="text-yellow-500 font-black text-sm border-2 border-yellow-500 px-2 py-1 rounded bg-black/40 transform -rotate-12">PREPARING</span>
+                      </div>
+                    )}
+                    <SafeImage
+                      src={resolveImageUrl(menu.image_url)}
                       alt={menu.name}
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                        const parent = (e.target as HTMLImageElement).parentElement;
-                        if (parent && !parent.querySelector('.fallback-icon')) {
-                          const fallback = document.createElement('div');
-                          fallback.className = 'fallback-icon text-5xl flex items-center justify-center w-full h-full';
-                          fallback.innerText = '🍽️';
-                          parent.appendChild(fallback);
-                        }
-                      }}
                     />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-5xl">🍽️</div>
-                  )}
-                </div>
-                {/* Info */}
-                <div className="flex-1 p-5 flex flex-col justify-center">
-                  <h4 className="text-white font-bold text-xl line-clamp-1 leading-tight">{fixMenuName(menu.name)}</h4>
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="text-[#d4af37] font-black text-2xl">¥{menu.price.toLocaleString()}</span>
-                    {menu.status === 'available' && <span className="text-green-400 text-sm font-bold border border-green-500/30 px-3 py-1 rounded-full bg-green-500/10">AVAILABLE</span>}
+                  </div>
+                  {/* Info */}
+                  <div className="flex-1 p-5 flex flex-col justify-center">
+                    <h4 className="text-white font-bold text-xl line-clamp-1 leading-tight">{fixMenuName(menu.name)}</h4>
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-[#d4af37] font-black text-2xl">¥{menu.price.toLocaleString()}</span>
+                      {menu.status === 'available' && <span className="text-green-400 text-sm font-bold border border-green-500/30 px-3 py-1 rounded-full bg-green-500/10">AVAILABLE</span>}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          );
+        })()}
       </div>
       <style>
         {`

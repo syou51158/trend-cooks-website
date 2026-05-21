@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
+import { TAKEAWAY_ORDER_URL } from '@/lib/orderLinks';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -65,7 +66,7 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
-              <a href="/order" target="_blank" rel="noopener noreferrer" className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${isScrolled ? 'bg-trend-accent text-white hover:bg-trend-accent/90' : 'bg-white text-trend-accent hover:bg-gray-100'}`}>
+              <a href={TAKEAWAY_ORDER_URL} target="_blank" rel="noopener noreferrer" className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${isScrolled ? 'bg-trend-accent text-white hover:bg-trend-accent/90' : 'bg-white text-trend-accent hover:bg-gray-100'}`}>
                 テイクアウト注文
               </a>
               <button
@@ -108,7 +109,7 @@ const Header = () => {
                   {item.name}
                 </button>
               ))}
-              <a href="/order" target="_blank" rel="noopener noreferrer" className="block w-full text-center px-3 py-2 mt-2 text-base font-bold text-white bg-trend-accent hover:bg-trend-accent/90 rounded-md font-noto">
+              <a href={TAKEAWAY_ORDER_URL} target="_blank" rel="noopener noreferrer" className="block w-full text-center px-3 py-2 mt-2 text-base font-bold text-white bg-trend-accent hover:bg-trend-accent/90 rounded-md font-noto">
                 テイクアウト注文
               </a>
               <button

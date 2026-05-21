@@ -5,6 +5,8 @@ import AnimatedElement from '@/components/ui/AnimatedElement';
 import { useParallax } from '@/hooks/useParallax';
 import { useTranslation } from 'react-i18next';
 import { trendOrderSupabase, fixMenuName } from '@/lib/trendOrderClient';
+import { SafeImage } from '../ui/SafeImage';
+
 
 const CACHE_BUSTER = Date.now();
 
@@ -31,15 +33,31 @@ const Menu = () => {
     fetchMenus();
   }, []);
 
+  const getBaseSegment = () => {
+    if (typeof window !== 'undefined' && window.location.pathname.startsWith('/trendcooks')) {
+      return '/trendcooks';
+    }
+    return '';
+  };
+
   const resolveImageUrl = (url: string | null) => {
     if (!url) return null;
     let finalUrl = url;
     if (!(url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))) {
       finalUrl = `/images/menu/${url}`;
     }
+
+    // 本番環境のサブディレクトリ (/trendcooks) 配下で動いている場合、先頭がスラッシュから始まる絶対パスであれば自動補正
+    const base = getBaseSegment();
+    if (base && finalUrl.startsWith('/') && !finalUrl.startsWith(base)) {
+      finalUrl = `${base}${finalUrl}`;
+    }
+
     const separator = finalUrl.includes('?') ? '&' : '?';
     return `${finalUrl}${separator}cb=${CACHE_BUSTER}`;
   };
+
+
 
   // 昼間営業 - 創作ランチプレート（基本メニュー）
   // 削除済
@@ -133,26 +151,11 @@ const Menu = () => {
                           <span className="text-yellow-500 font-black text-2xl border-4 border-yellow-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">PREPARING</span>
                         </div>
                       )}
-                      {resolveImageUrl(item.image_url) ? (
-                        <img
-                          src={resolveImageUrl(item.image_url)!}
-                          alt={item.name}
-                          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                          loading="lazy"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                            const parent = (e.target as HTMLImageElement).parentElement;
-                            if (parent && !parent.querySelector('.fallback-icon')) {
-                              const fallback = document.createElement('div');
-                              fallback.className = 'fallback-icon text-6xl text-gray-300';
-                              fallback.innerText = '🍽️';
-                              parent.appendChild(fallback);
-                            }
-                          }}
-                        />
-                      ) : (
-                        <div className="text-6xl text-gray-300">🍽️</div>
-                      )}
+                      <SafeImage
+                        src={resolveImageUrl(item.image_url)}
+                        alt={item.name}
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
                     </div>
                     <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col flex-grow">
                       <div className="flex justify-between items-start mb-3">

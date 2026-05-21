@@ -12,17 +12,17 @@ const Gallery = () => {
 
   const galleryImages = [
     {
-      src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '/images/trend-cooks-storefront-night-real.png',
       alt: t('gallery.images.0.alt'),
       category: t('gallery.images.0.category')
     },
     {
-      src: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '/images/trend-cooks-interior-day-real.png',
       alt: t('gallery.images.1.alt'),
       category: t('gallery.images.1.category')
     },
     {
-      src: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '/images/trend-cooks-interior-night-real.png',
       alt: t('gallery.images.2.alt'),
       category: t('gallery.images.2.category')
     },

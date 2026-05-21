@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import ParallaxBackground from '@/components/ui/ParallaxBackground';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import { useTranslation } from 'react-i18next';
+import { TAKEAWAY_ORDER_URL } from '@/lib/orderLinks';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center w-full">
       <ParallaxBackground
-        imageUrl="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        imageUrl="/images/trend-cooks-storefront-night-real.png"
         className="min-h-screen w-full"
         parallaxFactor={0.3}
         overlayOpacity={0.7}
@@ -74,7 +75,7 @@ const Hero = () => {
                   <ArrowRight className="ml-2" size={20} />
                 </Button>
                 
-                <a href="/order" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <a href={TAKEAWAY_ORDER_URL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
                   <Button 
                     size="lg" 
                     className="bg-white hover:bg-gray-100 text-black px-8 py-3 xl:px-12 xl:py-4 2xl:px-16 2xl:py-6 text-lg xl:text-xl 2xl:text-2xl font-noto transform hover:scale-105 transition-all duration-300 drop-shadow-lg hover:drop-shadow-xl w-full"
