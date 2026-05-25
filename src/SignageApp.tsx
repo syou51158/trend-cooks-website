@@ -43,9 +43,8 @@ const getAutoBusinessStatus = () => {
   // （期間終了につき削除）
   // -------------------------------------------------------------------------
 
-  // 土日祝日判定（簡易的に土曜(6)と日曜(0)を休日とする。祝日は手動で `isWeekend` 扱いにするか、今後の拡張とする）
-  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-  const openTime = isWeekend ? 11 : 17;
+  // 営業日はすべて11:00オープン
+  const openTime = 11;
 
   // 開店準備中 (06:00 - openTime)
   if (time >= 6 && time < openTime) {
@@ -61,7 +60,7 @@ const getAutoBusinessStatus = () => {
   } 
   // 営業時間中 (openTime - 22:00)
   else if (time >= openTime && time < 22) {
-    // 昼の時間帯 (11:00 - 17:00) ※土日のみ
+    // 昼の時間帯 (11:00 - 17:00)
     if (time < 17) {
       return {
         badge: "NOW OPEN",
@@ -192,7 +191,7 @@ const SlideDayNight = () => (
       </div>
       <div className="relative z-10">
         <h2 className="text-7xl font-bold font-noto text-zinc-800 mb-4">DAY</h2>
-        <p className="text-3xl text-[#d4af37] font-bold tracking-widest mb-8">11:00 - 17:00 <span className="text-xl">（土日祝のみ）</span></p>
+        <p className="text-3xl text-[#d4af37] font-bold tracking-widest mb-8">11:00 - 17:00</p>
         <h3 className="text-4xl font-noto font-bold text-zinc-800 mb-6">カフェ＆リラックス</h3>
         <p className="text-2xl font-noto text-zinc-700 leading-relaxed font-medium">明るい日差しと最新スイーツ。<br/>誰もが気軽に立ち寄れる、オープンな時間。</p>
       </div>
@@ -203,7 +202,7 @@ const SlideDayNight = () => (
       </div>
       <div className="relative z-10">
         <h2 className="text-7xl font-bold font-noto text-white mb-4">NIGHT</h2>
-        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 22:00 <span className="text-xl">（全日）</span></p>
+        <p className="text-3xl text-cyan-400 font-bold tracking-widest mb-8">17:00 - 22:00</p>
         <h3 className="text-4xl font-noto font-bold text-white mb-6">ダイニング＆バー</h3>
         <p className="text-2xl font-noto text-gray-300 leading-relaxed font-medium">ネオンとプロジェクターが彩る非日常。<br/>極上のお肉とお酒で、大人の遊び場へ。</p>
       </div>
