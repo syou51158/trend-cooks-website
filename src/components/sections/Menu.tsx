@@ -16,18 +16,43 @@ const Menu = () => {
   const isJa = i18n.language?.startsWith('ja');
 
   // Trend Orderからのリアルタイムメニュー
-  const [currentMenus, setCurrentMenus] = useState<any[]>([]);
+  const [menusByCategory, setMenusByCategory] = useState<{category: any, menus: any[]}[]>([]);
 
   useEffect(() => {
     const fetchMenus = async () => {
-      const { data, error } = await trendOrderSupabase
+      // メニューを取得
+      const { data: menuData, error: menuError } = await trendOrderSupabase
         .from('menus')
         .select('*')
         .eq('is_active', true)
         .order('display_order', { ascending: true });
       
-      if (!error && data) {
-        setCurrentMenus(data);
+      // カテゴリを取得
+      const { data: categoryData, error: categoryError } = await trendOrderSupabase
+        .from('menu_categories')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order', { ascending: true });
+      
+      if (!menuError && !categoryError && menuData && categoryData) {
+        // カテゴリごとにメニューをグループ化
+        const grouped = categoryData.map(category => {
+          return {
+            category,
+            menus: menuData.filter(menu => menu.category_id === category.id)
+          };
+        }).filter(group => group.menus.length > 0);
+
+        // カテゴリに属さないメニュー（その他）
+        const uncategorizedMenus = menuData.filter(menu => !menu.category_id || !categoryData.some(c => c.id === menu.category_id));
+        if (uncategorizedMenus.length > 0) {
+          grouped.push({
+            category: { id: 'uncategorized', name: 'その他' },
+            menus: uncategorizedMenus
+          });
+        }
+
+        setMenusByCategory(grouped);
       }
     };
     fetchMenus();
@@ -135,52 +160,63 @@ const Menu = () => {
             </div>
           </AnimatedElement>
 
-          {currentMenus.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 xl:gap-8 2xl:gap-10">
-              {currentMenus.map((item, index) => (
-                <AnimatedElement key={index} animation="scaleIn" delay={250 + index * 50}>
-                  <Card className="border-none shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group h-full overflow-hidden flex flex-col bg-white">
-                    <div className="relative h-56 xl:h-64 2xl:h-72 w-full overflow-hidden bg-zinc-100 flex items-center justify-center">
-                      {item.status === 'sold_out' && (
-                        <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-[2px]">
-                          <span className="text-red-500 font-black text-2xl border-4 border-red-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">SOLD OUT</span>
-                        </div>
-                      )}
-                      {item.status === 'preparing' && (
-                        <div className="absolute inset-0 bg-black/50 z-20 flex items-center justify-center backdrop-blur-[2px]">
-                          <span className="text-yellow-500 font-black text-2xl border-4 border-yellow-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">PREPARING</span>
-                        </div>
-                      )}
-                      <SafeImage
-                        src={resolveImageUrl(item.image_url)}
-                        alt={item.name}
-                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col flex-grow">
-                      <div className="flex justify-between items-start mb-3">
-                        <h4 className="text-xl xl:text-2xl font-bold text-trend-text font-noto group-hover:text-trend-accent transition-colors duration-300 leading-tight">
-                          {fixMenuName(item.name)}
-                        </h4>
-                      </div>
-                      {item.description && (
-                        <p className="text-gray-600 text-sm xl:text-base font-noto mb-6 flex-grow leading-relaxed">
-                          {item.description}
-                        </p>
-                      )}
-                      <div className="flex justify-between items-end mt-auto pt-4 border-t border-gray-100">
-                        <span className="text-trend-accent text-2xl xl:text-3xl font-black font-noto">
-                          ¥{item.price.toLocaleString()}
-                        </span>
-                        {item.status === 'available' && (
-                          <Badge className="bg-green-500/10 text-green-600 hover:bg-green-500/20 border-green-200">
-                            提供可能
-                          </Badge>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </AnimatedElement>
+          {menusByCategory.length > 0 ? (
+            <div className="space-y-16 xl:space-y-20">
+              {menusByCategory.map((group, groupIndex) => (
+                <div key={group.category.id} className="menu-category-group">
+                  <AnimatedElement animation="fadeInUp" delay={100}>
+                    <h4 className="text-2xl xl:text-3xl font-bold text-trend-text mb-8 border-b-2 border-trend-accent/20 pb-4 inline-block font-noto">
+                      {group.category.name}
+                    </h4>
+                  </AnimatedElement>
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 xl:gap-8 2xl:gap-10">
+                    {group.menus.map((item, index) => (
+                      <AnimatedElement key={item.id || index} animation="scaleIn" delay={150 + index * 50}>
+                        <Card className="border-none shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 group h-full overflow-hidden flex flex-col bg-white">
+                          <div className="relative h-56 xl:h-64 2xl:h-72 w-full overflow-hidden bg-zinc-100 flex items-center justify-center">
+                            {item.status === 'sold_out' && (
+                              <div className="absolute inset-0 bg-black/60 z-20 flex items-center justify-center backdrop-blur-[2px]">
+                                <span className="text-red-500 font-black text-2xl border-4 border-red-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">SOLD OUT</span>
+                              </div>
+                            )}
+                            {item.status === 'preparing' && (
+                              <div className="absolute inset-0 bg-black/50 z-20 flex items-center justify-center backdrop-blur-[2px]">
+                                <span className="text-yellow-500 font-black text-2xl border-4 border-yellow-500 px-4 py-1 rounded bg-white/90 transform -rotate-12 shadow-lg">PREPARING</span>
+                              </div>
+                            )}
+                            <SafeImage
+                              src={resolveImageUrl(item.image_url)}
+                              alt={item.name}
+                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                            />
+                          </div>
+                          <CardContent className="p-6 xl:p-8 2xl:p-10 h-full flex flex-col flex-grow">
+                            <div className="flex justify-between items-start mb-3">
+                              <h4 className="text-xl xl:text-2xl font-bold text-trend-text font-noto group-hover:text-trend-accent transition-colors duration-300 leading-tight">
+                                {fixMenuName(item.name)}
+                              </h4>
+                            </div>
+                            {item.description && (
+                              <p className="text-gray-600 text-sm xl:text-base font-noto mb-6 flex-grow leading-relaxed">
+                                {item.description}
+                              </p>
+                            )}
+                            <div className="flex justify-between items-end mt-auto pt-4 border-t border-gray-100">
+                              <span className="text-trend-accent text-2xl xl:text-3xl font-black font-noto">
+                                ¥{item.price.toLocaleString()}
+                              </span>
+                              {item.status === 'available' && (
+                                <Badge className="bg-green-500/10 text-green-600 hover:bg-green-500/20 border-green-200">
+                                  提供可能
+                                </Badge>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </AnimatedElement>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           ) : (
