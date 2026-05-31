@@ -342,14 +342,22 @@ const SignageApp = () => {
   const resolveImageUrl = (url: string | null) => {
     if (!url) return null;
     let finalUrl = url;
-    if (!(url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))) {
+    
+    if (url.startsWith('http') || url.startsWith('data:')) {
+      // 既存の絶対URLやData URIはそのまま
+    } else if (url.startsWith('/menu-images/') || url.startsWith('/drink-images/') || url.startsWith('/beer-images/')) {
+      // Trend Orderのサーバーから直接取得する
+      finalUrl = `https://trend-order-508416724601.asia-northeast1.run.app${url}`;
+    } else if (!url.startsWith('/')) {
       finalUrl = `/images/menu/${url}`;
     }
 
-    // 本番環境のサブディレクトリ (/trendcooks) 配下で動いている場合、先頭がスラッシュから始まる絶対パスであれば自動補正
-    const base = getBaseSegment();
-    if (base && finalUrl.startsWith('/') && !finalUrl.startsWith(base)) {
-      finalUrl = `${base}${finalUrl}`;
+    if (!finalUrl.startsWith('http') && !finalUrl.startsWith('data:')) {
+      // 本番環境のサブディレクトリ (/trendcooks) 配下で動いている場合、先頭がスラッシュから始まる絶対パスであれば自動補正
+      const base = getBaseSegment();
+      if (base && finalUrl.startsWith('/') && !finalUrl.startsWith(base)) {
+        finalUrl = `${base}${finalUrl}`;
+      }
     }
 
     const separator = finalUrl.includes('?') ? '&' : '?';
