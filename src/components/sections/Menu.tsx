@@ -162,7 +162,7 @@ const Menu = () => {
 
           {menusByCategory.length > 0 ? (
             <div className="space-y-16 xl:space-y-20">
-              {menusByCategory.map((group, groupIndex) => (
+              {menusByCategory.map((group) => (
                 <div key={group.category.id} className="menu-category-group">
                   <AnimatedElement animation="fadeInUp" delay={100}>
                     <h4 className="text-2xl xl:text-3xl font-bold text-trend-text mb-8 border-b-2 border-trend-accent/20 pb-4 inline-block font-noto">
